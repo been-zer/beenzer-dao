@@ -1,6 +1,6 @@
 <script lang="ts">
 import { computed, defineComponent, toRefs } from "vue";
-import { useWallet } from "@/useWallet";
+import { useWallet } from "../../services/wallets/useWallet";
 import WalletIcon from "./WalletIcon.vue";
 
 export default defineComponent({
@@ -24,7 +24,7 @@ export default defineComponent({
     const onClick = (event: MouseEvent) => {
       emit("click", event);
       if (event.defaultPrevented) return;
-      connect().catch(() => {});
+      connect().catch(() => { console.log("Wallet connected"); });
     };
 
     const scope = {
@@ -45,6 +45,7 @@ export default defineComponent({
 </script>
 
 <template>
+<div>
   <slot v-bind="scope">
     <button
       class="swv-button swv-button-trigger"
@@ -55,4 +56,5 @@ export default defineComponent({
       <p v-text="content"></p>
     </button>
   </slot>
+</div>
 </template>

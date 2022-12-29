@@ -5,12 +5,17 @@ import { useWallet } from "../../services/wallets/useWallet";
 import WalletConnectButton from "./WalletConnectButton.vue";
 import WalletIcon from "./WalletIcon.vue";
 import WalletModalProvider from "./WalletModalProvider.vue";
+import CurrencySwitcher from "./CurrencySwitcher.vue";
+import { balanceBEEN, balanceSOL, balanceUSD } from '../../services/wallets/getBalances';
+import { PublicKey } from '@solana/web3.js';
+import store from '../../store';
 
 export default defineComponent({
   components: {
     WalletConnectButton,
     WalletIcon,
     WalletModalProvider,
+    CurrencySwitcher,
   },
   props: {
     featured: { type: Number, default: 3 },
@@ -42,6 +47,19 @@ export default defineComponent({
       );
     });
 
+    const walletTokens = ref(0);
+    const walletBalance = ref(0);
+    const switchCurrency = async () => {
+      walletTokens.value = await balanceBEEN(publicKey.value as PublicKey)
+      if ( store.state.currency === 'USD' ) {
+        walletBalance.value = await balanceSOL(publicKey.value as PublicKey);
+        console.log('Balance: ', walletBalance, 'SOL')
+      } else if ( store.state.currency === 'SOL' ) {
+        walletBalance.value = await balanceUSD(publicKey.value as PublicKey);
+        console.log('Balance: ', walletBalance.value, 'USD')
+      }
+    }
+
     const {
       copy,
       copied: addressCopied,
@@ -66,8 +84,12 @@ export default defineComponent({
       dropdownOpened,
       openDropdown,
       closeDropdown,
+      walletTokens,
+      walletBalance,
+      switchCurrency,
       copyAddress,
       disconnect,
+      store
     };
 
     return {
@@ -119,6 +141,35 @@ export default defineComponent({
               role="menu"
             >
               <slot name="dropdown-list" v-bind="{ ...modalScope, ...scope }">
+                <li
+                  class="swv-dropdown-list-item"
+                  role="menuitem"
+                >
+                  {{`${walletTokens} BEEN`}}
+                </li>
+                <li
+                  class="swv-dropdown-list-item"
+                  role="menuitem"
+                >
+                  {{`${walletBalance} ${store.state.currency}`}}
+                </li>
+                <li
+                  @click="switchCurrency"
+                  class="swv-dropdown-list-item"
+                  role="menuitem"
+                >
+                  <div class="currency-switcher">
+                    <div class="symbol">
+                      SOL
+                    </div>
+                    <div>
+                      <CurrencySwitcher/>
+                    </div>
+                    <div class="symbol">
+                      USD
+                    </div>
+                  </div>
+                </li>
                 <li
                   v-if="canCopy"
                   @click="copyAddress"

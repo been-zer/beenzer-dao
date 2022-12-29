@@ -1,7 +1,4 @@
-import { Connection, GetProgramAccountsFilter, PublicKey } from "@solana/web3.js";
-import { 
-  TOKEN_PROGRAM_ID, 
-} from "@solana/spl-token";
+import { Connection, PublicKey } from "@solana/web3.js";
 
 const rpcEndpoint = 'https://dry-nameless-moon.solana-mainnet.discover.quiknode.pro/f61fa4c0c62f358f4b77346ad4faa84f8742ed73/';
 const TOKEN = new PublicKey('DoA5HLxcNGuqGb4wAfTXJZzAzt1juhgpYCxZpuvzgUTy');
@@ -13,7 +10,6 @@ async function getTokenAccounts(wallet: string, solanaConnection: Connection) {
     
     const accounts = await solanaConnection.getProgramAccounts(
         TOKEN, //new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA")
-
     );
     console.log(`Found ${accounts.length} token account(s) for wallet ${wallet}.`);
     accounts.forEach((account, i) => {

@@ -1,5 +1,4 @@
-import { defineComponent, h, PropType } from 'vue'
-
+import { defineComponent, h } from 'vue'
 import { PolarArea } from 'vue-chartjs'
 import {
   Chart as ChartJS,
@@ -7,8 +6,7 @@ import {
   Tooltip,
   Legend,
   ArcElement,
-  RadialLinearScale,
-  Plugin
+  RadialLinearScale
 } from 'chart.js'
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement, RadialLinearScale)
@@ -90,15 +88,16 @@ export default defineComponent({
     }
 
     return () =>
-      h(PolarArea, {
-        chartData,
-        chartOptions,
-        chartId: props.chartId,
-        width: props.width,
-        height: props.height,
-        cssClasses: props.cssClasses,
-        // styles: props.styles,
-        // plugins: props.plugins
-      })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      h( PolarArea as any, {
+      chartData,
+      chartOptions,
+      chartId: props.chartId,
+      width: props.width,
+      height: props.height,
+      cssClasses: props.cssClasses,
+      // styles: props.styles,
+      // plugins: props.plugins
+    })
   }
 })

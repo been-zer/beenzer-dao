@@ -17,7 +17,6 @@
       'target_date'
     ],
     data() { 
-      console.log('eooooooooooooo', this.date)
       const _date = this.target_date.split('/');
       const expires = new Date(Date.UTC(_date[0], _date[1], _date[2]));
       const now = new Date().getTime();

@@ -2,6 +2,8 @@ import {
   WalletReadyState,
   WalletNotReadyError,
   WalletNotConnectedError,
+} from "@solana/wallet-adapter-base";
+import type {
   Adapter,
   MessageSignerWalletAdapterProps,
   SignerWalletAdapterProps,
@@ -9,12 +11,9 @@ import {
   WalletError,
   WalletName,
 } from "@solana/wallet-adapter-base";
-import { 
-  PublicKey, 
-  Transaction 
-} from "@solana/web3.js";
+import type { PublicKey } from "@solana/web3.js";
 import { useLocalStorage } from "@vueuse/core";
-import { Ref } from "vue";
+import type { Ref } from "vue";
 import { computed, ref, shallowRef, watchEffect } from "vue";
 import { WalletNotSelectedError } from "./errors";
 
@@ -225,7 +224,7 @@ export const createWalletStore = ({
 
   // Send a transaction using the provided connection.
   const sendTransaction: WalletAdapterProps["sendTransaction"] = async (
-    transaction: Transaction,
+    transaction,
     connection,
     options?
   ) => {
@@ -286,6 +285,7 @@ export const createWalletStore = ({
     try {
       connecting.value = true;
       await wallet.value.adapter.connect();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       name.value = null;
       // Don't throw error, but handleError will still be called.

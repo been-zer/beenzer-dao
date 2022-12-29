@@ -2,10 +2,10 @@
   <!-- Right Panel -->
 
   <div class="m-auto w-full max-w-md p-2 mt-0">
-    <div class="h-[840px] p-4 text-gray-600 rounded-xl text-center shadow-xl shadow-yellow-400" :class="this.$store.state.dark ? 'bg-gray-800 shadow-gray-700' : 'bg-white'">
+    <div class="h-[840px] p-4 text-gray-600 rounded-xl text-center shadow-xl shadow-yellow-400" :class="this.$store.state.dark ? 'bg-gray-800' : 'bg-white'">
 
-      <div class="uppercase text-sm tracking-widest text-gray-400 font-semibold mt-8">SOLotto</div>
-      <div class="uppercase text-3xl tracking-widest text-gray-400 font-semibold">History</div>
+      <div class="uppercase text-sm tracking-widest text-gray-400 font-semibold mt-8">BEEN</div>
+      <div class="uppercase text-3xl tracking-widest text-gray-400 font-semibold">STATS</div>
       
       <div class="text-center uppercase text-sm tracking-widest font-semibold justify-center">
         <div class="flex justify-center mr-3 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600" >
@@ -112,7 +112,7 @@
 
 <script>
 // import LineChart from './charts/lineChart.ts';
-import { shortWallet, markWallet } from './utils';
+import { shortWallet, markWallet } from '../utils';
 
 export default {
   props: [

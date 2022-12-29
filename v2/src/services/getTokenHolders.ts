@@ -1,7 +1,7 @@
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
-import { clusterApiUrl, Connection } from "@solana/web3.js";
+import { Connection } from "@solana/web3.js";
 
-const getTokenHolders = async (_token: string = 'DoA5HLxcNGuqGb4wAfTXJZzAzt1juhgpYCxZpuvzgUTy') => {
+const getTokenHolders = async (_token = 'DoA5HLxcNGuqGb4wAfTXJZzAzt1juhgpYCxZpuvzgUTy') => {
   const rpcEndpoint = 'https://dry-nameless-moon.solana-mainnet.discover.quiknode.pro/f61fa4c0c62f358f4b77346ad4faa84f8742ed73/';
   const connection = new Connection(rpcEndpoint);
 

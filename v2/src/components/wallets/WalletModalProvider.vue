@@ -1,6 +1,6 @@
 <script lang="ts">
-import type { Wallet } from "@/createWalletStore";
-import { useWallet } from "@/useWallet";
+import type { Wallet } from "../../services/wallets/createWalletStore";
+import { useWallet } from "../../services/wallets/useWallet";
 import { WalletName, WalletReadyState } from "@solana/wallet-adapter-base";
 import { onClickOutside, onKeyStroke, useScrollLock } from "@vueuse/core";
 import {
@@ -150,6 +150,7 @@ export default defineComponent({
 </script>
 
 <template>
+<div>
   <div :class="dark ? 'swv-dark' : ''">
     <slot v-bind="scope"></slot>
   </div>
@@ -226,4 +227,5 @@ export default defineComponent({
       </div>
     </div>
   </teleport>
+</div>
 </template>

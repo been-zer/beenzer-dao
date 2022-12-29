@@ -103,11 +103,13 @@ export default defineComponent({
         }
      }
     }
+    
 
 
     
     return () => 
-      h( Line, {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      h( Line as any, {
         chartData,
         chartOptions,
         // chartId: props.chartId,
