@@ -1,32 +1,58 @@
+<script lang="ts">
+import store from './store';
+import NavbarWallet from './components/NavbarWallet.vue';
+import NavbarBottom from './components/NavbarBottom.vue';
+
+export default {
+  data() {
+    return {
+      store,
+    }
+  },
+  components: {
+    NavbarWallet,
+    NavbarBottom
+  },
+}
+</script>
+
+
 <template>
-<div>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+<div :class="store.state.dark ? 'bg-gray-900 shadow-gray-700 border-gray-200 text-gray-200' : 'bg-gray-100 shadow-gray-300 border-gray-900 text-gray-800'"
+  class="h-screen w-screen m-0">
+  <navbar-wallet/>
   <router-view/>
+  <navbar-bottom/>
 </div>
 </template>
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
 
-nav {
-  padding: 30px;
+html {
+  overflow-x: hidden;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: rgba(179, 179, 179, 0.692);
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+::-webkit-scrollbar-track {
+  background-color: rgba(179, 179, 179, 0.692);
+  border-radius: 0.75rem;
+  margin: 0.4rem;
+  border-left: 1px solid rgba(211, 211, 211, 0);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background:  linear-gradient(30deg, #1bd3247c, #21b913be);
+  box-shadow: inset 0 0 6px #30d31b,
 }
 </style>
+
+

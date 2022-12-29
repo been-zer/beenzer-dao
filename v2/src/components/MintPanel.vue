@@ -1,6 +1,113 @@
-<template>
-  <!-- Play Panel. -->
 
+<script>
+import { ref } from 'vue';
+import click_sound from '../assets/sounds/beep.mp3';
+import CountDown from './CountDown';
+import store from '@/store';
+import MintSwitcher from './MintSwitcher.vue';
+
+
+export default {
+  components: {
+    CountDown,
+    MintSwitcher,
+  },
+  props: [
+    'potSOL',
+    'wallet',
+    'balance',
+    'tickets',
+    'yourNumbers',
+    'yourProbability',
+    'yourROI'
+  ],
+  methods: {
+    commitNumber () {
+      this.$emit('commit', this.commitNumber)
+    },
+    checkBox ( checkbox ) {
+      this.checkbox = checkbox;
+    }
+  },
+  data() {
+    return {
+      date: "2023/1/1",
+      date2: "2023/3/1",
+      checkbox: true,
+      commitHover: false,
+      commiting: false
+    }
+  },
+  setup () {
+
+    const BEEN = ref('0');
+    const BEENZ = ref('0');
+    const DISCOUNT = 30;
+    const USD = ref('0');
+    const SOL = ref('0');
+    const nf = Intl.NumberFormat();
+    const maxNumber = 1000000;
+    const audio = new Audio(click_sound);
+
+    // Keyboard functionality
+    function clickNum (n) {
+      if ( store.state.sound )
+        audio.play();
+
+      if (BEEN.value[0] === '0') {
+        BEEN.value = String(n);
+        BEENZ.value = BEEN.value * 4;
+        USD.value = Math.floor((BEEN.value * (100-DISCOUNT)/100)*100)/100;
+        SOL.value = Math.floor((BEEN.value / 14)*100)/100;
+        return
+      }
+      if ( BEEN.value+n <= maxNumber ) {
+        BEEN.value += n;
+        BEENZ.value = BEEN.value * 4;
+        if ( BEEN.value+n > 100000) {
+          SOL.value = Math.floor((BEEN.value / 14));
+          USD.value = Math.floor((BEEN.value * (100-DISCOUNT)/100));
+        } else { 
+          SOL.value = Math.floor((BEEN.value / 14)*100)/100;
+          USD.value = Math.floor((BEEN.value * (100-DISCOUNT)/100)*100)/100;
+        }
+        return
+      }
+      else
+        return alert(`Number must be between 1 and ${nf.format(maxNumber)}, including both.`)     
+    }
+    function deleteNum () {
+      if (BEEN.value.length > 1)
+        BEEN.value = BEEN.value.slice(0, -1);
+      else resetNum();
+    }
+    function resetNum () {
+      SOL.value = '0';
+      USD.value = '0';
+      BEEN.value = '0';
+      BEENZ.value = '0';
+    }
+
+    const commitPop = ref(false);
+    
+    return { 
+      clickNum,
+      deleteNum,
+      resetNum,
+      nf,
+      location,
+      commitPop,
+      USD,
+      BEEN,
+      BEENZ,
+      SOL,
+      DISCOUNT
+    }
+  }
+}
+</script>
+<template>
+  <!-- Mint Panel. -->
   <div class="m-auto w-full max-w-md p-2 mt-0">
 
     <div class="rounded-xl shadow-xl" :class="this.checkbox ? 'shadow-green-600' : 'shadow-red-600'" >
@@ -209,13 +316,7 @@
         <div/>
 
       </div>
-
-
       </div>
-
-
-
-
       <div>
     </div>
     </div>
@@ -223,111 +324,3 @@
 </div>
 
 </template>
-
-<script>
-import { ref } from 'vue';
-import click_sound from '../assets/sounds/beep.mp3';
-import CountDown from './CountDown';
-import store from '@/store';
-import MintSwitcher from './MintSwitcher.vue';
-
-
-export default {
-  components: {
-    CountDown,
-    MintSwitcher,
-  },
-  props: [
-    'potSOL',
-    'wallet',
-    'balance',
-    'tickets',
-    'yourNumbers',
-    'yourProbability',
-    'yourROI'
-  ],
-  methods: {
-    commitNumber () {
-      this.$emit('commit', this.commitNumber)
-    },
-    checkBox ( checkbox ) {
-      this.checkbox = checkbox;
-    }
-  },
-  data() {
-    return {
-      date: "2023/1/1",
-      date2: "2023/3/1",
-      checkbox: true,
-      commitHover: false,
-      commiting: false
-    }
-  },
-  setup () {
-
-    const BEEN = ref('0');
-    const BEENZ = ref('0');
-    const DISCOUNT = 30;
-    const USD = ref('0');
-    const SOL = ref('0');
-    const nf = Intl.NumberFormat();
-    const maxNumber = 1000000;
-    const audio = new Audio(click_sound);
-
-    // Keyboard functionality
-    function clickNum (n) {
-      if ( store.state.sound )
-        audio.play();
-
-      if (BEEN.value[0] === '0') {
-        BEEN.value = String(n);
-        BEENZ.value = BEEN.value * 4;
-        USD.value = Math.floor((BEEN.value * (100-DISCOUNT)/100)*100)/100;
-        SOL.value = Math.floor((BEEN.value / 14)*100)/100;
-        return
-      }
-      if ( BEEN.value+n <= maxNumber ) {
-        BEEN.value += n;
-        BEENZ.value = BEEN.value * 4;
-        if ( BEEN.value+n > 100000) {
-          SOL.value = Math.floor((BEEN.value / 14));
-          USD.value = Math.floor((BEEN.value * (100-DISCOUNT)/100));
-        } else { 
-          SOL.value = Math.floor((BEEN.value / 14)*100)/100;
-          USD.value = Math.floor((BEEN.value * (100-DISCOUNT)/100)*100)/100;
-        }
-        return
-      }
-      else
-        return alert(`Number must be between 1 and ${nf.format(maxNumber)}, including both.`)     
-    }
-    function deleteNum () {
-      if (BEEN.value.length > 1)
-        BEEN.value = BEEN.value.slice(0, -1);
-      else resetNum();
-    }
-    function resetNum () {
-      SOL.value = '0';
-      USD.value = '0';
-      BEEN.value = '0';
-      BEENZ.value = '0';
-    }
-
-    const commitPop = ref(false);
-    
-    return { 
-      clickNum,
-      deleteNum,
-      resetNum,
-      nf,
-      location,
-      commitPop,
-      USD,
-      BEEN,
-      BEENZ,
-      SOL,
-      DISCOUNT
-    }
-  }
-}
-</script>
