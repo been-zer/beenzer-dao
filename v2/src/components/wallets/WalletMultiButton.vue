@@ -1,5 +1,5 @@
 <script lang="ts">
-import { computed, defineComponent, ref, toRefs } from "vue";
+import { computed, defineComponent, ref, toRefs, watchEffect } from "vue";
 import { onClickOutside, useClipboard } from "@vueuse/core";
 import { useWallet } from "../../services/wallets/useWallet";
 import WalletConnectButton from "./WalletConnectButton.vue";
@@ -50,14 +50,16 @@ export default defineComponent({
 
     const walletTokens = ref(0);
     const walletBalance = ref(0);
-    const switchCurrency = async () => {
+    watchEffect( async () => {
       walletTokens.value = await balanceBEEN(publicKey.value as PublicKey)
-      if ( store.state.currency === 'USD' ) {
+      walletBalance.value = await balanceSOL(publicKey.value as PublicKey);
+    })
+    const getBalances = async () => {
+      walletTokens.value = await balanceBEEN(publicKey.value as PublicKey)
+      if ( store.state.currency === 'SOL' ) {
         walletBalance.value = await balanceSOL(publicKey.value as PublicKey);
-        console.log('Balance: ', walletBalance, 'SOL')
-      } else if ( store.state.currency === 'SOL' ) {
+      } else if ( store.state.currency === 'USD' ) {
         walletBalance.value = await balanceUSD(publicKey.value as PublicKey);
-        console.log('Balance: ', walletBalance.value, 'USD')
       }
     }
 
@@ -88,7 +90,7 @@ export default defineComponent({
       formatNumber,
       walletTokens,
       walletBalance,
-      switchCurrency,
+      getBalances,
       copyAddress,
       disconnect,
       store
@@ -144,13 +146,7 @@ export default defineComponent({
             >
               <slot name="dropdown-list" v-bind="{ ...modalScope, ...scope }">
                 <li
-                  class="swv-dropdown-list-item"
-                  role="menuitem"
-                >
-                  {{`${formatNumber(walletBalance)} ${store.state.currency}`}}
-                </li>
-                <li
-                  @click="switchCurrency"
+                  @click="getBalances"
                   class="swv-dropdown-list-item"
                   role="menuitem"
                 >
@@ -167,6 +163,14 @@ export default defineComponent({
                   </div>
                 </li>
                 <li
+                  @click="getBalances"
+                  class="swv-dropdown-list-item"
+                  role="menuitem"
+                >
+                  {{`${formatNumber(walletBalance)} ${store.state.currency}`}}
+                </li>
+                <li
+                  @click="getBalances"
                   class="swv-dropdown-list-item"
                   role="menuitem"
                 >

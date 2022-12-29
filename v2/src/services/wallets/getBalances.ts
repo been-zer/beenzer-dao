@@ -23,7 +23,7 @@ export async function balanceUSD ( pubkey: PublicKey ): Promise<number> {
     return Math.floor((Number(balance)/1000000) * 100) / 100;
   } catch (e) {
     console.log(e);
-    return -1;
+    return 0;
   }
 }
 
@@ -38,6 +38,6 @@ export async function balanceBEEN ( pubkey: PublicKey ): Promise<number> {
     return Math.floor((Number(balance)/100) * 100) / 100;
   } catch (e) {
     console.log(e);
-    return -1;
+    return 0;
   }
 }
