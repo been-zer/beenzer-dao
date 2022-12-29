@@ -3,7 +3,7 @@
     <div class="h-screen w-screen m-0 -mb-12" :class="this.$store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
       <NavbarWallet :users="users" :balance="balance" :time="time" />
       <div class="flex flex-wrap top-24 left-0 right-0 justify-center align-center text-center" :class="this.$store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
-        <MintPanel @commit="(number) => commitNumber(number)" v-on="newTicket" :balance="balance" :potSOL="potSOL" :tickets="tickets" :countdown="countdown" :yourNumbers="yourNumbers" :yourProbability="yourProbability" :yourROI="yourROI" />
+        <MintPanel @commit="(amount) => mintToken(amount)" v-on="newTicket" :balance="balance" :potSOL="potSOL" :tickets="tickets" :countdown="countdown" :yourNumbers="yourNumbers" :yourProbability="yourProbability" :yourROI="yourROI" />
         <HistoryPanel :history="history" :totalCountries="totalCountries" :totalPlayers="totalPlayers" :maxPot="maxPot" :avgPot="avgPot" :chartData="chartData" :chartLabels="chartLabels" :wallet="user_wallet" />
         <GovernPanel />
         <VotingPanel :history="history" :totalCountries="totalCountries" :totalPlayers="totalPlayers" :maxPot="maxPot" :avgPot="avgPot" :chartData="chartData" :chartLabels="chartLabels" :wallet="user_wallet" />
@@ -26,8 +26,8 @@ import MintPanel from './components/MintPanel.vue';
 import GovernPanel from './components/GovernPanel.vue';
 import VotingPanel from './components/VotingPanel.vue';
 import HistoryPanel from './components/HistoryPanel.vue';
-import { useAnchorWallet, useWallet } from 'solana-wallets-vue';
-import { Connection, PublicKey, clusterApiUrl, SystemProgram, Transaction } from '@solana/web3.js';
+import { useWallet } from 'solana-wallets-vue';
+import { Connection, PublicKey, SystemProgram, Transaction, LAMPORTS_PER_SOL } from '@solana/web3.js';
 import commit_sound from './assets/sounds/3.wav';
 import commited_sound from './assets/sounds/2.wav';
 import wrong_sound from './assets/sounds/wrong.mp3';
@@ -41,9 +41,6 @@ import { ref, watchEffect } from 'vue';
 import io from 'socket.io-client';
 import store from './store';
 
-const preflightCommitment = 'processed'
-const cluster = 'devnet'
-const commitSOL = 1;
 
 export default {
   name: 'App',
@@ -98,10 +95,9 @@ export default {
         return response.json();
       })
       .then(function (payload) {
-        console.log(payload);
         ip.value = payload.ip
         flag.value = payload.location.country.flag.emoji;
-        store.dispatch('setFlag', flag);
+        store.dispatch('setFlag', 'hi');
         country.value =  payload.location.country.code;
         city.value =  payload.location.city;
       });
@@ -113,25 +109,21 @@ export default {
     });
 
     // User wallet
-    const wallet = useAnchorWallet();
-    const user_wallet = ref('');
+    const connection = new Connection(process.env.VUE_APP_SOLANA_RPC_URL);
+    const wallet = ref(useWallet());
+    // const anchorWallet = useAnchorWallet();
     const connected = ref(true);
-    try {
-      user_wallet.value = wallet.value.publicKey;
-      connected.value = false;
-    } catch { 
-      console.log('Wallet connection error')
-    }
-    const connection = new Connection(process.env.VUE_APP_CLUSTER_URL, 'connected')
     const balance = ref();
+    const user_wallet = ref('');
     watchEffect(async () => {
       try {
-        user_wallet.value = wallet.value.publicKey;
-        connected.value = false;
 
+          user_wallet.value = wallet.value.publicKey;
+          connected.value = false;
       } catch { 
         console.log('Wallet connection error')
       }
+      console.log('hksddds', wallet.value.publicKey.toBase58())
       const bal = await connection.getBalance(user_wallet.value)/1000000000;
       balance.value = Math.floor(bal*100)/100;
       setInterval( async () => {
@@ -140,7 +132,7 @@ export default {
     });
 
     // Commit Number
-    async function commitNumber (number) {
+    async function mintToken (amount) {
 
       const audio1 = new Audio(commit_sound);
       const audio2 = new Audio(commited_sound);
@@ -153,26 +145,20 @@ export default {
 
       if ( store.state.sound )
         audio1.play();
-      
-      const connection = new Connection(clusterApiUrl(cluster), preflightCommitment)
-      const bal = await connection.getBalance(user_wallet.value)/1000000000;
-      if (bal < commitSOL) 
-        return alert('Not enough SOL in your wallet. Minimum funds needed: 1 SOL')
-
+           
       const { sendTransaction } = useWallet();
       const masterPubKey = new PublicKey(process.env.VUE_APP_MASTER_WALLET);
       const transaction = new Transaction().add(
         SystemProgram.transfer({
           fromPubkey: user_wallet.value,
           toPubkey: new PublicKey(masterPubKey),
-          lamports: commitSOL*1000000000,
-          message: number.value})
+          lamports: amount*LAMPORTS_PER_SOL,
+        })
       )
 
       const signature = await sendTransaction(transaction, connection);
       console.log('Transaction confirmed! Signature:', signature);
       
-      await connection.confirmTransaction(signature, number.value);// processed');
 
       if ( store.state.sound )
         audio2.play();
@@ -188,7 +174,7 @@ export default {
       time,
       countdown,
       location,
-      commitNumber,
+      mintToken,
       connected
     }
   }

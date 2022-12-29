@@ -40,7 +40,7 @@
       <div class="flex justify-center items-center rounded-xl">
         <SocialButtons />
 
-        <div class="ml-8 flex">
+        <div class="ml-8 block p-4 mr-4 sm:flex sm:-mr-8">
             <!-- Sound Button -->
             <button class="rounded-full h-8 w-8 m-2 flex justify-center items-center shadow-xl border " @click="this.$store.dispatch('soundButton')" :class="this.$store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-gray-100 text-gray-600'">
               <img v-if="this.$store.state.sound" :src="this.$store.state.dark ? sound_white : sound_black" class="h-4 w-4"/>

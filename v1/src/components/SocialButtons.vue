@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center rounded-xl">
+  <div class="flex flex-wrap justify-center items-center rounded-xl">
     <!-- Twitter Button -->
     <a :href="twitter_url" target="_blank">
       <button class="rounded-full h-10 w-10 m-2 flex justify-center items-center shadow-xl" :class="this.$store.state.dark ? 'bg-white/10 shadow-gray-700 hover:bg-gray-600 text-gray-200' : 'bg-white hover:bg-gray-200 text-gray-600'" 
@@ -77,7 +77,7 @@ export default {
       twitter_img: require("../assets/ico/twitter.svg"),
       twitter_gif: require("../assets/ico/twitter.gif"),
       twitter_url: 'https://www.twitter.com/beenzer_app/',
-      instagram_img: require("../assets/ico/instagram.gif"),
+      instagram_img: require("../assets/ico/instagram.png"),
       instagram_gif: require("../assets/ico/instagram.gif"),
       instagram_url: 'https://www.instagram.com/beenzer_app/',
       discord_img: require("../assets/ico/discord.png"),

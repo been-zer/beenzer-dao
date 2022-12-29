@@ -8,7 +8,7 @@ createWalletStore();
 initWallet();
 const clusterUrl = process.env.VUE_APP_CLUSTER_URL
 const preflightCommitment = 'processed'
-const commitment = 'processed'
+const commitment = 'connected'
 const programID = new PublicKey(idl.metadata.address)
 let workspace = null
 

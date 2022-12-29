@@ -3,7 +3,6 @@ import App from './App.vue';
 import store from './store';
 import unoverlay from 'unoverlay-vue';
 import SolanaWallets from 'solana-wallets-vue';
-// import useWorkspace from './services/useWorkspace';
 import './assets/css/tailwind.css'
 import './assets/css/wallets.css';
 
@@ -45,7 +44,7 @@ const walletOptions = {
     new Coin98WalletAdapter(),
     new SolongWalletAdapter(),
     new StrikeWalletAdapter(),
-    new WalletConnectWalletAdapter({ network: 'devnet'}),
+    new WalletConnectWalletAdapter(),
     new MathWalletAdapter(),
     new LedgerWalletAdapter()
   ],

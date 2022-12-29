@@ -1,13 +1,10 @@
-import { Connection, GetProgramAccountsFilter, PublicKey } from "@solana/web3.js";
-import { 
-  TOKEN_PROGRAM_ID, 
-} from "@solana/spl-token";
+import { Connection, PublicKey } from "@solana/web3.js";
 
 const rpcEndpoint = 'https://dry-nameless-moon.solana-mainnet.discover.quiknode.pro/f61fa4c0c62f358f4b77346ad4faa84f8742ed73/';
 const TOKEN = new PublicKey('DoA5HLxcNGuqGb4wAfTXJZzAzt1juhgpYCxZpuvzgUTy');
 const solanaConnection = new Connection(rpcEndpoint);
 
-const walletToQuery = 'DoA5HLxcNGuqGb4wAfTXJZzAzt1juhgpYCxZpuvzgUTy'; //example: vines1vzrYbzLMRdu58ou5XTby4qAqVRLmqo36NKPTg
+const walletToQuery = 'DoA5HLxcNGuqGb4wAfTXJZzAzt1juhgpYCxZpuvzgUTy';
 
 async function getTokenAccounts(wallet: string, solanaConnection: Connection) {
     
@@ -27,4 +24,5 @@ async function getTokenAccounts(wallet: string, solanaConnection: Connection) {
       console.log(`--Token Balance: ${tokenBalance}`);
     });
 }
-getTokenAccounts(walletToQuery,solanaConnection);
+
+getTokenAccounts(walletToQuery, solanaConnection);
