@@ -94,7 +94,7 @@ export default {
       tiktok_url: 'https://tiktok.com/Beenzerofficial',
       magiceden_img: require("../assets/ico/magiceden.png"),
       magiceden_gif: require("../assets/ico/magiceden.gif"),
-      magiceden_url: 'https://magiceeden.com/Beenzerofficial',
+      magiceden_url: 'https://magiceeden.io/Beenzerofficial',
       opensea_img: require("../assets/ico/opensea.png"),
       opensea_gif: require("../assets/ico/opensea.gif"),
       opensea_url: 'https://opensea.com/Beenzerofficial',

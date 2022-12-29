@@ -1,6 +1,7 @@
 <template>
   <label class="switch">
-    <input type="checkbox" @click="toggleCheckbox">
+    <input type="checkbox"
+    @click="this.$store.dispatch('setFlag', '🏴‍☠️')" >
     <div class="slider round"></div>
   </label>
 </template>
@@ -13,12 +14,6 @@ export default {
       checkbox: true
     }
   },
-  methods: {
-    toggleCheckbox() {
-      this.$emit('location', '🏴‍☠️')
-    }
-  }
-
 }
 </script>
 

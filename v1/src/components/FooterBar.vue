@@ -14,11 +14,11 @@
       </div>
       <!-- Users flag -->
       <div class="text-center text-md tracking-widest font-semibold justify-center mr-8 text-gray-400">
-        {{ flag }}
+        {{ this.$store.state.flag }}
       </div>
     </div>
     <div class="mt-8">
-      Made with 💚 by Beenzer Team © All rights reserved. <br>Built in <a href="https://solana.com/" target="_blank" class="underline">Solana</a> in 2022. Good luck all!
+      Made with 💚 by Beenzer Team <br/> © All rights reserved.
     </div>
   </div>
 </template>

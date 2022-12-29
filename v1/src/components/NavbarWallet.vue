@@ -47,7 +47,9 @@
               <img v-else :src="this.$store.state.dark ? mute_white : mute_black" class="h-4 w-4"/>
             </button>
           <!-- Dark Button -->
-          <button class="rounded-full h-8 w-8 m-2 flex justify-center items-center shadow-xl border " @click="this.$store.dispatch('lightButton')" :class="this.$store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-gray-100 text-gray-600'">
+          <button class="rounded-full h-8 w-8 m-2 flex justify-center items-center shadow-xl border " 
+          @click="this.$store.dispatch('lightButton')" 
+          :class="this.$store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-gray-100 text-gray-600'">
             <svg v-if="this.$store.state.dark" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
             </svg>
@@ -75,31 +77,7 @@ export default {
   data() {
     return {
       isOpen: false,
-      landing_url: process.env.VUE_APP_LANDING_URL,
-      twitter_img: require("../assets/ico/twitter.svg"),
-      twitter_gif: require("../assets/ico/twitter.gif"),
-      twitter_url: 'https://www.twitter.com/beenzer_app/',
-      instagram_img: require("../assets/ico/instagram.gif"),
-      instagram_gif: require("../assets/ico/instagram.gif"),
-      instagram_url: 'https://www.instagram.com/beenzer_app/',
-      discord_img: require("../assets/ico/discord.png"),
-      discord_gif: require("../assets/ico/discord.gif"),
-      discord_url: 'https://www.discord.com/beenzer_app/',
-      telegram_img: require("../assets/ico/telegram.png"),
-      telegram_gif: require("../assets/ico/telegram.gif"),
-      telegram_url: 'https://t.me/Beenzerofficial',
-      youtube_img: require("../assets/ico/youtube.png"),
-      youtube_gif: require("../assets/ico/youtube.gif"),
-      youtube_url: 'https://youtube.com/Beenzerofficial',
-      tiktok_img: require("../assets/ico/tiktok.png"),
-      tiktok_gif: require("../assets/ico/tiktok.gif"),
-      tiktok_url: 'https://tiktok.com/Beenzerofficial',
-      magiceden_img: require("../assets/ico/magiceden.png"),
-      magiceden_gif: require("../assets/ico/magiceden.gif"),
-      magiceden_url: 'https://magiceeden.com/Beenzerofficial',
-      opensea_img: require("../assets/ico/opensea.png"),
-      opensea_gif: require("../assets/ico/opensea.gif"),
-      opensea_url: 'https://opensea.com/Beenzerofficial',
+      landing_url: "https://beenzer.app",
       sound_black: require("../assets/ico/sound.png"),
       sound_white: require("../assets/ico/sound-white.png"),
       mute_black: require("../assets/ico/mute.png"),

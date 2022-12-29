@@ -36,7 +36,6 @@ import {
   getDate,
   getTime,
   countDown,
-  userLocation
 } from './utils';
 import { ref, watchEffect } from 'vue';
 import io from 'socket.io-client';
@@ -67,21 +66,15 @@ export default {
       return data;
     });
 
-
-
     const date = ref('')
     date.value = getDate();
-
-
     const time = ref('');
     time.value = getTime();
-    
-
     const countdown = ref('');
     countdown.value = countDown();
     
 
-    // Pot sound 00:00:00 UTC
+    // 00:00:00 UTC big sound!
     const pot_audio = new Audio(pot_sound);
     setInterval( () => {
       time.value = getTime();
@@ -93,74 +86,27 @@ export default {
       }
     }, 1000);
 
-    // Pot 
-    const potSOL = ref(0);
-    const potUSD = ref(0);
-    socket.on('getPOT', (data) => {
-      //console.log(data);
-      potSOL.value = data.potSOL || 0;
-      potUSD.value = data.potUSD || 0;
-    });
-
-    // history []
-    const history = ref([]);
-    const chartData = ref([]);
-    const chartLabels = ref([]);
-    const maxPot = ref(0);
-    const avgPot = ref(0);
-    socket.on('getHistory', (data, error) => {
-      if (error) console.log('Error on socket:', error);
-      let cumPot = 0;
-      let sumPot = 0;
-      let i = 0;
-      for ( const x of data ) {
-        if( x._pot > maxPot.value ) maxPot.value = Math.floor(x._pot);
-        sumPot += x._pot;
-        cumPot += Number(x._pot);
-        chartData.value = [...chartData.value, cumPot ];
-        chartLabels.value = [...chartLabels.value, x.__date__.substring(5,10) ];
-        i++;
-      }
-      avgPot.value = Math.floor((sumPot / i)) || 0;
-      history.value = data.reverse();
-    });
-
-    // total historical countries & players
-    const totalCountries = ref(0);
-    socket.on('totalCountries', (data, error) => {
-      if (error) console.log('Error on socket:', error);
-      totalCountries.value = data
-    });
-    const totalPlayers = ref(0);
-    socket.on('totalPlayers', (data, error) => {
-      if (error) console.log('Error on socket:', error);
-      totalPlayers.value = data
-    });
-
-
-    // tickets []
-    const tickets = ref([]);
-    socket.on('getTickets', (data, error) => {
-      if (error) console.log('Error on socket:', error);
-      tickets.value = data;
-    });
-
-    // nVerified
-    const nVerified = ref(0);
-    socket.on('nVerified', (data, error) => {
-      if (error) console.log('Error on socket:', error);
-      nVerified.value = data;
-    });
-
-    // nPlayers
-    const nPlayers = ref(0);
-    socket.on('nPlayers', (data, error) => {
-      if (error) console.log('Error on socket:', error);
-      nPlayers.value = data;
-    });
-
-    // User location
     
+    // User location
+    async function userLocation () {
+      const ip = ref('');
+      const flag = ref('');
+      const country = ref('');
+      const city = ref('');
+      fetch('https://api.ipregistry.co/?key=0nxj6f90k9nup0j3')
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (payload) {
+        console.log(payload);
+        ip.value = payload.ip
+        flag.value = payload.location.country.flag.emoji;
+        store.dispatch('setFlag', flag);
+        country.value =  payload.location.country.code;
+        city.value =  payload.location.city;
+      });
+      return { ip, flag, country, city };
+    }
     const location = ref('');
     watchEffect(async () => {
       location.value = await userLocation()
@@ -193,7 +139,6 @@ export default {
       }, 10000);
     });
 
-    const ticket = ref('')
     // Commit Number
     async function commitNumber (number) {
 
@@ -202,16 +147,8 @@ export default {
       const audio3 = new Audio(wrong_sound)
 
       if (! wallet.value) {
+        audio3.play();
         return alert('Connect your wallet first!')
-      } 
-
-      for ( const num of tickets.value ) {
-        if ( num.__num__ == number ) {
-          audio3.play();
-          if ( store.state.sound )
-            audio3.play();
-          return 'This number is already commited! Try another one' //alert('This number is already commited! Try another one.')
-        }
       }
 
       if ( store.state.sound )
@@ -237,72 +174,11 @@ export default {
       
       await connection.confirmTransaction(signature, number.value);// processed');
 
-      emitPlayer();
-
       if ( store.state.sound )
         audio2.play();
 
-      ticket.value = emitTicket(number);
-
-      updateYourNumbers();
-      updateYourProbability();
-      updateYourROI();
-
     }
 
-    // socket send ticket
-    function emitTicket(number) {
-      let flag = '🏴‍☠️'
-      if ( location.value.flag )
-        flag = location.value.flag;
-      const ticket = `, ${number}, false, '${user_wallet.value}', '${flag}', ${potSOL.value+1}, ${Date.now()}`;
-      socket.emit('newTicket', ticket);
-      // console.log(socket.on('postTicket'))
-    }
-
-    // socket send player
-    function emitPlayer() {
-      let flag = '🏴‍☠️'
-      if ( location.value.flag )
-        flag = location.value.flag;
-      const player = `${'hsa'}, ${flag}, ${location.value.country}, ${location.value.city}, ${'djkd'}, ${Date.now()}`;
-      console.log(player);
-      socket.emit('newPlayer', player);
-    }
-
-    // Play panel stats
-    const yourNumbers = ref(0);
-    function updateYourNumbers () {
-      let nums = 0;
-      try {
-        for (const i of tickets.value) {
-          if (i._owner == user_wallet.value) {
-            nums++;
-          }
-        }
-        yourNumbers.value = nums;
-      } catch {
-        return
-      }
-    }
-    const yourProbability = ref(0);
-    function updateYourProbability () {
-      if ( yourNumbers.value > 0 )
-        yourProbability.value = Math.floor((yourNumbers.value/potSOL.value)*1000)/10;
-    }
-    const yourROI = ref(0);
-    function updateYourROI () {
-      if ( yourProbability.value > 0 )
-        yourROI.value = Math.floor((potSOL.value/yourNumbers.value-1)*1000)/10;
-    }
-    setInterval( () => {
-      watchEffect( () => {
-        updateYourNumbers();
-        updateYourProbability();
-        updateYourROI();
-      });
-    }, 1000);
-    
     return {
       user_wallet,
       socket,
@@ -311,23 +187,8 @@ export default {
       date,
       time,
       countdown,
-      potSOL,
-      potUSD,
-      history,
-      totalCountries,
-      totalPlayers,
-      maxPot,
-      avgPot,
-      chartData,
-      chartLabels,
-      tickets,
-      nVerified,
-      nPlayers,
       location,
       commitNumber,
-      yourNumbers,
-      yourProbability,
-      yourROI,
       connected
     }
   }

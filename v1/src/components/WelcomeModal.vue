@@ -16,16 +16,16 @@
               v1.0
             </span>
           </p>
-          <p class="mt-8 px-2 uppercase text-sm tracking-widest font-semibold" >
+          <p class="mt-8 px-1 uppercase text-sm tracking-widest font-semibold" >
             CONNECT YOUR BROWSER WALLET
           </p>
           <p class="mt-2 px-2 uppercase text-sm tracking-widest font-semibold" >
-            TO LOGIN TO BEENZER
+            TO LOGIN TO BEENZER DAO
           </p>
           <div class="my-6 flex align-center justify-center">
             <wallet-multi-button :dark="this.$store.state.dark"/>
           </div>
-          <p class="mt-6 text-md tracking-widest text-gray-200 font-semibold">
+          <p class="mt-2 text-sm tracking-widest text-gray-200 font-semibold">
             FROM HERE YOU CAN:
           </p>
           <p class="mt-6 text-2xl tracking-wides font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400">

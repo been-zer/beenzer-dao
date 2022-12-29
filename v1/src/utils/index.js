@@ -41,24 +41,6 @@ export function countDown () {
   return `${hours}h ${minutes}m ${seconds}s`;
 }
 
-export async function userLocation () {
-  let ip = '';
-  let flag = '';
-  let country = '';
-  let city = '';
-  fetch('https://api.ipregistry.co/?key=0nxj6f90k9nup0j3')
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (payload) {
-    console.log(payload);
-    ip = payload.ip
-    flag = payload.location.country.flag.emoji;
-    this.$store.dispatch('setFlag', flag.value)
-    country =  payload.location.country.code;
-    city =  payload.location.city;
-  });
-  return { ip, flag, country, city };
-}
+
 
 
