@@ -4,7 +4,7 @@ export default new Vuex.Store({
   state: {
     dark: true,
     sound: true,
-    flag: location.flag
+    flag: '🏴‍☠️'
   },
   getters: {
 
@@ -18,7 +18,7 @@ export default new Vuex.Store({
     soundButton () {
       this.state.sound = !this.state.sound;
     },
-    async setFlag (flag) {
+    setFlag (flag) {
       console.log('eeeeeoooo', flag)
       this.state.flag = flag;
     }
