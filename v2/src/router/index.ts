@@ -6,6 +6,11 @@ import AppView from '../views/AppView.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
+    path: '/',
+    name: 'Home',
+    component: MintView
+  },
+  {
     path: '/mint',
     name: 'Mint',
     component: MintView

@@ -7,7 +7,7 @@ export default {
 }
 </script>
 <template>
-  <div class="flex flex-wrap top-24 left-0 right-0 justify-center align-center text-center" >
+  <div class="h-screen w-screen flex flex-wrap top-24 left-0 right-0 justify-center align-center align-middle text-center" >
     COMMING SOON -> APRIL 2023
   </div>
 </template>

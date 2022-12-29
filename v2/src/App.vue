@@ -1,7 +1,6 @@
 <script lang="ts">
 import store from './store';
 import NavbarWallet from './components/NavbarWallet.vue';
-import NavbarBottom from './components/NavbarBottom.vue';
 
 export default {
   data() {
@@ -11,7 +10,6 @@ export default {
   },
   components: {
     NavbarWallet,
-    NavbarBottom
   },
 }
 </script>
@@ -19,10 +17,9 @@ export default {
 
 <template>
 <div :class="store.state.dark ? 'bg-gray-900 shadow-gray-700 border-gray-200 text-gray-200' : 'bg-gray-100 shadow-gray-300 border-gray-900 text-gray-800'"
-  class="h-screen w-screen m-0">
+  class="h-full w-screen m-0">
   <navbar-wallet/>
   <router-view/>
-  <navbar-bottom/>
 </div>
 </template>
 
@@ -38,7 +35,7 @@ html {
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
-  background-color: rgba(179, 179, 179, 0.692);
+  background-color: rgba(34, 34, 34, 0.692);
 }
 
 ::-webkit-scrollbar-track {

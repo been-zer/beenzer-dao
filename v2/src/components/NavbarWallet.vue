@@ -1,14 +1,10 @@
 <script lang="ts">
   import WalletMultiButton from './wallets/WalletMultiButton.vue';
   import SocialButtons from './SocialButtons.vue';
+  import NavMenu from './NavMenu.vue';
   import store from '../store';
 
   export default {
-    props: [
-      'users',
-      'balance',
-      'time'
-    ],
     data() {
       return {
         store,
@@ -22,7 +18,8 @@
     },
     components: {
       WalletMultiButton,
-      SocialButtons
+      SocialButtons,
+      NavMenu
     }
   }
 </script>
@@ -38,17 +35,13 @@
           <img class="h-12 -mt-2 rounded-full" src="../assets/logo.png" alt="Workcation">
         </button>
       </a> -->
-      <div class="font-bold sm:text-4xl text-lg sm:pr-8 sm:-ml-12 pr-4 uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400">
+      <div class="font-bold sm:text-4xl text-2xl sm:pr-8 sm:-ml-12 uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400">
         <h1><a href="index.html"><span>Beenzer</span></a></h1>
       </div>
       
       <!-- Wallet Connect -->
       <div class="flex items-center justify-center">
         <wallet-multi-button :dark="store.state.dark"></wallet-multi-button>
-        <a href="https://solfaucet.com" target="_blank" >
-          <p v-if="balance" class="ml-4 pr-4 text-sm font-semibold uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600" >{{balance}} SOL</p>
-          <p v-if="balance" class="ml-4 pr-4 text-sm font-semibold uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600" >{{3}} BEEN</p>
-        </a>
       </div>
        
       <!-- Toogle nav -->
@@ -66,11 +59,10 @@
     
     <nav :class="isOpen ? 'block' : 'hidden'" class="z-10 px-2 pt-2 pb-4  sm:flex sm:p-0">
 
-      <div class="flex justify-center items-center rounded-xl">
-
-        <SocialButtons />
-
-        <div class="ml-8 block p-4 mr-4 sm:flex sm:-mr-8">
+      <div class="sm:flex block justify-center items-center rounded-xl">
+        <nav-menu />
+        <social-buttons />
+        <div class="flex justify-center ml-8 p-4 mr-4">
             <!-- Sound Button -->
             <button class="rounded-full h-8 w-8 m-2 flex justify-center items-center shadow-xl border " 
             @click="store.dispatch('soundButton')" 
@@ -89,24 +81,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
             </svg>
           </button>
-        </diV>
-
+        </div>
       </div>    
     </nav>
   </header>
 </template>
-
-<style lang="scss">
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
