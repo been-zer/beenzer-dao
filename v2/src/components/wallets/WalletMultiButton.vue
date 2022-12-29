@@ -8,6 +8,7 @@ import WalletModalProvider from "./WalletModalProvider.vue";
 import CurrencySwitcher from "./CurrencySwitcher.vue";
 import { balanceBEEN, balanceSOL, balanceUSD } from '../../services/wallets/getBalances';
 import { PublicKey } from '@solana/web3.js';
+import { formatNumber } from "../../utils";
 import store from '../../store';
 
 export default defineComponent({
@@ -84,6 +85,7 @@ export default defineComponent({
       dropdownOpened,
       openDropdown,
       closeDropdown,
+      formatNumber,
       walletTokens,
       walletBalance,
       switchCurrency,
@@ -145,13 +147,7 @@ export default defineComponent({
                   class="swv-dropdown-list-item"
                   role="menuitem"
                 >
-                  {{`${walletTokens} BEEN`}}
-                </li>
-                <li
-                  class="swv-dropdown-list-item"
-                  role="menuitem"
-                >
-                  {{`${walletBalance} ${store.state.currency}`}}
+                  {{`${formatNumber(walletBalance)} ${store.state.currency}`}}
                 </li>
                 <li
                   @click="switchCurrency"
@@ -169,6 +165,12 @@ export default defineComponent({
                       USD
                     </div>
                   </div>
+                </li>
+                <li
+                  class="swv-dropdown-list-item"
+                  role="menuitem"
+                >
+                  {{`${formatNumber(walletTokens)} BEEN`}}
                 </li>
                 <li
                   v-if="canCopy"
