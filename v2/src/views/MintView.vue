@@ -1,17 +1,17 @@
 <script lang='ts'>
 import MintPanel from '../components/MintPanel.vue';
-import HistoryPanel from '../components/HistoryPanel.vue';
+import MintDash from '../components/MintDash.vue';
 
 export default {
   components: {
     MintPanel,
-    HistoryPanel
+    MintDash
   },
 }
 </script>
 <template>
-  <div class="flex flex-wrap top-24 left-0 right-0 justify-center align-center text-center" >
+  <div class="flex flex-wrap" >
     <mint-panel/>
-    <history-panel/>
+    <mint-dash/>
   </div>
 </template>

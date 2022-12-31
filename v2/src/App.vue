@@ -1,6 +1,7 @@
 <script lang="ts">
 import store from './store';
 import NavbarWallet from './components/NavbarWallet.vue';
+import FooterBar from './components/FooterBar.vue';
 
 export default {
   data() {
@@ -10,16 +11,19 @@ export default {
   },
   components: {
     NavbarWallet,
+    FooterBar
   },
 }
 </script>
 
 
 <template>
-<div :class="store.state.dark ? 'bg-gray-900 shadow-gray-700 border-gray-200 text-gray-200' : 'bg-gray-100 shadow-gray-300 border-gray-900 text-gray-800'"
-  class="h-full w-screen m-0">
+<div :class="store.state.dark ? 
+  'bg-gray-900 shadow-gray-700 border-gray-200 text-gray-200' : 
+  'bg-gray-100 shadow-gray-300 border-gray-900 text-gray-800'">
   <navbar-wallet/>
   <router-view/>
+  <footer-bar/>
 </div>
 </template>
 
