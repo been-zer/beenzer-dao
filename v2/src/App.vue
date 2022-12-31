@@ -16,7 +16,6 @@ export default {
 }
 </script>
 
-
 <template>
 <div :class="store.state.dark ? 
   'bg-gray-900 shadow-gray-700 border-gray-200 text-gray-200' : 
