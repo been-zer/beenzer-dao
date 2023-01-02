@@ -39,7 +39,7 @@ export default {
             BEENZER DAO
           </p>
           <p class="uppercase px-4 sm:px-14 mt-6 text-2xl tracking-widest font-semibold text-gray-400" >
-            DECENTRALIZED AUTONOMOUS ORGANIZATION (DAO) 
+            DECENTRALIZED AUTONOMOUS <br> ORGANIZATION (DAO) 
             <span class="lowercase">
               v1.0
             </span>
