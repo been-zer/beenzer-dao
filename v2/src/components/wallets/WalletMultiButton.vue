@@ -44,8 +44,7 @@ export default defineComponent({
         store.dispatch('setWallet', '');
         return null;
       }
-      store.dispatch('setWallet', String(publicKeyBase58.value));
-      console.log('wallet', publicKeyBase58.value);
+      store.dispatch('setWallet', publicKeyBase58.value);
       return (
         publicKeyBase58.value.slice(0, 4) +
         ".." +
@@ -125,7 +124,7 @@ export default defineComponent({
       <slot v-bind="{ ...modalScope, ...scope }">
         <button
           v-if="!wallet"
-          class="swv-button swv-button-trigger"
+          class="swv-button swv-button-trigger min-w-[140px]"
           @click="modalScope.openModal"
         >
           Select Wallet

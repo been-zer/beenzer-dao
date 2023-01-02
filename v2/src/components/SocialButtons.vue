@@ -39,7 +39,7 @@ export default {
 </script>
 
 <template>
-  <div class="flex flex-wrap justify-center items-center rounded-xl px-12 mt-8 sm:m-0">
+  <div class="flex flex-wrap justify-center items-center rounded-xl mt-8 sm:m-0">
     <!-- Twitter Button -->
     <a :href="twitter_url" target="_blank">
       <button class="rounded-full h-10 w-10 m-2 flex justify-center items-center shadow-xl" :class="store.state.dark ? 'bg-white/10 shadow-gray-700 hover:bg-gray-600 text-gray-200' : 'bg-white hover:bg-gray-200 text-gray-600'" 

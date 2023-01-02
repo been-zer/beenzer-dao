@@ -11,7 +11,7 @@ export default {
 </script>
 
 <template>
-  <div id="menu" class="flex uppercase justify-center align-center rounded-3xl font-semibold px-4 py-3 mx-2 my-4 sm:m-0 sm:mr-24 text-sm shadow-xl" 
+  <div id="menu" class="flex uppercase justify-center align-center rounded-3xl font-semibold px-4 py-3 mx-2 text-sm shadow-xl 2xl:mx-12" 
   :class="store.state.dark ? 'bg-white/10 shadow-gray-700 text-gray-200' : 'bg-white text-gray-600'">
     <router-link class="px-4" to="/mint">
       MINT

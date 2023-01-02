@@ -9,16 +9,11 @@ export default createStore({
     dark: true,
     sound: true,
   },
-  getters: {
-  },
-  mutations: {
-  },
   actions: {
-    setWallet (pubkey) {
-      console.log('setWallet', pubkey);
-      this.state.wallet = String(pubkey);
+    setWallet ({state}, pubkey: string) {
+      state.wallet = pubkey;
     },
-    setUser (user) {
+    setUser ({state},user) {
       this.state.user = String(user);
     },
     setFlag (flag) {
@@ -26,10 +21,8 @@ export default createStore({
     },
     setCurrency () {
       if ( this.state.currency === 'SOL') {
-        console.log('switch currency to USD');
         this.state.currency = 'USD';
       } else if ( this.state.currency === 'USD' ) {
-        console.log('switch currency to SOL');
         this.state.currency = 'SOL';
       }
     },

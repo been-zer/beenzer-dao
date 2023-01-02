@@ -12,7 +12,7 @@ export default {
   },
   data() {
     let show = true;
-    if ( store.state.wallet.length > 0 ) {
+    if ( store.state.wallet ) {
       show = false;
       console.log('eoooeoeoeoe', store.state.wallet)
     }
