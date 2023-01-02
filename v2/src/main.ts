@@ -28,7 +28,7 @@ import {
 import SolanaWallets from 'solana-wallets-vue';
 import { 
   useWorkspace 
-} from './services/useWorkspace';
+} from './services/wallets/useWorkspace';
 
 const walletOptions = {
   wallets: [

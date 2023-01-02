@@ -40,11 +40,8 @@ export default defineComponent({
     
     const publicKeyBase58 = computed(() => publicKey.value?.toBase58());
     const publicKeyTrimmed = computed(() => {
-      if (!wallet.value || !publicKeyBase58.value) {
-        store.dispatch('setWallet', '');
-        return null;
-      }
-      store.dispatch('setWallet', publicKeyBase58.value);
+      if (!wallet.value || !publicKeyBase58.value) return null;
+      store.dispatch('connectWallet', publicKeyBase58.value);
       return (
         publicKeyBase58.value.slice(0, 4) +
         ".." +
@@ -68,7 +65,7 @@ export default defineComponent({
     }
     
     const deleteWalletStore = () => {
-      store.dispatch('setWallet', '');
+      store.dispatch('disconnectWallet');
     }
 
     const {
@@ -173,14 +170,18 @@ export default defineComponent({
                 </li>
                 <li
                   @click="getBalances"
-                  class="swv-dropdown-list-item text-green-300 text-semibold"
+                  :class="store.state.dark ? 'text-green-300' : 'text-green-700'"
+                  class="swv-dropdown-list-item"
+                  style="font-weight:800"
                   role="menuitem"
                 >
                   {{`${formatNumber(walletBalance)} ${store.state.currency}`}}
                 </li>
                 <li
                   @click="getBalances"
-                  class="swv-dropdown-list-item text-green-300 text-semibold"
+                  :class="store.state.dark ? 'text-green-300' : 'text-green-700'"
+                  class="swv-dropdown-list-item"
+                  style="font-weight:800"
                   role="menuitem"
                 >
                   {{`${formatNumber(walletTokens)} BEEN`}}

@@ -2,22 +2,34 @@ import { createStore } from 'vuex';
 
 export default createStore({
   state: {
+    welcome: true,
+    singup: true,
     wallet: '',
     user: '',
     flag: '🏴‍☠️',
     currency: 'SOL',
+    SOL: 0,
+    USD: 0,
+    BEEN: 0,
     dark: true,
     sound: true,
   },
   actions: {
-    setWallet ({state}, pubkey: string) {
-      state.wallet = pubkey;
+    connectWallet ({state}, pubkey: string) {
+      if ( pubkey ) {
+        state.wallet = pubkey;
+        state.welcome = false;
+      }
     },
-    setUser ({state},user) {
-      this.state.user = String(user);
+    disconnectWallet () {
+      this.state.wallet = '';
+      this.state.welcome = true;
     },
-    setFlag (flag) {
-      this.state.flag = String(flag);
+    setUser ({state}, user: string) {
+      state.user = String(user);
+    },
+    setFlag ({state}, flag: string) {
+      state.flag = String(flag);
     },
     setCurrency () {
       if ( this.state.currency === 'SOL') {

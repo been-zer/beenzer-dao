@@ -25,8 +25,9 @@ export default {
 }
 </script>
 <template>
-  <teleport to="body">
-    <div ref="modal-backdrop" v-if="show" class="fixed z-10 inset-0 overflow-y-auto bg-opacity-50 " 
+<teleport to="body">
+  <div :class="store.state.welcome ? 'block' : 'hidden'">
+    <div ref="modal-backdrop" class="fixed z-10 inset-0 overflow-y-auto bg-opacity-50" 
     :class="!store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
       <img :src="fireworks" class="fixed z-1 mt-12 inset-0 m-auto opacity-30" />
       <div class="z-20 flex items-center justify-center min-h-screen text-center" >
@@ -84,6 +85,7 @@ export default {
         </div>
       </div>
     </div>
-  </teleport>
+  </div>
+</teleport>
 </template>
 

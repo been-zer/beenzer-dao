@@ -19,11 +19,11 @@ import {
   MathWalletAdapter,
   LedgerWalletAdapter,
 } from '@solana/wallet-adapter-wallets';
-import { initWallet } from './wallets/useWallet';
+import { initWallet } from './useWallet';
 import {
   createWalletStore,
   WalletStoreProps,
-} from "./wallets/createWalletStore";
+} from "./createWalletStore";
 
 const walletOptions = {
   wallets: [
