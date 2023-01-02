@@ -23,7 +23,6 @@
     }
   }
 </script>
-
 <template>
   <header class="sm:pl-24 sm:pr-24 sm:flex sm:justify-between sm:items-center sm:px-4 sm:py-3"  >
 
@@ -45,7 +44,7 @@
       </div>
        
       <!-- Toogle nav -->
-      <div class="sm:hidden">
+      <div class="xl:hidden">
         <button @click="isOpen = !isOpen" type="button" :class="store.state.dark ? 'text-gray-200' : 'text-gray-500'" class="block text-gray-500">
           <svg v-if="!isOpen" class="h-6 w-6 fill-current text-green-600" viewBox="0 0 24 24" >
             <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>

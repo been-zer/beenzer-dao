@@ -15,6 +15,7 @@ export default createStore({
   },
   actions: {
     setWallet (pubkey) {
+      console.log('setWallet', pubkey);
       this.state.wallet = String(pubkey);
     },
     setUser (user) {
@@ -38,7 +39,5 @@ export default createStore({
     soundButton () {
       this.state.sound = !this.state.sound;
     },
-  },
-  modules: {
   }
 })

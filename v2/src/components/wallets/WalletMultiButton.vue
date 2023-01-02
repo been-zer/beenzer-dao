@@ -27,7 +27,7 @@ export default defineComponent({
   setup(props) {
     const { featured, container, logo, dark } = toRefs(props);
     const { publicKey, wallet, disconnect } = useWallet();
-
+    
     const dropdownPanel = ref<HTMLElement>();
     const dropdownOpened = ref(false);
     const openDropdown = () => {
@@ -37,17 +37,22 @@ export default defineComponent({
       dropdownOpened.value = false;
     };
     onClickOutside(dropdownPanel, closeDropdown);
-
+    
     const publicKeyBase58 = computed(() => publicKey.value?.toBase58());
     const publicKeyTrimmed = computed(() => {
-      if (!wallet.value || !publicKeyBase58.value) return null;
+      if (!wallet.value || !publicKeyBase58.value) {
+        store.dispatch('setWallet', '');
+        return null;
+      }
+      store.dispatch('setWallet', String(publicKeyBase58.value));
+      console.log('wallet', publicKeyBase58.value);
       return (
         publicKeyBase58.value.slice(0, 4) +
         ".." +
         publicKeyBase58.value.slice(-4)
       );
     });
-
+      
     const walletTokens = ref(0);
     const walletBalance = ref(0);
     watchEffect( async () => {
@@ -61,6 +66,10 @@ export default defineComponent({
       } else if ( store.state.currency === 'USD' ) {
         walletBalance.value = await balanceUSD(publicKey.value as PublicKey);
       }
+    }
+    
+    const deleteWalletStore = () => {
+      store.dispatch('setWallet', '');
     }
 
     const {
@@ -93,6 +102,7 @@ export default defineComponent({
       getBalances,
       copyAddress,
       disconnect,
+      deleteWalletStore,
       store
     };
 
@@ -164,14 +174,14 @@ export default defineComponent({
                 </li>
                 <li
                   @click="getBalances"
-                  class="swv-dropdown-list-item"
+                  class="swv-dropdown-list-item text-green-300 text-semibold"
                   role="menuitem"
                 >
                   {{`${formatNumber(walletBalance)} ${store.state.currency}`}}
                 </li>
                 <li
                   @click="getBalances"
-                  class="swv-dropdown-list-item"
+                  class="swv-dropdown-list-item text-green-300 text-semibold"
                   role="menuitem"
                 >
                   {{`${formatNumber(walletTokens)} BEEN`}}
@@ -198,6 +208,7 @@ export default defineComponent({
                   @click="
                     disconnect();
                     closeDropdown();
+                    deleteWalletStore();
                   "
                   class="swv-dropdown-list-item"
                   role="menuitem"

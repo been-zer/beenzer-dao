@@ -41,7 +41,6 @@ import { ref, watchEffect } from 'vue';
 import io from 'socket.io-client';
 import store from './store';
 
-
 export default {
   name: 'App',
   components: {
@@ -70,7 +69,6 @@ export default {
     const countdown = ref('');
     countdown.value = countDown();
     
-
     // 00:00:00 UTC big sound!
     const pot_audio = new Audio(pot_sound);
     setInterval( () => {
@@ -83,7 +81,6 @@ export default {
       }
     }, 1000);
 
-    
     // User location
     async function userLocation () {
       const ip = ref('');
@@ -117,9 +114,8 @@ export default {
     const user_wallet = ref('');
     watchEffect(async () => {
       try {
-
-          user_wallet.value = wallet.value.publicKey;
-          connected.value = false;
+        user_wallet.value = wallet.value.publicKey;
+        connected.value = false;
       } catch { 
         console.log('Wallet connection error')
       }
@@ -158,7 +154,6 @@ export default {
 
       const signature = await sendTransaction(transaction, connection);
       console.log('Transaction confirmed! Signature:', signature);
-      
 
       if ( store.state.sound )
         audio2.play();
