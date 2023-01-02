@@ -1,4 +1,5 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
+import HomeView from '../views/HomeView.vue';
 import MintView from '../views/MintView.vue';
 import GovernanceView from '../views/GovernanceView.vue';
 import SocialsView from '../views/SocialsView.vue';
@@ -8,7 +9,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
-    component: MintView
+    component: HomeView
   },
   {
     path: '/mint',

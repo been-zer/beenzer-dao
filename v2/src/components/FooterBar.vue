@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="mt-8">
-      Made with 💚 by Beenzer Team <br/> © All rights reserved.
+      Made with 💚 by Beenzer Team <br/>2022 © All rights reserved.
     </div>
   </div>
 </template>

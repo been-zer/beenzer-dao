@@ -1,9 +1,34 @@
+<script lang='ts'>
+import store from '../store';
+import WalletMultiButton from './wallets/WalletMultiButton.vue';
+import LocationSwitcher from './LocationSwitcher.vue';
+import FooterBar from './FooterBar.vue';
+
+
+
+export default {
+  components: {
+    WalletMultiButton,
+    LocationSwitcher,
+    FooterBar
+  },
+  data() {
+    return {
+      fireworks: require("../assets/fireworks.gif"),
+      store
+    }
+  }
+  
+}
+</script>
 <template>
   <teleport to="body">
-    <div ref="modal-backdrop" v-if="connected" class="fixed z-10 inset-0 overflow-y-auto bg-opacity-50 " :class="!this.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
+    <div ref="modal-backdrop" v-if="true" class="fixed z-10 inset-0 overflow-y-auto bg-opacity-50 " 
+    :class="!store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
       <img :src="fireworks" class="fixed z-1 mt-12 inset-0 m-auto opacity-30" />
       <div class="z-20 flex items-center justify-center min-h-screen text-center" >
-        <div class="z-90 min-h-[900px] m-2 sm:w-1/3 rounded-lg text-center overflow-hidden p-8 flex flex-col justify-center shadow-xl shadow-yellow-800" :class="this.$store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'" >
+        <div class="z-90 min-h-[900px] m-2 sm:w-1/3 rounded-lg text-center overflow-hidden p-8 flex flex-col justify-center shadow-xl shadow-yellow-800" 
+        :class="store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'" >
           <div class="uppercase text-lg tracking-widest text-gray-400 font-semibold mt-8">
             WELCOME TO
           </div>
@@ -23,7 +48,7 @@
             TO LOGIN TO BEENZER DAO
           </p>
           <div class="my-6 flex align-center justify-center">
-            <wallet-multi-button :dark="this.$store.state.dark"/>
+            <wallet-multi-button :dark="store.state.dark"/>
           </div>
           <p class="mt-2 text-sm tracking-widest text-gray-200 font-semibold">
             FROM HERE YOU CAN:
@@ -59,32 +84,3 @@
   </teleport>
 </template>
 
-<script>
-import { WalletMultiButton } from 'solana-wallets-vue';
-import LocationSwitcher from './LocationSwitcher.vue';
-import FooterBar from './FooterBar.vue';
-
-export default {
-  components: {
-    WalletMultiButton,
-    LocationSwitcher,
-    FooterBar
-  },
-  props: [
-    'flag',
-    'time',
-    'users',
-    'connected'
-  ],
-  methods: [
-
-  ],
-  data() {
-    return {
-      fireworks: require("../assets/fireworks.gif"),
-      dark: true
-    }
-  }
-  
-}
-</script>

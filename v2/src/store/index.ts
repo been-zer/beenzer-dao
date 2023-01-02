@@ -2,16 +2,27 @@ import { createStore } from 'vuex';
 
 export default createStore({
   state: {
+    wallet: '',
+    user: '',
+    flag: '🏴‍☠️',
+    currency: 'SOL',
     dark: true,
     sound: true,
-    currency: 'SOL',
-    flag: '🏴‍☠️',
   },
   getters: {
   },
   mutations: {
   },
   actions: {
+    setWallet (pubkey) {
+      this.state.wallet = String(pubkey);
+    },
+    setUser (user) {
+      this.state.user = String(user);
+    },
+    setFlag (flag) {
+      this.state.flag = String(flag);
+    },
     setCurrency () {
       if ( this.state.currency === 'SOL') {
         console.log('switch currency to USD');
@@ -27,10 +38,6 @@ export default createStore({
     soundButton () {
       this.state.sound = !this.state.sound;
     },
-    setFlag (flag) {
-      console.log('eeeeeoooo', flag)
-      this.state.flag = String(flag);
-    }
   },
   modules: {
   }
