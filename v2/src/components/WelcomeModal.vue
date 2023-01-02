@@ -4,8 +4,6 @@ import WalletMultiButton from './wallets/WalletMultiButton.vue';
 import LocationSwitcher from './LocationSwitcher.vue';
 import FooterBar from './FooterBar.vue';
 
-
-
 export default {
   components: {
     WalletMultiButton,
@@ -18,7 +16,6 @@ export default {
       store
     }
   }
-  
 }
 </script>
 <template>
@@ -69,7 +66,7 @@ export default {
               You can turn anonymous if you want
             </p>
             <div class="flex mt-8 justify-center text-center">
-              <div class="mr-4">{{flag}}</div>
+              <div class="mr-4">{{'x'}}</div>
               <div>
                 <location-switcher />
               </div>
@@ -77,7 +74,7 @@ export default {
             </div>
           </div>
 
-          <FooterBar :time="time" :users="users" :flag="flag" />
+          <FooterBar />
         </div>
       </div>
     </div>
