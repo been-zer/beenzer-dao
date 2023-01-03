@@ -1,9 +1,23 @@
 import { io } from "socket.io-client";
+import { useStore } from '../../store'
+const $store = useStore();
 
-export const SOCKET = io('https://b6b2-212-31-49-235.eu.ngrok.io', { transports: ["websocket"] });
+export const SOCKET = io(process.env.VUE_APP_SOCKET_ENDPOINT as string, { transports: ["websocket"] });
 
-export const socketConnection = (pubkey: string) => {
-  console.log('new connection', pubkey);
+export const newConnection = (pubkey: string) => {
   SOCKET.emit('newConnection', pubkey);
-  SOCKET.on('serverConnection', (message) => { console.log(message) });
-}
+  SOCKET.on('serverConnection', (message: string) => { console.log(message) });
+};
+
+export const isNewUser = () => {
+  SOCKET.on('isNewUser', (isNew: boolean) => {
+    if ( isNew ) {
+      $store.dispatch('newUser');
+    }
+  });
+};
+
+
+
+
+

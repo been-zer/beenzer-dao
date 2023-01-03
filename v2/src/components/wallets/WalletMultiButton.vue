@@ -8,8 +8,8 @@ import WalletModalProvider from "./WalletModalProvider.vue";
 import CurrencySwitcher from "./CurrencySwitcher.vue";
 import { balanceBEEN, balanceSOL, balanceUSD } from '../../services/wallets/getBalances';
 import { PublicKey } from '@solana/web3.js';
-import { formatNumber } from "../../utils";
-import store from '../../store';
+import { formatNumber } from '../../utils';
+import { useStore } from '../../store'
 
 export default defineComponent({
   components: {
@@ -25,6 +25,8 @@ export default defineComponent({
     dark: Boolean,
   },
   setup(props) {
+    const $store = useStore();
+
     const { featured, container, logo, dark } = toRefs(props);
     const { publicKey, wallet, disconnect } = useWallet();
     
@@ -41,7 +43,7 @@ export default defineComponent({
     const publicKeyBase58 = computed(() => publicKey.value?.toBase58());
     const publicKeyTrimmed = computed(() => {
       if (!wallet.value || !publicKeyBase58.value) return null;
-      store.dispatch('connectWallet', publicKeyBase58.value);
+      this.$store.dispatch('connectWallet', publicKeyBase58.value);
       return (
         publicKeyBase58.value.slice(0, 4) +
         ".." +
@@ -57,15 +59,15 @@ export default defineComponent({
     })
     const getBalances = async () => {
       walletTokens.value = await balanceBEEN(publicKey.value as PublicKey)
-      if ( store.state.currency === 'SOL' ) {
+      if ( $store.state.currency === 'SOL' ) {
         walletBalance.value = await balanceSOL(publicKey.value as PublicKey);
-      } else if ( store.state.currency === 'USD' ) {
+      } else if ( $store.state.currency === 'USD' ) {
         walletBalance.value = await balanceUSD(publicKey.value as PublicKey);
       }
     }
     
-    const deleteWalletStore = () => {
-      store.dispatch('disconnectWallet');
+    const restartWalletStore = () => {
+      this.$store.dispatch('disconnectWallet');
     }
 
     const {
@@ -98,8 +100,8 @@ export default defineComponent({
       getBalances,
       copyAddress,
       disconnect,
-      deleteWalletStore,
-      store
+      restartWalletStore,
+      $store
     };
 
     return {
@@ -170,16 +172,16 @@ export default defineComponent({
                 </li>
                 <li
                   @click="getBalances"
-                  :class="store.state.dark ? 'text-green-300' : 'text-green-700'"
+                  :class="$store.state.dark ? 'text-green-300' : 'text-green-700'"
                   class="swv-dropdown-list-item"
                   style="font-weight:800"
                   role="menuitem"
                 >
-                  {{`${formatNumber(walletBalance)} ${store.state.currency}`}}
+                  {{`${formatNumber(walletBalance)} ${$store.state.currency}`}}
                 </li>
                 <li
                   @click="getBalances"
-                  :class="store.state.dark ? 'text-green-300' : 'text-green-700'"
+                  :class="$store.state.dark ? 'text-green-300' : 'text-green-700'"
                   class="swv-dropdown-list-item"
                   style="font-weight:800"
                   role="menuitem"
@@ -208,7 +210,7 @@ export default defineComponent({
                   @click="
                     disconnect();
                     closeDropdown();
-                    deleteWalletStore();
+                    restartWalletStore();
                   "
                   class="swv-dropdown-list-item"
                   role="menuitem"

@@ -11,14 +11,8 @@ export default {
     FooterBar
   },
   data() {
-    let show = true;
-    if ( store.state.wallet ) {
-      show = false;
-      console.log('eoooeoeoeoe', store.state.wallet)
-    }
     return {
       store,
-      show,
       fireworks: require("../assets/fireworks.gif"),
     }
   }
@@ -66,7 +60,6 @@ export default {
           <p class="mt-6 text-2xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-yellow-400">
             3️. GOVERNANCE ⚖️
           </p>
-          
           <div class="uppercase font-semibold text-yellow-500 mt-12 text-md text-semibold tracking-widest">
             ⚠️ We keep track of your location ⚠️
             <p class="mt-2 text-sm tracking-widest text-gray-400">
@@ -80,7 +73,6 @@ export default {
               <div class="ml-4">🏴‍☠️</div>
             </div>
           </div>
-
           <FooterBar />
         </div>
       </div>

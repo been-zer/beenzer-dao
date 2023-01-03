@@ -1,48 +1,58 @@
-import { createStore } from 'vuex';
+// import { State } from './state';
+// import state from './state';
+// import { InjectionKey } from 'vue'
+// import { createStore, useStore as baseUseStore, Store } from 'vuex'
 
-export default createStore({
-  state: {
-    welcome: true,
-    singup: true,
-    wallet: '',
-    user: '',
-    flag: '🏴‍☠️',
-    currency: 'SOL',
-    SOL: 0,
-    USD: 0,
-    BEEN: 0,
-    dark: true,
-    sound: true,
-  },
-  actions: {
-    connectWallet ({state}, pubkey: string) {
-      if ( pubkey ) {
-        state.wallet = pubkey;
-        state.welcome = false;
-      }
+
+// export const key: InjectionKey<Store<State>> = Symbol()
+
+// export const store = createStore<State>({
+//   state: state()
+// })
+
+// createStore<Dispatch>({})
+
+// // define your own `useStore` composition function
+// export function useStore () {
+//   return baseUseStore(key)
+// }
+
+// import { createStore } from 'vuex';
+
+// import state, { State } from './state';
+// import actions from './actions';
+// import { Module } from 'vuex';
+
+// const modules: Module<State, State> = {
+//   namespace: true,
+//   state,
+//   actions
+// }
+
+// export default modules;
+
+
+// export default createStore<State>({
+//   modules: {
+//     state,
+//     actions
+//   }
+// })
+
+// import Vue from 'vue';
+import Vuex, { StoreOptions } from 'vuex';
+import { RootState } from './types';
+import { profile } from './user';
+
+// Vue.use(Vuex);
+
+const store: StoreOptions<RootState> = {
+    state: {
+      version: '1.0.0' // a simple property
     },
-    disconnectWallet () {
-      this.state.wallet = '';
-      this.state.welcome = true;
-    },
-    setUser ({state}, user: string) {
-      state.user = String(user);
-    },
-    setFlag ({state}, flag: string) {
-      state.flag = String(flag);
-    },
-    setCurrency () {
-      if ( this.state.currency === 'SOL') {
-        this.state.currency = 'USD';
-      } else if ( this.state.currency === 'USD' ) {
-        this.state.currency = 'SOL';
-      }
-    },
-    lightButton () {
-      this.state.dark = !this.state.dark;
-    },
-    soundButton () {
-      this.state.sound = !this.state.sound;
-    },
-  }
-})
+    modules: {
+      profile
+    }
+};
+
+export default new Vuex.Store<RootState>(store);

@@ -4,7 +4,7 @@ import './registerServiceWorker';
 import './assets/css/tailwind.css';
 import './assets/css/wallets.css';
 import router from './router'
-import store from './store'
+import { store, key } from './store'
 import {
   BraveWalletAdapter,
   PhantomWalletAdapter,
@@ -24,11 +24,11 @@ import {
   MathWalletAdapter,
   LedgerWalletAdapter,
 } from '@solana/wallet-adapter-wallets';
-// import { createWalletStore } from 'solana-wallets-vue';
 import SolanaWallets from 'solana-wallets-vue';
 import { 
   useWorkspace 
 } from './services/wallets/useWorkspace';
+useWorkspace();
 
 const walletOptions = {
   wallets: [
@@ -53,10 +53,8 @@ const walletOptions = {
   autoConnect: true
 }
 
-useWorkspace();
-
 createApp(App)
-  .use(store)
   .use(router)
+  .use(store, key)
   .use(SolanaWallets, walletOptions)
   .mount('#app');
