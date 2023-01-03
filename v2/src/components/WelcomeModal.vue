@@ -2,6 +2,7 @@
 import WalletMultiButton from './wallets/WalletMultiButton.vue';
 import LocationSwitcher from './LocationSwitcher.vue';
 import FooterBar from './FooterBar.vue';
+import { useStore } from '../store';
 
 export default {
   components: {
@@ -15,12 +16,18 @@ export default {
       dark: true,
       fireworks: require("../assets/fireworks.gif"),
     }
+  },
+  setup() {
+    const store = useStore();
+    return {
+      store
+    }
   }
 }
 </script>
 <template>
 <teleport to="body">
-  <div :class="welcome ? 'block' : 'hidden'">
+  <div :class="store.state.welcome ? 'block' : 'hidden'">
     <div ref="modal-backdrop" class="fixed z-10 inset-0 overflow-y-auto bg-opacity-50" 
     :class="!dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
       <img :src="fireworks" class="fixed z-1 mt-12 inset-0 m-auto opacity-30" />

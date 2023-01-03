@@ -36,7 +36,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-, "src/global/stor.ets", "src/global/stor.ets"  ],
+, "src/store/stor.ets", "src/store/stor.ets"  ],
   "exclude": [
     "node_modules"
   ]

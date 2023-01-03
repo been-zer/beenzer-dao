@@ -40,24 +40,38 @@
 // })
 
 // import Vue from 'vue';
-import Vuex, { StoreOptions } from 'vuex';
-import { RootState } from './root';
-import { settings } from './settings';
-import { wallet } from './wallet';
-import { user } from './user';
+// import Vuex, { StoreOptions } from 'vuex';
+// import { RootState } from './root';
 
 
 // Vue.use(Vuex);
 
-const store: StoreOptions<RootState> = {
-    state: {
-      version: '1.0.0' // a simple property
-    },
-    modules: {
-      settings,
-      wallet,
-      user
-    }
-};
+// const storeStuct: StoreOptions<RootState> = {
+  
+  // };
+  
+  // export default new Vuex.Store<RootState>(store);
 
-export default new Vuex.Store<RootState>(store);
+import { createStore, createLogger } from 'vuex';
+import { wallet } from './wallet';
+import { user } from './user';
+  
+export const store = createStore({
+  state: {
+    welcome: false,
+    singup: false,      
+    dark: true,
+    sound: true,
+    private: true,
+  },
+  modules: {
+    wallet,
+    user
+  },
+  plugins: [createLogger()]
+})
+
+export function useStore() {
+  return store;
+}
+

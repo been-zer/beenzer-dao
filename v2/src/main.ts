@@ -4,7 +4,7 @@ import './registerServiceWorker';
 import './assets/css/tailwind.css';
 import './assets/css/wallets.css';
 import router from './router'
-import store from './global'
+import { store } from './store'
 import {
   BraveWalletAdapter,
   PhantomWalletAdapter,
