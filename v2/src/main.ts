@@ -4,7 +4,7 @@ import './registerServiceWorker';
 import './assets/css/tailwind.css';
 import './assets/css/wallets.css';
 import router from './router'
-import { store, key } from './store'
+import store from './store'
 import {
   BraveWalletAdapter,
   PhantomWalletAdapter,
@@ -55,6 +55,6 @@ const walletOptions = {
 
 createApp(App)
   .use(router)
-  .use(store, key)
+  .use(store)
   .use(SolanaWallets, walletOptions)
   .mount('#app');

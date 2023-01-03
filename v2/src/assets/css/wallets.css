@@ -64,7 +64,7 @@
 }
 
 .swv-button {
-    background: linear-gradient(90deg, #01881e, #a1a33d);
+    background: linear-gradient(90deg, #0de91f, #dfd112);
     border: none;
     color: var(--swv-button-text-color);
     cursor: pointer;
@@ -150,7 +150,6 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border: none;
     outline: none;
     cursor: pointer;
     white-space: nowrap;

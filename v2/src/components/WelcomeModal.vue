@@ -1,5 +1,4 @@
 <script lang='ts'>
-import store from '../store';
 import WalletMultiButton from './wallets/WalletMultiButton.vue';
 import LocationSwitcher from './LocationSwitcher.vue';
 import FooterBar from './FooterBar.vue';
@@ -12,7 +11,8 @@ export default {
   },
   data() {
     return {
-      store,
+      welcome: true,
+      dark: true,
       fireworks: require("../assets/fireworks.gif"),
     }
   }
@@ -20,13 +20,13 @@ export default {
 </script>
 <template>
 <teleport to="body">
-  <div :class="store.state.welcome ? 'block' : 'hidden'">
+  <div :class="welcome ? 'block' : 'hidden'">
     <div ref="modal-backdrop" class="fixed z-10 inset-0 overflow-y-auto bg-opacity-50" 
-    :class="!store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
+    :class="!dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
       <img :src="fireworks" class="fixed z-1 mt-12 inset-0 m-auto opacity-30" />
       <div class="z-20 flex items-center justify-center min-h-screen text-center" >
         <div class="z-90 min-h-[900px] m-2 xl:w-1/2 2xl:w-1/3 rounded-lg text-center overflow-hidden p-8 flex flex-col justify-center shadow-xl shadow-yellow-800" 
-        :class="store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'" >
+        :class="dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'" >
           <div class="uppercase text-lg tracking-widest text-gray-400 font-semibold mt-8">
             WELCOME TO
           </div>
@@ -46,7 +46,7 @@ export default {
             TO LOGIN TO BEENZER DAO
           </p>
           <div class="my-6 flex align-center justify-center">
-            <wallet-multi-button :dark="store.state.dark"/>
+            <wallet-multi-button :dark="dark"/>
           </div>
           <p class="mt-2 text-sm tracking-widest text-gray-200 font-semibold">
             FROM HERE YOU CAN:

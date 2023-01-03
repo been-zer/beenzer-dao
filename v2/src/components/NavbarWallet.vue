@@ -3,12 +3,11 @@
   import SettingsButtons from './SettingsButtons.vue';
   import SocialButtons from './SocialButtons.vue';
   import NavMenu from './NavMenu.vue';
-  import store from '../store';
 
   export default {
     data() {
       return {
-        store,
+        dark: true,
         isOpen: false,
         landing_url: "https://beenzer.app"
       }
@@ -30,12 +29,12 @@
     </div>
     <!-- Wallet Connect -->
     <div class="flex items-center justify-center">
-      <wallet-multi-button :dark="store.state.dark"></wallet-multi-button>
+      <wallet-multi-button :dark="dark"></wallet-multi-button>
     </div>
     <!-- Toogle nav -->
     <div class="lg:hidden ml-24">
       <button @click="isOpen = !isOpen" class="block text-gray-500"
-      :class="store.state.dark ? 'text-gray-200' : 'text-gray-500'">
+      :class="dark ? 'text-gray-200' : 'text-gray-500'">
         <svg v-if="!isOpen" class="h-6 w-6 fill-current text-green-600" viewBox="0 0 24 24" >
           <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
         </svg>

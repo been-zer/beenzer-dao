@@ -1,7 +1,7 @@
 import { ActionTree } from 'vuex';
-import axios from 'axios';
 import { UserState, User } from './types';
-import { RootState } from '../types';
+import { RootState } from '../root';
+import axios from 'axios';
 
 export const actions: ActionTree<UserState, RootState> = {
     fetchData({ commit }): void {

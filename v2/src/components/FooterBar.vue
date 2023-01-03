@@ -14,7 +14,7 @@
       </div>
       <!-- Users flag -->
       <div class="text-center text-md tracking-widest font-semibold justify-center mr-8 text-gray-400">
-        {{ this.$store.state.flag }}
+        {{ '' }}
       </div>
     </div>
     <div class="mt-8">

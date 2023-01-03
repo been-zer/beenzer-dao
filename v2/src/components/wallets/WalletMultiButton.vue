@@ -5,18 +5,15 @@ import { useWallet } from "../../services/wallets/useWallet";
 import WalletConnectButton from "./WalletConnectButton.vue";
 import WalletIcon from "./WalletIcon.vue";
 import WalletModalProvider from "./WalletModalProvider.vue";
-import CurrencySwitcher from "./CurrencySwitcher.vue";
-import { balanceBEEN, balanceSOL, balanceUSD } from '../../services/wallets/getBalances';
+import { balanceBEEN, balanceSOL, balanceUSDC } from '../../services/wallets/getBalances';
 import { PublicKey } from '@solana/web3.js';
 import { formatNumber } from '../../utils';
-import { useStore } from '../../store'
 
 export default defineComponent({
   components: {
     WalletConnectButton,
     WalletIcon,
-    WalletModalProvider,
-    CurrencySwitcher,
+    WalletModalProvider
   },
   props: {
     featured: { type: Number, default: 3 },
@@ -25,8 +22,7 @@ export default defineComponent({
     dark: Boolean,
   },
   setup(props) {
-    const $store = useStore();
-
+    
     const { featured, container, logo, dark } = toRefs(props);
     const { publicKey, wallet, disconnect } = useWallet();
     
@@ -43,7 +39,6 @@ export default defineComponent({
     const publicKeyBase58 = computed(() => publicKey.value?.toBase58());
     const publicKeyTrimmed = computed(() => {
       if (!wallet.value || !publicKeyBase58.value) return null;
-      this.$store.dispatch('connectWallet', publicKeyBase58.value);
       return (
         publicKeyBase58.value.slice(0, 4) +
         ".." +
@@ -51,23 +46,32 @@ export default defineComponent({
       );
     });
       
-    const walletTokens = ref(0);
-    const walletBalance = ref(0);
-    watchEffect( async () => {
-      walletTokens.value = await balanceBEEN(publicKey.value as PublicKey)
-      walletBalance.value = await balanceSOL(publicKey.value as PublicKey);
-    })
-    const getBalances = async () => {
-      walletTokens.value = await balanceBEEN(publicKey.value as PublicKey)
-      if ( $store.state.currency === 'SOL' ) {
-        walletBalance.value = await balanceSOL(publicKey.value as PublicKey);
-      } else if ( $store.state.currency === 'USD' ) {
-        walletBalance.value = await balanceUSD(publicKey.value as PublicKey);
-      }
+    const walletSOL = ref(0);
+    const walletBEEN = ref(0);
+    const walletUSDC = ref(0);
+    const getSOL = async () => {
+      walletSOL.value = await balanceSOL(publicKey.value as PublicKey)
     }
-    
-    const restartWalletStore = () => {
-      this.$store.dispatch('disconnectWallet');
+    const getBEEN = async () => {
+      walletBEEN.value = await balanceBEEN(publicKey.value as PublicKey)
+    }
+    const getUSDC = async () => {
+      walletUSDC.value = await balanceUSDC(publicKey.value as PublicKey)
+    }
+    watchEffect( async () => {
+      await getSOL();
+      await getBEEN();
+      await getUSDC();
+    })
+
+    const currency = ref('SOL');
+    const selectCurrency = (ccy: string) => {
+      currency.value = ccy;
+      watchEffect( async () => {
+        await getSOL();
+        await getBEEN();
+        await getUSDC();
+      })
     }
 
     const {
@@ -95,13 +99,16 @@ export default defineComponent({
       openDropdown,
       closeDropdown,
       formatNumber,
-      walletTokens,
-      walletBalance,
-      getBalances,
+      walletSOL,
+      walletBEEN,
+      walletUSDC,
+      getSOL,
+      getBEEN,
+      getUSDC,
+      selectCurrency,
+      currency,
       copyAddress,
       disconnect,
-      restartWalletStore,
-      $store
     };
 
     return {
@@ -154,39 +161,28 @@ export default defineComponent({
             >
               <slot name="dropdown-list" v-bind="{ ...modalScope, ...scope }">
                 <li
-                  @click="getBalances"
+                  @click="selectCurrency('SOL')"
+                  :class="currency === 'SOL' ? 'bg-green-500 border border-green-500' : 'bg-transparent'"
                   class="swv-dropdown-list-item"
                   role="menuitem"
                 >
-                  <div class="currency-switcher">
-                    <div class="symbol">
-                      SOL
-                    </div>
-                    <div>
-                      <CurrencySwitcher/>
-                    </div>
-                    <div class="symbol">
-                      USD
-                    </div>
-                  </div>
+                {{`${formatNumber(walletSOL)} SOL`}}
                 </li>
                 <li
-                  @click="getBalances"
-                  :class="$store.state.dark ? 'text-green-300' : 'text-green-700'"
+                  @click="selectCurrency('BEEN')"
+                  :class="currency === 'BEEN' ? 'bg-green-500 border border-green-500' : 'bg-transparent'"
                   class="swv-dropdown-list-item"
-                  style="font-weight:800"
                   role="menuitem"
                 >
-                  {{`${formatNumber(walletBalance)} ${$store.state.currency}`}}
+                  {{`${formatNumber(walletBEEN)} BEEN`}}
                 </li>
                 <li
-                  @click="getBalances"
-                  :class="$store.state.dark ? 'text-green-300' : 'text-green-700'"
+                  @click="selectCurrency('USDC')"
+                  :class="currency === 'USDC' ? 'bg-green-500 border border-green-500' : 'bg-transparent'"
                   class="swv-dropdown-list-item"
-                  style="font-weight:800"
                   role="menuitem"
                 >
-                  {{`${formatNumber(walletTokens)} BEEN`}}
+                  {{`${formatNumber(walletUSDC)} USDC`}}
                 </li>
                 <li
                   v-if="canCopy"
@@ -210,7 +206,6 @@ export default defineComponent({
                   @click="
                     disconnect();
                     closeDropdown();
-                    restartWalletStore();
                   "
                   class="swv-dropdown-list-item"
                   role="menuitem"

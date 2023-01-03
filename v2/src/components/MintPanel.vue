@@ -3,9 +3,7 @@
 import { ref } from 'vue';
 import click_sound from '../assets/sounds/beep.mp3';
 import CountDown from './CountDown';
-import store from '@/store';
 import MintSwitcher from './MintSwitcher.vue';
-
 
 export default {
   components: {
@@ -40,6 +38,8 @@ export default {
   },
   setup () {
 
+    const sound = true;
+
     const BEEN = ref('0');
     const BEENZ = ref('0');
     const DISCOUNT = 30;
@@ -51,7 +51,7 @@ export default {
 
     // Keyboard functionality
     function clickNum (n) {
-      if ( store.state.sound )
+      if ( sound )
         audio.play();
 
       if (BEEN.value[0] === '0') {

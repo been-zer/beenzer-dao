@@ -1,12 +1,11 @@
 <script lang="ts">
-import store from './store';
 import NavbarWallet from './components/NavbarWallet.vue';
 import FooterBar from './components/FooterBar.vue';
 
 export default {
   data() {
     return {
-      store,
+      dark: true,
     }
   },
   components: {
@@ -17,7 +16,7 @@ export default {
 </script>
 
 <template>
-<div :class="store.state.dark ? 
+<div :class="dark ? 
   'bg-gray-900 shadow-gray-700 border-gray-200 text-gray-200' : 
   'bg-gray-100 shadow-gray-300 border-gray-900 text-gray-800'">
   <navbar-wallet/>

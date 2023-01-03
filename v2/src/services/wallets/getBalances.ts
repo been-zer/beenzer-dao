@@ -12,7 +12,7 @@ export async function balanceSOL ( pubkey: PublicKey ): Promise<number> {
   }
 }
 
-export async function balanceUSD ( pubkey: PublicKey ): Promise<number> {
+export async function balanceUSDC ( pubkey: PublicKey ): Promise<number> {
   try {
     const USDC = new PublicKey('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v');
     const token: TokenAccountsFilter = { mint: USDC }
