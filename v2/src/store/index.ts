@@ -41,8 +41,11 @@
 
 // import Vue from 'vue';
 import Vuex, { StoreOptions } from 'vuex';
-import { RootState } from './types';
-import { profile } from './user';
+import { RootState } from './root';
+import { settings } from './settings';
+import { wallet } from './wallet';
+import { user } from './user';
+
 
 // Vue.use(Vuex);
 
@@ -51,7 +54,9 @@ const store: StoreOptions<RootState> = {
       version: '1.0.0' // a simple property
     },
     modules: {
-      profile
+      settings,
+      wallet,
+      user
     }
 };
 

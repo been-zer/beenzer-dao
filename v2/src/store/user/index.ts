@@ -3,7 +3,7 @@ import { getters } from './getters';
 import { actions } from './actions';
 import { mutations } from './mutations';
 import { UserState } from './types';
-import { RootState } from '../types';
+import { RootState } from '../root';
 
 export const state: UserState = {
     user: undefined,
@@ -12,7 +12,7 @@ export const state: UserState = {
 
 const namespaced = true;
 
-export const profile: Module<UserState, RootState> = {
+export const user: Module<UserState, RootState> = {
     namespaced,
     state,
     getters,
