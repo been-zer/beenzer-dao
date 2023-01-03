@@ -13,7 +13,7 @@ export default {
   <div id="menu" class="flex uppercase justify-center align-center rounded-3xl font-semibold px-4 py-3 mx-2 text-sm shadow-xl 2xl:mx-12" 
   :class="dark ? 'bg-white/10 shadow-gray-700 text-gray-200' : 'bg-white text-gray-600'">
     <router-link class="px-4" to="/mint">
-      MINT
+      TREASURY
     </router-link>
     <router-link class="px-4" to="/governance">
       GOVERNANCE
@@ -22,7 +22,7 @@ export default {
       SOCIALS
     </router-link>
     <router-link class="px-4" to="/app">
-      APP
+      APP STATS
     </router-link>
   </div>
 </template>

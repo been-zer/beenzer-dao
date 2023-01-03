@@ -8,6 +8,7 @@ import WalletModalProvider from "./WalletModalProvider.vue";
 import { balanceBEEN, balanceSOL, balanceUSDC } from '../../services/wallets/getBalances';
 import { PublicKey } from '@solana/web3.js';
 import { formatNumber } from '../../utils';
+import { useStore } from '../../store';
 
 export default defineComponent({
   components: {
@@ -22,6 +23,8 @@ export default defineComponent({
     dark: Boolean,
   },
   setup(props) {
+
+    const store = useStore();
     
     const { featured, container, logo, dark } = toRefs(props);
     const { publicKey, wallet, disconnect } = useWallet();
@@ -39,6 +42,7 @@ export default defineComponent({
     const publicKeyBase58 = computed(() => publicKey.value?.toBase58());
     const publicKeyTrimmed = computed(() => {
       if (!wallet.value || !publicKeyBase58.value) return null;
+      store.dispatch('user/connectWallet', publicKeyBase58.value);
       return (
         publicKeyBase58.value.slice(0, 4) +
         ".." +
@@ -58,20 +62,18 @@ export default defineComponent({
     const getUSDC = async () => {
       walletUSDC.value = await balanceUSDC(publicKey.value as PublicKey)
     }
-    watchEffect( async () => {
-      await getSOL();
-      await getBEEN();
-      await getUSDC();
-    })
-
-    const currency = ref('SOL');
-    const selectCurrency = (ccy: string) => {
-      currency.value = ccy;
+    const updateBalances = () => {
       watchEffect( async () => {
         await getSOL();
         await getBEEN();
         await getUSDC();
       })
+    }; updateBalances();
+
+    const currency = ref('SOL');
+    const selectCurrency = (ccy: string) => {
+      currency.value = ccy;
+      updateBalances();
     }
 
     const {
