@@ -25,7 +25,7 @@ import {
   createWalletStore,
   WalletStoreProps,
 } from "./createWalletStore";
-import { useStore } from '../../store';
+import { useStore } from '../store';
 const store = useStore();
 
 const walletOptions = {

@@ -3,7 +3,7 @@ import { UserState, User } from './types';
 import { RootState } from '../root';
 import {
   emitNewConnection,
-} from '../../services/sockets/user.socket';
+} from '../../sockets/user.socket';
 import { Socket } from 'socket.io-client';
 
 export const actions: ActionTree<UserState, RootState> = {

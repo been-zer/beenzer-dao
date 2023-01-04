@@ -11,11 +11,15 @@ export default {
     WelcomeModal,
     // SignupModal
   },
+  props: [
+    'store',
+    'socket'
+  ]
 }
 </script>
 <template>
 <div>
-  <welcome-modal connected="true"/>
+  <welcome-modal :connected="true" />
   <div class="flex flex-wrap" >
     <mint-panel/>
     <mint-dash/>

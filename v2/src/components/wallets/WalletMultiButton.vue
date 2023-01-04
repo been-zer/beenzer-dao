@@ -8,9 +8,7 @@ import WalletModalProvider from "./WalletModalProvider.vue";
 import { balanceBEEN, balanceSOL, balanceUSDC } from '../../services/wallets/getBalances';
 import { PublicKey } from '@solana/web3.js';
 import { formatNumber } from '../../utils';
-import { useStore } from '../../store';
-import { Socket } from 'socket.io-client';
-import { RootState } from '../../store/root';
+import { useStore } from '../../services/store';
 
 export default defineComponent({
   components: {
@@ -28,7 +26,6 @@ export default defineComponent({
   setup(props) {
 
     const store = useStore();
-    const state: RootState = store.state;
 
     const { featured, container, logo, dark } = toRefs(props);
     const { publicKey, wallet, disconnect } = useWallet();
@@ -45,16 +42,23 @@ export default defineComponent({
     
     const publicKeyBase58 = computed(() => publicKey.value?.toBase58());
     const publicKeyTrimmed = computed(() => {
-      if (!wallet.value || !publicKeyBase58.value) return null;4
-      if ( props.login ) {
-        store.dispatch('user/socketNewConnection', publicKeyBase58.value);
-      }
+      if (!wallet.value || !publicKeyBase58.value) return null;
+      connectBtn();
       return (
         publicKeyBase58.value.slice(0, 4) +
         ".." +
         publicKeyBase58.value.slice(-4)
       );
     });
+
+    const connectBtn = () => {
+      if (wallet.value && publicKeyBase58.value)
+        store.dispatch('switchWelcome', false);
+    };
+
+    const disconnectBtn = () => {
+      store.dispatch('switchWelcome', true);
+    };
       
     const walletSOL = ref(0);
     const walletBEEN = ref(0);
@@ -117,6 +121,7 @@ export default defineComponent({
       currency,
       copyAddress,
       disconnect,
+      disconnectBtn,
     };
 
     return {
@@ -214,6 +219,7 @@ export default defineComponent({
                   @click="
                     disconnect();
                     closeDropdown();
+                    disconnectBtn();
                   "
                   class="swv-dropdown-list-item"
                   role="menuitem"
