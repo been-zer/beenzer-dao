@@ -1,8 +1,14 @@
 <script lang="ts">
 import NavbarWallet from './components/NavbarWallet.vue';
 import FooterBar from './components/FooterBar.vue';
+import { socket } from './services/sockets';
 
 export default {
+  setup() {
+    return {
+      socket
+    }
+  },
   data() {
     return {
       dark: true,
@@ -20,7 +26,7 @@ export default {
   'bg-gray-900 shadow-gray-700 border-gray-200 text-gray-200' : 
   'bg-gray-100 shadow-gray-300 border-gray-900 text-gray-800'">
   <navbar-wallet/>
-  <router-view/>
+  <router-view :socket="socket" />
   <footer-bar/>
 </div>
 </template>

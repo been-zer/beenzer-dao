@@ -25,10 +25,7 @@ import {
   LedgerWalletAdapter,
 } from '@solana/wallet-adapter-wallets';
 import SolanaWallets from 'solana-wallets-vue';
-import { 
-  useWorkspace 
-} from './services/wallets/useWorkspace';
-useWorkspace();
+import { useWorkspace } from './services/wallets/useWorkspace';
 
 const walletOptions = {
   wallets: [
@@ -52,6 +49,8 @@ const walletOptions = {
   ],
   autoConnect: true
 }
+
+useWorkspace();
 
 createApp(App)
   .use(router)

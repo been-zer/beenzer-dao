@@ -29,6 +29,7 @@
     "vue-chartjs": "^5.1.0",
     "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.0.3",
+    "vue-socket.io-extended": "^4.2.0",
     "vuex": "^4.1.0"
   },
   "devDependencies": {

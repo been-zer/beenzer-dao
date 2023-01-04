@@ -12,7 +12,7 @@ export const state: UserState = {
 
 const namespaced = true;
 
-export const user: Module<UserState, RootState> = {
+export const user: Module<any, any> = {// <UserState, RootState> = {
     namespaced,
     state,
     getters,

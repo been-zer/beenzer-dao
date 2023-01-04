@@ -53,7 +53,7 @@ export default {
             TO LOGIN TO BEENZER DAO
           </p>
           <div class="my-6 flex align-center justify-center">
-            <wallet-multi-button :dark="dark"/>
+            <wallet-multi-button :dark="dark" :login="true" />
           </div>
           <p class="mt-2 text-sm tracking-widest text-gray-200 font-semibold">
             FROM HERE YOU CAN:

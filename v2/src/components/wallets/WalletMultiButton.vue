@@ -9,6 +9,8 @@ import { balanceBEEN, balanceSOL, balanceUSDC } from '../../services/wallets/get
 import { PublicKey } from '@solana/web3.js';
 import { formatNumber } from '../../utils';
 import { useStore } from '../../store';
+import { Socket } from 'socket.io-client';
+import { RootState } from '../../store/root';
 
 export default defineComponent({
   components: {
@@ -17,7 +19,8 @@ export default defineComponent({
     WalletModalProvider
   },
   props: {
-    featured: { type: Number, default: 3 },
+    login: { type: Boolean, default: false},
+    featured: { type: Number, default: 8 },
     container: { type: String, default: "body" },
     logo: String,
     dark: Boolean,
@@ -25,7 +28,8 @@ export default defineComponent({
   setup(props) {
 
     const store = useStore();
-    
+    const state: RootState = store.state;
+
     const { featured, container, logo, dark } = toRefs(props);
     const { publicKey, wallet, disconnect } = useWallet();
     
@@ -41,8 +45,10 @@ export default defineComponent({
     
     const publicKeyBase58 = computed(() => publicKey.value?.toBase58());
     const publicKeyTrimmed = computed(() => {
-      if (!wallet.value || !publicKeyBase58.value) return null;
-      store.dispatch('user/connectWallet', publicKeyBase58.value);
+      if (!wallet.value || !publicKeyBase58.value) return null;4
+      if ( props.login ) {
+        store.dispatch('user/socketNewConnection', publicKeyBase58.value);
+      }
       return (
         publicKeyBase58.value.slice(0, 4) +
         ".." +
@@ -192,7 +198,7 @@ export default defineComponent({
                   class="swv-dropdown-list-item"
                   role="menuitem"
                 >
-                  {{ addressCopied ? "Copied" : "Copy address" }}
+                  {{ addressCopied ? "Copied!" : "Copy address" }}
                 </li>
                 <li
                   @click="

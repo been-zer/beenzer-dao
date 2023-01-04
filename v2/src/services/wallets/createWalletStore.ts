@@ -193,7 +193,7 @@ export const createWalletStore = ({
     try {
       connecting.value = true;
       await adapter.connect();
-    } catch (error: any) {
+    } catch (error) {
       name.value = null;
       // handleError will also be called.
       throw error;
@@ -213,7 +213,7 @@ export const createWalletStore = ({
     try {
       disconnecting.value = true;
       await wallet.value.adapter.disconnect();
-    } catch (error: any) {
+    } catch (error) {
       name.value = null;
       // handleError will also be called.
       throw error;

@@ -12,7 +12,7 @@ export const state: WalletState = {
 
 const namespaced = true;
 
-export const wallet: Module<WalletState, RootState> = {
+export const wallet: Module<any, any> = {
     namespaced,
     state,
     // getters,
