@@ -9,24 +9,29 @@ import { user } from './user';
 export const store: Store<any> = createStore({
   state: {
     welcome: true,
+    pubkey: '',
     singup: false,
     dark: true,
     sound: true,
     private: true,
   },
   actions: {
+    dispatchPubkey (store, pubkey: string) {
+      this.state.pubkey = pubkey;
+    },
     switchWelcome (store, to: boolean) {
       this.state.welcome = to;
+    },
+    switchSignup (store, to: boolean) {
+      this.state.singup = to;
     },
     switchSingup () {
       this.state.singup = !this.state.singup;
     },
     switchDark () {
-      console.log('hello');
       this.state.dark = !this.state.dark;
     },
     switchSound () {
-      console.log('hello');
       this.state.sound = !this.state.sound;
     },
   },

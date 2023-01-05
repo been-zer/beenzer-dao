@@ -1,5 +1,6 @@
 import { io, Socket } from 'socket.io-client';
 import { User } from '../../types';
+import { onIsNewUser } from './user.socket';
 
 export function socketConnection(): Socket {
   const socket: Socket = io(process.env.VUE_APP_SOCKET_ENDPOINT as string, {

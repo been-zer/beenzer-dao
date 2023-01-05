@@ -3,7 +3,6 @@ import WalletMultiButton from './wallets/WalletMultiButton.vue';
 import LocationSwitcher from './LocationSwitcher.vue';
 import SettingsButtons from './SettingsButtons.vue';
 import FooterBar from './FooterBar.vue';
-// import { useStore } from '../services/store';
 import { useStore } from '../services/store';
 
 export default {
@@ -18,8 +17,6 @@ export default {
     return { store };
   },
   data() {
-    console.log('isNewUser');
-
     return {
       fireworks: require("../assets/fireworks.gif"),
     }
@@ -56,7 +53,7 @@ export default {
             TO LOGIN TO BEENZER DAO
           </p>
           <div class="my-6 z-99 flex align-center justify-center">
-            <wallet-multi-button :dark="store.state.dark" />
+            <wallet-multi-button :dark="store.state.dark" :login="true" />
           </div>
           <p class="mt-2 text-sm tracking-widest font-semibold">
             FROM HERE YOU CAN:

@@ -3,7 +3,7 @@ import { createApp } from 'vue';
 import './registerServiceWorker';
 import './assets/css/tailwind.css';
 import './assets/css/wallets.css';
-import { createPinia } from 'pinia';
+import { store } from './services/store';
 import router from './router';
 import {
   BraveWalletAdapter,
@@ -53,7 +53,7 @@ const walletOptions = {
 useWorkspace();
 
 createApp(App)
-  .use(createPinia())
+  .use(store)
   .use(router)
   .use(SolanaWallets, walletOptions)
   .mount('#app');

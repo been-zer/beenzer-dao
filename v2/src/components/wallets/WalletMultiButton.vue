@@ -9,9 +9,11 @@ import { balanceBEEN, balanceSOL, balanceUSDC } from '../../services/wallets/get
 import { PublicKey } from '@solana/web3.js';
 import { formatNumber } from '../../utils';
 import { useStore } from '../../services/store';
-import { useGlobal } from '../../global';
-import { emitNewConnection } from "../../services/sockets/user.socket";
-import { Socket } from 'socket.io-client'
+import { 
+  emitConnection, 
+  emitDisconnection,
+  onIsNewUser 
+} from "../../services/sockets/user.socket";
 
 export default defineComponent({
   components: {
@@ -29,7 +31,6 @@ export default defineComponent({
   setup(props) {
 
     const store = useStore();
-    const global = useGlobal();
 
     const { featured, container, logo, dark } = toRefs(props);
     const { publicKey, wallet, disconnect } = useWallet();
@@ -56,14 +57,19 @@ export default defineComponent({
     });
 
     const connectBtn = () => {
-      if (wallet.value && publicKeyBase58.value) {
-        store.dispatch('switchWelcome', false);
-        // emitNewConnection(global.socket as Socket,  publicKeyBase58.value);
+      if ( props.login ) {
+        if (wallet.value && publicKeyBase58.value) {
+          store.dispatch('switchWelcome', false);
+          emitConnection(publicKeyBase58.value as string);
+          store.dispatch('dispatchPubkey', publicKeyBase58.value);
+        }
       }
     };
 
     const disconnectBtn = () => {
       store.dispatch('switchWelcome', true);
+      emitDisconnection(publicKeyBase58.value as string);
+      onIsNewUser();
     };
       
     const walletSOL = ref(0);
