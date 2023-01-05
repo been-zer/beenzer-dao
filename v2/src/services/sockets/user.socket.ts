@@ -1,4 +1,5 @@
 import { Socket } from 'socket.io-client';
+// import { socket } from './';
 
 export const onServerConnection = (socket: Socket) => {
   socket.on('serverConnection', (message: string) => { 
@@ -16,7 +17,6 @@ export const onIsNewUser = (socket: Socket) => {
 };
 
 export const emitNewConnection = (socket: Socket, pubkey: string) => {
-  console.log(socket)
   console.log(pubkey);
   socket.emit('newConnection', pubkey);
 };

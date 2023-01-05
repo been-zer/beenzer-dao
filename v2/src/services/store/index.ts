@@ -1,22 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createStore, Store } from 'vuex';
 import { user } from './user';
-import { Socket } from 'socket.io-client';
-import { socketConnection } from '../sockets';
+import { socket } from '../sockets';
+import createSocketStore from '../../plugins/createSocketStore';
+
+const socketPlugin = createSocketStore(socket);
 
 export const store: Store<any> = createStore({
   state: {
-    socket: Socket<DefaultEventsMap, DefaultEventsMap>,
     welcome: true,
-    singup: false,      
+    singup: false,
     dark: true,
     sound: true,
     private: true,
   },
   actions: {
-    socketConnect (store) {
-      this.state.socket = socketConnection();
-    },
     switchWelcome (store, to: boolean) {
       this.state.welcome = to;
     },
@@ -35,6 +33,9 @@ export const store: Store<any> = createStore({
   modules: {
     user
   },
+  plugins: [
+    socketPlugin
+  ],
 })
 
 export function useStore() {

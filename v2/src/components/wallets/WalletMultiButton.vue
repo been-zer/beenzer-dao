@@ -9,7 +9,6 @@ import { balanceBEEN, balanceSOL, balanceUSDC } from '../../services/wallets/get
 import { PublicKey } from '@solana/web3.js';
 import { formatNumber } from '../../utils';
 import { useStore } from '../../services/store';
-// import { useSocket, userConnection } from '../../services/sockets';
 
 export default defineComponent({
   components: {
@@ -55,7 +54,7 @@ export default defineComponent({
     const connectBtn = () => {
       if (wallet.value && publicKeyBase58.value) {
         store.dispatch('switchWelcome', false);
-        // userConnection(publicKeyBase58.value);
+        store.dispatch('user/socketConnection', publicKeyBase58.value);
       }
     };
 

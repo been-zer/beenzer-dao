@@ -1,3 +1,5 @@
+// import { Socket } from 'socket.io-client';
+
 export interface RootState {
   welcome: boolean;
   singup: boolean;

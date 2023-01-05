@@ -22,6 +22,7 @@
     "core-js": "^3.8.3",
     "crypto": "^1.0.1",
     "node-polyfill-webpack-plugin": "^2.0.1",
+    "pinia": "^2.0.28",
     "register-service-worker": "^1.7.2",
     "solana-wallets-vue": "^0.5.2",
     "stream": "^0.0.2",
