@@ -19,8 +19,8 @@ export default {
 </script>
 <template>
 <div>
-  <signup-modal/>
   <welcome-modal/>
+  <signup-modal/>
   <div class="flex flex-wrap" >
     <mint-panel/>
     <mint-dash/>

@@ -1,6 +1,6 @@
 <script lang='ts'>
 import { useStore } from '../services/store';
-import { }
+import { searchUsersSocket } from '../services/sockets/user.socket';
 
 export default {
   setup () {
@@ -10,18 +10,28 @@ export default {
       store.dispatch('switchWelcome', true);
     }
 
-    function signUp () {
+    function searchUser (username: string) {
+      searchUsersSocket(username);
+    }
 
+    function signUp () {
+      if ( store.state.username ) {
+        console.log('eeo');
+        store.dispatch('switchSignup', false);
+      }
     }
 
     return { 
       store ,
-      goBack
+      goBack,
+      searchUser,
+      signUp
     };
   },
   data () {
     return {
       fireworks: require("../assets/fireworks.gif"),
+      username: '',
     }
   }
 }
@@ -46,21 +56,31 @@ export default {
           {{ store.state.pubkey }}
         </p>
         <p class="mt-4 text-sm sm:text-lg">
-          USERNAME:
+          YOUR USERNAME:
         </p>
-        <input class="mt-4 text-lg text-center px-8 tracking-widest text-gray-400 font-semibold rounded-xl mx-22 border inner shadow-inner-xl bg-transparent text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400" />
-          <p class="m-2 uppercase text-lg sm:text-xl tracking-widest">
+        <input trype="text" id="username" key="username" v-model="username" v-on="searchUser(username)"
+          class="mt-4 text-lg text-center px-8 tracking-widest text-gray-400 font-semibold rounded-xl mx-22 border inner shadow-inner-xl bg-transparent text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400" 
+        />
+        <div v-if="username">
+          <p v-if="store.state.username" class="mt-4 px-8 uppercase text-xs tracking-widest text-green-500">
+            IS AVAILABLE
           </p>
-          <button class="m-2 mx-8 p-3 rounded-xl uppercase text-xl font-bold border border-gray-500 hover:border-green-600 text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400"
-            @click="goBack"
-          >
-            SIGN UP  🚀
-          </button>
-          <button class="m-2 mx-8 p-3 rounded-xl uppercase text-xl border border-gray-500 hover:border-red-600 text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-yellow-400"
-            @click="goBack"
-          >
-          👈 GO BACK
-          </button>
+          <p v-else class="mt-4 px-8 uppercase text-xs tracking-widest text-red-500">
+            INVALID OR IN-USE USERNAME
+          </p>
+        </div>
+        <p class="m-2 uppercase text-lg sm:text-xl tracking-widest">
+        </p>
+        <button class="m-2 mx-8 p-3 rounded-xl uppercase text-xl font-bold border border-gray-500 hover:border-green-600 text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400"
+          @click="signUp"
+        >
+          SIGN UP  🚀
+        </button>
+        <button class="m-2 mx-8 p-3 rounded-xl uppercase text-xl border border-gray-500 hover:border-red-600 text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-yellow-400"
+          @click="goBack"
+        >
+        👈 GO BACK
+        </button>
               
   
           

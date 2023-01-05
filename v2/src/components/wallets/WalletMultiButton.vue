@@ -61,6 +61,7 @@ export default defineComponent({
         if (wallet.value && publicKeyBase58.value) {
           store.dispatch('switchWelcome', false);
           emitConnection(publicKeyBase58.value as string);
+          onIsNewUser();
           store.dispatch('dispatchPubkey', publicKeyBase58.value);
         }
       }
@@ -69,7 +70,6 @@ export default defineComponent({
     const disconnectBtn = () => {
       store.dispatch('switchWelcome', true);
       emitDisconnection(publicKeyBase58.value as string);
-      onIsNewUser();
     };
       
     const walletSOL = ref(0);

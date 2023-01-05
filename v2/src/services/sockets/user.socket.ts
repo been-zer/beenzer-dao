@@ -1,10 +1,10 @@
-import { Socket } from 'socket.io-client';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { socket } from './';
 import { useStore } from '../store';
 
 const store = useStore();
 
-export const onServerConnection = (socket: Socket) => {
+export const onServerConnection = () => {
   socket.on('serverConnection', (message: string) => { 
     console.log(message) 
   });
@@ -12,28 +12,33 @@ export const onServerConnection = (socket: Socket) => {
 
 export const onIsNewUser = () => {
   socket.on('isNewUser', (isNew: boolean) => {
-    console.log(isNew);
-    if ( isNew ) {
-      console.log('NEW USER!');
-    }
-    socket.off('isNewUser');
     store.dispatch('switchSignup', isNew);
+    socket.off('isNewUser');
   });
 };
 
 export const emitConnection = (pubkey: string) => {
-  console.log(pubkey);
   socket.emit('newConnection', pubkey);
   socket.off('newConnection');
 };
 
 export const emitDisconnection = (pubkey: string) => {
-  console.log(pubkey);
   socket.emit('newDisconnection', pubkey);
   socket.off('newDisonnection');
 };
 
-export const emitNewUser = (pubkey: string, username: string) => {
-
-
+export const searchUsersSocket = (username: string) => {
+  socket.emit('searchUsers', username);
+  socket.on('searchUsersRes', (res: any) => {
+    try {
+      if (res.length === 0) {
+        store.dispatch('dispatchUsername', true);
+      } else {
+        store.dispatch('dispatchUsername', false);
+      }
+    } catch (e) {
+      store.dispatch('dispatchUsername', false);
+      console.log(e);
+    }
+  })
 };
