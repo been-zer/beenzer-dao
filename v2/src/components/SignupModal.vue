@@ -16,7 +16,6 @@ export default {
 
     function signUp () {
       if ( store.state.username ) {
-        console.log('eeo');
         store.dispatch('switchSignup', false);
       }
     }
@@ -38,7 +37,7 @@ export default {
 </script>
 <template>
 <teleport to="body">
-  <div :class="store.state.signup ? 'hidden' : 'block'">
+  <div :class="store.state.signup ? 'block' : 'hidden'">
     <div ref="modal-backdrop" class="fixed z-11 inset-0 overflow-y-auto bg-opacity-50" 
     :class="store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-900 text-gray-700'">
     <img :src="fireworks" class="absolute mt-12 inset-0 m-auto opacity-30" />

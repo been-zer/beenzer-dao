@@ -11,8 +11,7 @@ import { formatNumber } from '../../utils';
 import { useStore } from '../../services/store';
 import { 
   emitConnection, 
-  emitDisconnection,
-  onIsNewUser 
+  emitDisconnection
 } from "../../services/sockets/user.socket";
 
 export default defineComponent({
@@ -61,7 +60,6 @@ export default defineComponent({
         if (wallet.value && publicKeyBase58.value) {
           store.dispatch('switchWelcome', false);
           emitConnection(publicKeyBase58.value as string);
-          onIsNewUser();
           store.dispatch('dispatchPubkey', publicKeyBase58.value);
         }
       }

@@ -10,15 +10,17 @@ export const onServerConnection = () => {
   });
 };
 
-export const onIsNewUser = () => {
-  socket.on('isNewUser', (isNew: boolean) => {
-    store.dispatch('switchSignup', isNew);
-    socket.off('isNewUser');
-  });
-};
+// export const onIsNewUser = () => {
+//   socket.on('isNewUser', (isNew: boolean) => {
+//     console.log('eeeeoooo', isNew)
+//     store.dispatch('switchSignup', isNew);
+//     socket.off('isNewUser');
+//   });
+// };
 
 export const emitConnection = (pubkey: string) => {
   socket.emit('newConnection', pubkey);
+  console.log(pubkey);
   socket.off('newConnection');
 };
 

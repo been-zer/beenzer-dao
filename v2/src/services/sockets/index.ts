@@ -10,12 +10,14 @@ export function socketConnection(): Socket {
     transports: ["websocket"],
     autoConnect: true,
   });
+
   socket.on('serverConnection', (message: string) => { 
     console.log(message) 
   });
 
   socket.on('isNewUser', (isNew: boolean) => {
-    store.dispatch('switchSignup', isNew);
+    console.log('eeooo', isNew);
+    store.dispatch('switchSignup', true);
   });
   
   socket.on('newUserCreated', (created: boolean) => {
