@@ -33,3 +33,7 @@ export const emitDisconnection = (pubkey: string) => {
   socket.off('newDisonnection');
 };
 
+export const emitNewUser = (pubkey: string, username: string) => {
+
+
+};

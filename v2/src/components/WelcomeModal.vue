@@ -28,9 +28,7 @@ export default {
   <div :class="store.state.welcome ? 'block' : 'hidden'">
     <div ref="modal-backdrop" class="fixed z-10 inset-0 overflow-y-auto bg-opacity-50" 
     :class="store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
-      <div class="">
-        <img :src="fireworks" class="absolute mt-12 inset-0 m-auto opacity-30" />
-      </div>
+      <img :src="fireworks" class="absolute mt-12 inset-0 m-auto opacity-30" />
       <div class="z-22 flex items-center justify-center min-h-screen text-center" >
         <div class="z-90 min-h-[900px] m-2 xl:w-1/2 2xl:w-1/3 rounded-lg text-center overflow-hidden p-8 flex flex-col justify-center shadow-xl shadow-yellow-800" 
         :class="store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'" >
@@ -52,7 +50,7 @@ export default {
           <p class="mt-2 px-2 uppercase text-sm tracking-widest font-semibold" >
             TO LOGIN TO BEENZER DAO
           </p>
-          <div class="my-6 z-99 flex align-center justify-center">
+          <div class="my-6 flex align-center justify-center">
             <wallet-multi-button :dark="store.state.dark" :login="true" />
           </div>
           <p class="mt-2 text-sm tracking-widest font-semibold">
