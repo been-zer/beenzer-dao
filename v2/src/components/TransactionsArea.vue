@@ -1,6 +1,7 @@
 <script>
 // import LineChart from './charts/lineChart.ts';
 import { shortWallet, markWallet } from '../utils';
+import { useStore } from '../services/store';
 
 export default {
   props: [
@@ -19,6 +20,11 @@ export default {
   },
   components: {
     // LineChart,
+  },
+  setup() {
+    const store = useStore();
+
+    return { store };
   }
 }
 </script>
@@ -30,7 +36,7 @@ export default {
   <div class="text-center uppercase text-sm tracking-widest font-semibold justify-center">
     <div class="flex justify-center mr-3 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600" >
       <div class="uppercase text-xl font-semibold m-4">&nbsp;&nbsp; Total</div>
-      <div class="font-bold text-4xl mt-2" :class="this.$store.state.dark ? 'text-gray-200' : 'text-gray-800'"> 
+      <div class="font-bold text-4xl mt-2" :class="store.state.dark ? 'text-gray-200' : 'text-gray-800'"> 
         {{ 12 }}
       </div>
       <div class="uppercase text-xl font-semibold m-4">Games</div>
@@ -42,7 +48,7 @@ export default {
       <p class="uppercase text-xs tracking-widest text-gray-400 font-semibold">Countries</p>
       <div class="flex justify-center" >
         <p class="font-bold text-lg mt-2"
-          :class="this.$store.state.dark ? 'text-gray-300' : 'text-gray-600'"
+          :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
         >{{ 12 }}</p>
       </div>
     </div>
@@ -51,7 +57,7 @@ export default {
       <p class="uppercase text-xs tracking-widest text-gray-400 font-semibold">Players</p>
       <div class="flex justify-center" >
         <p class="font-bold text-lg mt-2"
-          :class="this.$store.state.dark ? 'text-gray-300' : 'text-gray-600'"
+          :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
         >{{ 34 }}</p>
       </div>
     </div>
@@ -59,7 +65,7 @@ export default {
       <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">Average</p>
       <p class="uppercase text-xs tracking-widest text-gray-400 font-semibold">SOLPOT</p>
       <div class="flex justify-center" >
-        <p class="font-bold text-lg mt-2" :class="this.$store.state.dark ? 'text-gray-300' : 'text-gray-600'" > 
+        <p class="font-bold text-lg mt-2" :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'" > 
           <span class="text-sm text-gray-400">
             ◎ </span>
           {{ avgPot }}</p>
@@ -70,7 +76,7 @@ export default {
       <p class="uppercase text-xs tracking-widest text-gray-400 font-semibold">SOLPOT</p>
       <div class="flex justify-center" >
         <p class="font-bold text-lg mt-2"
-          :class="this.$store.state.dark ? 'text-gray-300' : 'text-gray-600'"
+          :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
         > <span class="text-sm text-gray-400">
           ◎ </span>
           {{ maxPot }}</p>
@@ -82,9 +88,9 @@ export default {
       <div class="uppercase text-xs mb-4 mt-4 tracking-widest text-gray-400 font-semibold">
         HOLDERS DISTRIBUTION
       </div>
-      <lo class="flex flex-col flex-grow overflow-y-auto bg-gray-100 p-2 rounded-xl shadow-inner" :class="this.$store.state.dark ? 'bg-gray-700' : 'bg-text-gray-200'">
+      <lo class="flex flex-col flex-grow overflow-y-auto bg-gray-100 p-2 rounded-xl shadow-inner" :class="store.state.dark ? 'bg-gray-700' : 'bg-text-gray-200'">
         <div v-for="x of history" :key="x.__date__" >
-          <div class="hover:font-semibold grid grid-cols-12 justify-center align-center align-middle"  :class="this.$store.state.dark ? 'text-gray-200' : 'bg-text-gray-800'">
+          <div class="hover:font-semibold grid grid-cols-12 justify-center align-center align-middle"  :class="store.state.dark ? 'text-gray-200' : 'bg-text-gray-800'">
             <div class="text-xs text.left   col-span-3"  :class="markWallet(wallet, x._owner) ? 'text-green-400 font-bold' : 'text-grey-600'">
               {{ x.__date__ }}
             </div>

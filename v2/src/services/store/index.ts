@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createStore, Store } from 'vuex';
 import { user } from './user';
-import { socket } from '../sockets';
-import createSocketStore from '../../plugins/createSocketStore';
+// import { socket } from '../sockets';
+// import createSocketStore from '../../plugins/createSocketStore';
 
-const socketPlugin = createSocketStore(socket);
+// const socketPlugin = createSocketStore(socket);
 
 export const store: Store<any> = createStore({
   state: {
@@ -34,7 +34,7 @@ export const store: Store<any> = createStore({
     user
   },
   plugins: [
-    socketPlugin
+    // socketPlugin
   ],
 })
 

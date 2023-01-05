@@ -2,7 +2,7 @@
 import TransactionArea from './TransactionsArea.vue';
 import HoldersArea from './HoldersArea.vue';
 import ChartsArea from './ChartsArea.vue';
-
+import { useStore } from '../services/store';
 
 export default {
   components: {
@@ -16,13 +16,18 @@ export default {
   methods: {
 
   },
+  setup() {
+    const store = useStore();
+
+    return { store };
+  }
 }
 </script>
 
 <template>
   <div class="m-auto p-2 mt-0">
     <div class="flex flex-wrap p-4 text-gray-600 rounded-xl text-center shadow-xl shadow-yellow-400" 
-    :class="this.$store.state.dark ? 'bg-gray-800' : 'bg-white'">
+    :class="store.state.dark ? 'bg-gray-800' : 'bg-white'">
       <div>
         <transaction-area />
       </div>

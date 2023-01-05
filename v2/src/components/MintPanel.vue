@@ -4,6 +4,7 @@ import { ref } from 'vue';
 import click_sound from '../assets/sounds/beep.mp3';
 import CountDown from './CountDown';
 import MintSwitcher from './MintSwitcher.vue';
+import { useStore } from '../services/store';
 
 export default {
   components: {
@@ -37,6 +38,8 @@ export default {
     }
   },
   setup () {
+
+    const store = useStore();
 
     const sound = true;
 
@@ -90,7 +93,8 @@ export default {
 
     const commitPop = ref(false);
     
-    return { 
+    return {
+      store,
       clickNum,
       deleteNum,
       resetNum,
@@ -111,7 +115,7 @@ export default {
   <div class="m-auto w-full max-w-md p-2 mt-0">
 
     <div class="rounded-xl shadow-xl" :class="this.checkbox ? 'shadow-green-600' : 'shadow-red-600'" >
-    <div class="rounded-xl pt-2 pb-6" :class="this.$store.state.dark ? 'bg-gray-800 shadow-gray-700' : 'bg-white'">
+    <div class="rounded-xl pt-2 pb-6" :class="store.state.dark ? 'bg-gray-800 shadow-gray-700' : 'bg-white'">
       <div class="flex justify-center px-4 text-center mt-10">
         <div class="text-xl px-4">⛏️</div>
           <MintSwitcher @checkbox="(checkbox) => checkBox(checkbox)" class="pt-1 pl-1" />
@@ -149,7 +153,7 @@ export default {
               <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">SOL</p>
               <div class="flex justify-center" >
                 <p class="font-bold text-md mt-2"
-                  :class="this.$store.state.dark ? 'text-gray-300' : 'text-gray-600'"
+                  :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
                 > -{{ nf.format(SOL).replaceAll(',', ' ') }}</p>
               </div>
             </div>
@@ -157,7 +161,7 @@ export default {
               <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">USD</p>
               <div class="flex justify-center" >
                 <p class="lowercase font-bold text-md mt-2"
-                  :class="this.$store.state.dark ? 'text-gray-300' : 'text-gray-600'"
+                  :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
                 > -{{ nf.format(USD).replaceAll(',', ' ') }}</p>
               </div>
             </div>
@@ -165,7 +169,7 @@ export default {
               <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">BEEN</p>
               <div class="flex justify-center" >
                 <p class="lowercase font-bold text-md mt-2"
-                  :class="this.$store.state.dark ? 'text-gray-300' : 'text-gray-600'"
+                  :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
                 > +{{ nf.format(BEEN).replaceAll(',', ' ') }}</p>
               </div>
             </div>
@@ -173,7 +177,7 @@ export default {
               <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">BEENZ</p>
               <div class="flex justify-center" >
                 <p class="font-bold text-md mt-2"
-                  :class="this.$store.state.dark ? 'text-gray-300' : 'text-gray-600'"
+                  :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
                 > +{{ nf.format(BEENZ).replaceAll(',', ' ') }}</p>
               </div>
             </div>
@@ -186,7 +190,7 @@ export default {
         </div> -->
 
         <div class="font-bold text-4xl text-center p-5 rounded-xl mx-6 mt-2 cursor-pointer border border-green-600"
-        :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-600' : 'bg-gray-50 hover:bg-gray-200'"
+        :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-600' : 'bg-gray-50 hover:bg-gray-200'"
         @click="$emit('commit', BEEN)"
         @mouseover="commitHover=true"
         @mouseleave="commitHover=false">
@@ -202,18 +206,18 @@ export default {
         </div>
         
         <div class="grid grid-cols-3 gap-1 text-s font-semibold text-center py-4 px-6 rounded-xl">
-          <button @click="clickNum(1)" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 rounded-tl-xl align-middle relative border">1</button>
-          <button @click="clickNum(2)" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 align-middle relative border">2</button>
-          <button @click="clickNum(3)" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 rounded-tr-xl align-middle relative border">3</button>
-          <button @click="clickNum(4)" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 align-middle relative border">4</button>
-          <button @click="clickNum(5)" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 align-middle relative border">5</button>
-          <button @click="clickNum(6)" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 align-middle relative border">6</button>
-          <button @click="clickNum(7)" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 rounded-bl-xl align-middle relative border">7</button>
-          <button @click="clickNum(8)" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 align-middle relative border">8</button>
-          <button @click="clickNum(9)" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 rounded-br-xl align-middle relative border">9</button>
-          <button @click="resetNum()"  :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-2 px-2 rounded-3xl m-3 align-middle relative border">↻</button>
-          <button @click="clickNum(0)" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 rounded-b-xl align-middle relative border">0</button>
-          <button @click="deleteNum()" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-green-600' : 'bg-gray-50 hover:bg-green-600'" class="py-2 px-2 rounded-3xl m-3 align-middle relative border border-green-600">⛏️</button>          
+          <button @click="clickNum(1)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 rounded-tl-xl align-middle relative border">1</button>
+          <button @click="clickNum(2)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 align-middle relative border">2</button>
+          <button @click="clickNum(3)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 rounded-tr-xl align-middle relative border">3</button>
+          <button @click="clickNum(4)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 align-middle relative border">4</button>
+          <button @click="clickNum(5)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 align-middle relative border">5</button>
+          <button @click="clickNum(6)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 align-middle relative border">6</button>
+          <button @click="clickNum(7)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 rounded-bl-xl align-middle relative border">7</button>
+          <button @click="clickNum(8)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 align-middle relative border">8</button>
+          <button @click="clickNum(9)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 rounded-br-xl align-middle relative border">9</button>
+          <button @click="resetNum()"  :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-2 px-2 rounded-3xl m-3 align-middle relative border">↻</button>
+          <button @click="clickNum(0)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 rounded-b-xl align-middle relative border">0</button>
+          <button @click="deleteNum()" :class="store.state.dark ? 'bg-gray-600 hover:bg-green-600' : 'bg-gray-50 hover:bg-green-600'" class="py-2 px-2 rounded-3xl m-3 align-middle relative border border-green-600">⛏️</button>          
         <div/>
 
       </div>
@@ -251,7 +255,7 @@ export default {
               <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">SOL</p>
               <div class="flex justify-center" >
                 <p class="font-bold text-md mt-2"
-                  :class="this.$store.state.dark ? 'text-gray-300' : 'text-gray-600'"
+                  :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
                 > +{{ nf.format(SOL).replaceAll(',', ' ') }}</p>
               </div>
             </div>
@@ -259,7 +263,7 @@ export default {
               <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">USD</p>
               <div class="flex justify-center" >
                 <p class="lowercase font-bold text-md mt-2"
-                  :class="this.$store.state.dark ? 'text-gray-300' : 'text-gray-600'"
+                  :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
                 > +{{ nf.format(USD).replaceAll(',', ' ') }}</p>
               </div>
             </div>
@@ -267,7 +271,7 @@ export default {
               <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">BEEN</p>
               <div class="flex justify-center" >
                 <p class="lowercase font-bold text-md mt-2"
-                  :class="this.$store.state.dark ? 'text-gray-300' : 'text-gray-600'"
+                  :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
                 > -{{ nf.format(BEEN).replaceAll(',', ' ') }}</p>
               </div>
             </div>
@@ -275,7 +279,7 @@ export default {
               <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">BEENZ</p>
               <div class="flex justify-center" >
                 <p class="font-bold text-md mt-2"
-                  :class="this.$store.state.dark ? 'text-gray-300' : 'text-gray-600'"
+                  :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
                 > -{{ nf.format(BEENZ).replaceAll(',', ' ') }}</p>
               </div>
             </div>
@@ -285,7 +289,7 @@ export default {
 
 
         <div class="font-bold text-4xl text-center p-5 rounded-xl mx-6 mt-2 cursor-pointer border border-red-600"
-        :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-600' : 'bg-gray-50 hover:bg-gray-200'"
+        :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-600' : 'bg-gray-50 hover:bg-gray-200'"
         @click="$emit('commit', BEEN)"
         @mouseover="commitHover=true"
         @mouseleave="commitHover=false">
@@ -301,18 +305,18 @@ export default {
         </div>
         
         <div class="grid grid-cols-3 gap-1 text-s font-semibold text-center py-4 px-6 rounded-xl">
-          <button @click="clickNum(1)" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 rounded-tl-xl align-middle relative border">1</button>
-          <button @click="clickNum(2)" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 align-middle relative border">2</button>
-          <button @click="clickNum(3)" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 rounded-tr-xl align-middle relative border">3</button>
-          <button @click="clickNum(4)" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 align-middle relative border">4</button>
-          <button @click="clickNum(5)" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 align-middle relative border">5</button>
-          <button @click="clickNum(6)" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 align-middle relative border">6</button>
-          <button @click="clickNum(7)" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 rounded-bl-xl align-middle relative border">7</button>
-          <button @click="clickNum(8)" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 align-middle relative border">8</button>
-          <button @click="clickNum(9)" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 rounded-br-xl align-middle relative border">9</button>
-          <button @click="resetNum()"  :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-2 px-2 rounded-3xl m-3 align-middle relative border">↻</button>
-          <button @click="clickNum(0)" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 rounded-b-xl align-middle relative border">0</button>
-          <button @click="deleteNum()" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-red-600' : 'bg-gray-50 hover:bg-red-600'" class="py-2 px-2 rounded-3xl m-3 align-middle relative border border-red-600">🔥</button>          
+          <button @click="clickNum(1)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 rounded-tl-xl align-middle relative border">1</button>
+          <button @click="clickNum(2)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 align-middle relative border">2</button>
+          <button @click="clickNum(3)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 rounded-tr-xl align-middle relative border">3</button>
+          <button @click="clickNum(4)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 align-middle relative border">4</button>
+          <button @click="clickNum(5)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 align-middle relative border">5</button>
+          <button @click="clickNum(6)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 align-middle relative border">6</button>
+          <button @click="clickNum(7)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 rounded-bl-xl align-middle relative border">7</button>
+          <button @click="clickNum(8)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 align-middle relative border">8</button>
+          <button @click="clickNum(9)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 rounded-br-xl align-middle relative border">9</button>
+          <button @click="resetNum()"  :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-2 px-2 rounded-3xl m-3 align-middle relative border">↻</button>
+          <button @click="clickNum(0)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 rounded-b-xl align-middle relative border">0</button>
+          <button @click="deleteNum()" :class="store.state.dark ? 'bg-gray-600 hover:bg-red-600' : 'bg-gray-50 hover:bg-red-600'" class="py-2 px-2 rounded-3xl m-3 align-middle relative border border-red-600">🔥</button>          
         <div/>
 
       </div>

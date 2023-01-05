@@ -9,6 +9,9 @@ import { balanceBEEN, balanceSOL, balanceUSDC } from '../../services/wallets/get
 import { PublicKey } from '@solana/web3.js';
 import { formatNumber } from '../../utils';
 import { useStore } from '../../services/store';
+import { useGlobal } from '../../global';
+import { emitNewConnection } from "../../services/sockets/user.socket";
+import { Socket } from 'socket.io-client'
 
 export default defineComponent({
   components: {
@@ -26,6 +29,7 @@ export default defineComponent({
   setup(props) {
 
     const store = useStore();
+    const global = useGlobal();
 
     const { featured, container, logo, dark } = toRefs(props);
     const { publicKey, wallet, disconnect } = useWallet();
@@ -54,7 +58,7 @@ export default defineComponent({
     const connectBtn = () => {
       if (wallet.value && publicKeyBase58.value) {
         store.dispatch('switchWelcome', false);
-        store.dispatch('user/socketConnection', publicKeyBase58.value);
+        // emitNewConnection(global.socket as Socket,  publicKeyBase58.value);
       }
     };
 
