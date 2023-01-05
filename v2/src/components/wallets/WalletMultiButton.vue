@@ -29,6 +29,7 @@ export default defineComponent({
   },
   setup(props) {
 
+    const login = false;
     const store = useStore();
 
     const { featured, container, logo, dark } = toRefs(props);
@@ -47,7 +48,7 @@ export default defineComponent({
     const publicKeyBase58 = computed(() => publicKey.value?.toBase58());
     const publicKeyTrimmed = computed(() => {
       if (!wallet.value || !publicKeyBase58.value) return null;
-      connectBtn();
+      if ( login ) connectBtn();
       return (
         publicKeyBase58.value.slice(0, 4) +
         ".." +

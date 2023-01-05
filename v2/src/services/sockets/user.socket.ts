@@ -4,11 +4,11 @@ import { useStore } from '../store';
 
 const store = useStore();
 
-export const onServerConnection = () => {
-  socket.on('serverConnection', (message: string) => { 
-    console.log(message) 
-  });
-};
+// export const onServerConnection = () => {
+//   socket.on('serverConnection', (message: string) => { 
+//     console.log(message) 
+//   });
+// };
 
 // export const onIsNewUser = () => {
 //   socket.on('isNewUser', (isNew: boolean) => {
