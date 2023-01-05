@@ -1,3 +1,16 @@
+export interface RootState {
+  welcome: boolean;
+  singup: boolean;
+  dark: boolean;
+  sound: boolean;
+  private: boolean;
+}
+
+export interface MainState {
+  root?: RootState;
+  error: boolean;
+}
+
 export interface User {
   pubkey: string;
   username: string;

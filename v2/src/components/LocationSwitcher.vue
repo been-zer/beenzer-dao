@@ -1,11 +1,3 @@
-<template>
-  <label class="switch">
-    <input type="checkbox"
-    @click="this.$store.dispatch('setFlag', '🏴‍☠️')" >
-    <div class="slider round"></div>
-  </label>
-</template>
-
 <script>
 export default {
   el: 'LocationSwitcher',
@@ -16,7 +8,13 @@ export default {
   },
 }
 </script>
-
+<template>
+  <label class="switch">
+    <input type="checkbox"
+    @click="this.$store.dispatch('setFlag', '🏴‍☠️')" >
+    <div class="slider round"></div>
+  </label>
+</template>
 <style scoped="true">
 .switch {
   position: relative;

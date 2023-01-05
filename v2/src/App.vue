@@ -2,15 +2,13 @@
 import NavbarWallet from './components/NavbarWallet.vue';
 import FooterBar from './components/FooterBar.vue';
 import { useStore } from './services/store'
-import socket from './services/sockets';
 
 export default {
   setup() {
     const store = useStore();
 
     return {
-      store,
-      socket
+      store
     }
   },
   components: {
@@ -25,7 +23,7 @@ export default {
   'bg-gray-900 shadow-gray-700 border-gray-200 text-gray-200' : 
   'bg-gray-100 shadow-gray-300 border-gray-900 text-gray-800'">
   <navbar-wallet/>
-  <router-view :socket="socket" :store="store"/>
+  <router-view/>
   <footer-bar/>
 </div>
 </template>
