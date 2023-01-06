@@ -1,25 +1,35 @@
 <script lang='ts'>
 import { useStore } from '../services/store';
 import { searchUsersSocket } from '../services/sockets/user.socket';
+import { useNotification } from "@kyvg/vue3-notification";
 
 export default {
   setup () {
+    
     const store = useStore();
+    const { notify }  = useNotification()
+
+    notify({
+      title: "Authorization",
+      text: "You have been logged in!",
+    });
 
     function goBack () {
       store.dispatch('switchWelcome', true);
     }
-
     function searchUser (username: string) {
       searchUsersSocket(username);
     }
-
     function signUp () {
+      notify({
+      title: "Error",
+      text: "You have been logged in!",
+    });
+      console.log('hello')
       if ( store.state.username ) {
         store.dispatch('switchSignup', false);
-      }
+      } 
     }
-
     return { 
       store ,
       goBack,
@@ -37,7 +47,8 @@ export default {
 </script>
 <template>
 <teleport to="body">
-  <div :class="store.state.signup ? 'block' : 'hidden'">
+  <notifications position="top left" classes="notifications warn" animation-type="velocity"/>
+  <div :class="store.state.newuser ? 'block' : 'hidden'">
     <div ref="modal-backdrop" class="fixed z-11 inset-0 overflow-y-auto bg-opacity-50" 
     :class="store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-900 text-gray-700'">
     <img :src="fireworks" class="absolute mt-12 inset-0 m-auto opacity-30" />
@@ -90,7 +101,7 @@ export default {
   </div>
 </teleport>
 </template>
-<style scope>
+<style lang="scss" scope>
 input {
   background-color: transparent;
 }
@@ -98,6 +109,35 @@ input {
 input:hover {
   border: 1px solid rgb(36, 211, 12);
 
+}
+
+.notifications {
+  // styling
+  margin: 5px 5px;
+  padding: 10px;
+  font-size: 12px;
+  color: #ffffff;
+  cursor: pointer;
+
+  // default (blue)
+  background: #44a4fc;
+  border-left: 5px solid #187fe7;
+
+  // types (green, amber, red)
+  &.success {
+    background: #68cd86;
+    border-left-color: #42a85f;
+  }
+
+  &.warn {
+    background: #ffb648;
+    border-left-color: #f48a06;
+  }
+
+  &.error {
+    background: #e54d42;
+    border-left-color: #b82e24;
+  }
 }
 
 </style>

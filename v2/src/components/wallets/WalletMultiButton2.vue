@@ -56,13 +56,7 @@ export default defineComponent({
     });
 
     const connectBtn = () => {
-      if ( props.login ) {
-        if (wallet.value && publicKeyBase58.value) {
-          store.dispatch('switchWelcome', false);
-          emitConnection(publicKeyBase58.value as string);
-          store.dispatch('dispatchPubkey', publicKeyBase58.value);
-        }
-      }
+      return 0
     };
 
     const disconnectBtn = () => {

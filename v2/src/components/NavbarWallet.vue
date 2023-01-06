@@ -1,5 +1,5 @@
 <script lang="ts">
-  import WalletMultiButton from './wallets/WalletMultiButton.vue';
+  import WalletMultiButton from './wallets/WalletMultiButton2.vue';
   import SettingsButtons from './SettingsButtons.vue';
   import SocialButtons from './SocialButtons.vue';
   import NavMenu from './NavMenu.vue';

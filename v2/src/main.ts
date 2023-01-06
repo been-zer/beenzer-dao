@@ -3,6 +3,8 @@ import { createApp } from 'vue';
 import './registerServiceWorker';
 import './assets/css/tailwind.css';
 import './assets/css/wallets.css';
+import Notifications from '@kyvg/vue3-notification';
+import velocity from 'velocity-animate';
 import { store } from './services/store';
 import router from './router';
 import {
@@ -55,5 +57,6 @@ useWorkspace();
 createApp(App)
   .use(store)
   .use(router)
+  .use(Notifications, { velocity })
   .use(SolanaWallets, walletOptions)
   .mount('#app');
