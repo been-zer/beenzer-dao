@@ -15,7 +15,8 @@
     data() {
       return {
         isOpen: false,
-        landing_url: "https://beenzer.app"
+        landing_url: "https://beenzer.app",
+        pfp: require("../assets/ico/profile.png"),
       }
     },
     components: {
@@ -38,10 +39,15 @@
       <wallet-multi-button :dark="store.state.dark"></wallet-multi-button>
     </div>
     <!-- Profile -->
-    <div class="ml-4 text-left font-semibold text-sm"
+    <div class="ml-4 flex text-left font-semibold text-sm"
       v-if="store.state.username"
     >
-      <span class="text-xs">Welcome,</span><br/>{{store.state.username}}
+      <button>
+        <img class="w-10 rounded-full mr-4" :src="pfp" alt="pfp" />
+      </button>
+      <div>
+        <span class="text-xs">Welcome,</span><br/>{{store.state.username}}
+      </div>
     </div>
     <!-- Toogle nav -->
     <div class="lg:hidden ml-24">
