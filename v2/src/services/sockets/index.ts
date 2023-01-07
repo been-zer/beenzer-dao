@@ -16,19 +16,15 @@ export function socketConnection(): Socket {
   });
 
   socket.on('isNewUser', (isNew: boolean) => {
-    console.log('eeooo', isNew);
-    store.dispatch('switchSignup', true);
+    store.dispatch('switchSignup', isNew);
   });
   
-  socket.on('newUserCreated', (created: boolean) => {
-    console.log('created:', created);
-    
-  });
   socket.on('userInfo', (userInfo: Array<User>) => {
-    console.log(userInfo);
+    store.dispatch('dispatchUsername', userInfo[0]._username_);
   });
   
   return socket;
 }
 
 export const socket: Socket = socketConnection();
+

@@ -26,11 +26,11 @@ export default {
 <template>
 <teleport to="body">
   <div :class="store.state.welcome ? 'block' : 'hidden'">
-    <div ref="modal-backdrop" class="fixed z-10 inset-0 overflow-y-auto bg-opacity-50" 
+    <div ref="modal-backdrop" class="fixed z-20 inset-0 overflow-y-auto bg-opacity-50 " 
     :class="store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
       <img :src="fireworks" class="absolute mt-12 inset-0 m-auto opacity-30" />
       <div class="z-22 flex items-center justify-center min-h-screen text-center" >
-        <div class="z-90 min-h-[900px] m-2 xl:w-1/2 2xl:w-1/3 rounded-lg text-center overflow-hidden p-8 flex flex-col justify-center shadow-xl shadow-yellow-800" 
+        <div class="z-90 min-h-[900px] m-2 xl:w-1/2 2xl:w-1/3 rounded-lg border border-white/20 text-center overflow-hidden p-8 flex flex-col justify-center shadow-xl shadow-yellow-800" 
         :class="store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'" >
           <div class="uppercase text-lg tracking-widest text-gray-400 font-semibold mt-8">
             WELCOME TO

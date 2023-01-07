@@ -132,7 +132,6 @@ export default {
             $BEEN
           </p>
           <div class="py-4 text-center uppercase text-sm tracking-widest font-semibold justify-center">
-
             <div class="pl-2 pt-2">
               <p class="uppercase text-xl tracking-widest text-gray-400 font-semibold">
                 DISC. {{ DISCOUNT }}% 🎉 FINISHES
@@ -142,7 +141,6 @@ export default {
               </p>
               <CountDown :target_date="date" class="text-2xl text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-400" />
             </div>    
-
           </div>
         </div>
 

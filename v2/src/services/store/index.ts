@@ -10,7 +10,8 @@ export const store: Store<any> = createStore({
   state: {
     welcome: true,
     pubkey: '',
-    username: false,
+    username: '',
+    usernameAv: false,
     singup: true,
     newuser: true,
     dark: true,
@@ -21,15 +22,17 @@ export const store: Store<any> = createStore({
     dispatchPubkey (store, pubkey: string) {
       this.state.pubkey = pubkey;
     },
-    dispatchUsername (store, available: boolean) {
-      this.state.username = available;
+    dispatchUsername (store, username: string) {
+      this.state.username = username;
     },
     switchWelcome (store, to: boolean) {
       this.state.welcome = to;
     },
+    switchUsernameAv (store, to: boolean) {
+      this.state.usernameAv = to;
+    },
     switchSignup (store, to: boolean) {
       this.state.singup = to;
-      console.log('singup',this.state.singup)
     },
     switchSingup () {
       this.state.singup = !this.state.singup;
