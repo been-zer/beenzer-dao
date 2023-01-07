@@ -49,7 +49,7 @@ const walletOptions = {
     new MathWalletAdapter(),
     new LedgerWalletAdapter()
   ],
-  autoConnect: true
+  autoConnect: false
 }
 
 useWorkspace();

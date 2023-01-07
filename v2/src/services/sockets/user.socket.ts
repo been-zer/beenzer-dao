@@ -49,14 +49,18 @@ export const createUser = (username: string) => {
     socket.emit('newUser', store.state.pubkey, username, false);
     socket.on('newUserCreated', (created: boolean) => {
       if (created) {
+        notify({
+          title: "Congrats! 🎉",
+          text: "New user created!",
+          type: "success",
+        });
         store.dispatch('switchSignup', false);
         store.dispatch('switchUsernameAv', false);
-        socket.off('newUserCreated');
       } else {
         console.log('ERROR: Could not create user. Please try again.');
         notify({
           title: "Error",
-          text: "User already exists! Change your wallet account and try again.",
+          text: "Your account creation failed. Please try again.",
           type: "error",
         });
       }

@@ -13,3 +13,7 @@ export function formatNumber ( number: number ): string {
   const nf = Intl.NumberFormat();
   return nf.format(number).replaceAll(',', ' ')
 }
+
+export function sleep(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
+}

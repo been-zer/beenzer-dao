@@ -1,9 +1,12 @@
 <script lang='ts'>
+import { ref } from 'vue';
 import { useStore } from '../services/store';
 import { searchUsersSocket } from '../services/sockets/user.socket';
 import { useNotification } from "@kyvg/vue3-notification";
 import { createUser } from '../services/sockets/user.socket';
 import CountDown from './CountDown.vue';
+import router from '../router';
+import { sleep } from '../utils';
 
 export default {
   components: {
@@ -14,24 +17,18 @@ export default {
     const store = useStore();
     const { notify }  = useNotification()
 
+    const username = ref('');
+
     function goBack () {
       store.dispatch('switchWelcome', true);
     }
-    function searchUser (username: string) {
-      searchUsersSocket(username);
+    function searchUser () {
+      searchUsersSocket(username.value);
     }
-
-    function signUp (username: string) {
-      if ( store.state.username ) {
-        createUser(username);
-        if ( !store.state.signUp &&
-             !store.state.usernameAv ) {
-          notify({
-            title: "Congrats! 🎉",
-            text: "New user created!",
-            type: "success",
-          });
-        }
+    async function signUp () {
+      if ( store.state.usernameAv ) {
+        createUser(username.value);
+        username.value = '';
       } else {
         notify({
           title: "Error",
@@ -41,7 +38,8 @@ export default {
       }
     }
     return { 
-      store ,
+      store,
+      username,
       goBack,
       searchUser,
       signUp
@@ -50,7 +48,6 @@ export default {
   data () {
     return {
       fireworks: require("../assets/fireworks.gif"),
-      username: '',
       countdown_date: '2023/01/01'
     }
   }
@@ -58,7 +55,7 @@ export default {
 </script>
 <template>
 <teleport to="body">
-  <notifications position="top left" animation-type="velocity"/>
+  <notifications position="top left" class="mt-2" animation-type="velocity"/>
   <div :class="store.state.singup ? 'block' : 'hidden'">
     <div ref="modal-backdrop" class="fixed z-10 inset-0 overflow-y-auto bg-opacity-50" 
     :class="store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-900 text-gray-700'">
@@ -69,8 +66,11 @@ export default {
         >
         <div class="py-4 -mt-10 text-center uppercase text-sm tracking-widest font-semibold justify-center">
           <div class="pl-2 pt-2">
-            <p class="uppercase text-3xl tracking-widestfont-semibold">
-              <span class="text-5xl">SIGN UP</span> <br/> 🎁 GET A FREE $BEEN! 🎉
+            <p class="uppercase text-5xl my-4 tracking-widestfont-semibold">
+              SIGN UP
+            </p>
+            <p class="uppercase text-3xl my-4 tracking-widestfont-semibold">
+              🎁 GET A FREE $BEEN! 🎉
             </p>
             <p class="uppercase text-xl tracking-widest text-gray-400 font-semibold">
               PROMOTION ENDS FEBRUARY 1ST 2023
@@ -90,11 +90,12 @@ export default {
         <p class="mt-4 text-xs sm:text-sm">
           YOUR USERNAME:
         </p>
-        <input trype="text" id="username" key="username" v-model="username" v-on="searchUser(username)"
-          class="mt-4 text-lg py-1 text-center px-4 sm:px-8 mx-16 sm:mx-32 tracking-widest font-semibold rounded-3xl mx-22 border inner shadow-inner-xl bg-transparent text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400" 
+        <input trype="text" id="username" key="username" v-model="username" v-on="searchUser()"
+          class="mt-4 text-lg py-1 text-center px-4 sm:px-8 mx-16 sm:mx-32 tracking-widest font-semibold rounded-3xl mx-22 border border-green-500  inner shadow-inner-xl bg-transparent text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400" 
+          :class="store.state.usernameAv ? 'text-transparent' : 'text-red-500'"
         />
         <div v-if="username">
-          <p v-if="store.state.username" class="mt-4 px-8 uppercase text-xs tracking-widest text-green-500">
+          <p v-if="store.state.usernameAv" class="mt-4 px-8 uppercase text-xs tracking-widest text-green-500">
             IS AVAILABLE
           </p>
           <p v-else class="mt-4 px-8 uppercase text-xs tracking-widest text-red-500">
@@ -103,9 +104,11 @@ export default {
         </div>
         <p class="m-2 uppercase text-lg sm:text-xl tracking-widest">
         </p>
+        
         <button class="m-2 mt-8 mx-12 sm:mx-36 p-3 rounded-3xl uppercase text-xl font-bold border border-gray-500 hover:border-green-600 text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400"
-          @click="signUp(username)"
+        @click="signUp()"
         >
+        <router-link to="/mint"/>
           SIGN UP  🚀
         </button>
         <button class="m-2 mx-12 sm:mx-36 p-3 rounded-3xl uppercase text-xl border border-gray-500 hover:border-red-600 text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-yellow-400"
@@ -126,11 +129,15 @@ export default {
 <style lang="scss" scope>
 input {
   background-color: transparent;
-  border: 1px solid rgb(36, 211, 12);
+  border: 2px solid rgb(103, 240, 11);
+
 }
 
 input:hover {
-  border: 2px solid rgb(151, 211, 12);
+  border: 2px solid rgb(240, 224, 11);
+}
+input:active {
+  border: 2px solid;
 }
 
 .notifications {

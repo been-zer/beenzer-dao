@@ -20,7 +20,11 @@ export function socketConnection(): Socket {
   });
   
   socket.on('userInfo', (userInfo: Array<User>) => {
+    if ( userInfo.length > 0 ) {
     store.dispatch('dispatchUsername', userInfo[0]._username_);
+    } else {
+      console.log('User does not exist. Please sign up and try again.');
+    }
   });
   
   return socket;
