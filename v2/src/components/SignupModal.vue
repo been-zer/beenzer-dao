@@ -1,9 +1,10 @@
 <script lang='ts'>
-import { ref } from 'vue';
+import { ref, watchEffect } from 'vue';
 import { useStore } from '../services/store';
 import { searchUsersSocket } from '../services/sockets/user.socket';
 import { useNotification } from "@kyvg/vue3-notification";
 import { createUser } from '../services/sockets/user.socket';
+import { sqlFilter } from '../utils';
 import CountDown from './CountDown.vue';
 
 export default {
@@ -21,7 +22,12 @@ export default {
       store.dispatch('switchWelcome', true);
     }
     function searchUser () {
-      searchUsersSocket(username.value);
+      const usernameFiltered = sqlFilter(username.value);
+      searchUsersSocket(usernameFiltered);
+      username.value = usernameFiltered;
+      if (username.value.length < 3) {
+        store.dispatch('switchUsernameAv', false);
+      }
     }
     async function signUp () {
       if ( store.state.usernameAv ) {
@@ -40,13 +46,14 @@ export default {
       username,
       goBack,
       searchUser,
-      signUp
+      signUp,
+      sqlFilter,
     };
   },
   data () {
     return {
       fireworks: require("../assets/fireworks.gif"),
-      countdown_date: '2023/01/01'
+      countdown_date: '2023/01/01',
     }
   }
 }

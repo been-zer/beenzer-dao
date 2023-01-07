@@ -20,7 +20,7 @@ export default {
     </router-link>
     <router-link class="px-4" to="/socials">
       SOCIALS
-    </router-link>
+    </router-link> 
     <router-link class="px-4" to="/app">
       APP STATS
     </router-link>
