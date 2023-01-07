@@ -17,7 +17,7 @@ export const store: Store<any> = createStore({
     country: '',
     city: '',
     newuser: true,
-    singup: true,
+    singup: false,
     usernameAv: false,
     dark: true,
     sound: true,
@@ -67,7 +67,7 @@ export const store: Store<any> = createStore({
     switchPrivate () {
       this.state.private = !this.state.private;
     },
-    getTokenHolders (store, holders: any) {
+    setTokenHolders (store, holders: any) {
       this.state.holders = holders;
     },
   },

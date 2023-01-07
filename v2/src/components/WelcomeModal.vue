@@ -71,13 +71,16 @@ export default {
             3️. STAKE $BEEN 🚀
           </p>
           <p class="mt-6 text-2xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-400">
-            4. EARN $BEEN-Z 💸
+            4. EARN $BEENZ 💸
           </p>
           <p class="mt-6 text-2xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-yellow-400">
             5. GOVERNANCE ⚖️
           </p>
           <p class="mt-6 text-2xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-yellow-400">
             6. ECOSYSTEM STATS 🌱
+          </p>
+          <p class="mt-6 text-2xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-yellow-400">
+            7. BUSINESS ANALYTICS 🔎 
           </p>
           <div class="uppercase font-semibold text-yellow-500 mt-12 text-md text-semibold tracking-widest">
             ⚠️ We keep track of your location ⚠️
