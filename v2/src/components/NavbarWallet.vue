@@ -38,32 +38,32 @@
     <div class="flex items-center justify-center">
       <wallet-multi-button :dark="store.state.dark"></wallet-multi-button>
     </div>
-    <!-- Profile -->
-    <div class="ml-4 flex text-left font-semibold text-sm"
-      v-if="store.state.username"
-    >
-      <button>
-        <img class="w-10 rounded-full mr-4" :src="pfp" alt="pfp" />
-      </button>
-      <div>
-        <span class="text-xs">Welcome,</span><br/>{{store.state.username}}
-      </div>
-    </div>
     <!-- Toogle nav -->
-    <div class="lg:hidden ml-24">
+    <div class="lg:hidden sm:ml-24">
       <button @click="isOpen = !isOpen" class="block text-gray-500"
       :class="store.state.dark ? 'text-gray-200' : 'text-gray-500'">
-        <svg v-if="!isOpen" class="h-6 w-6 fill-current text-green-600" viewBox="0 0 24 24" >
-          <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
-        </svg>
-        <svg v-if="isOpen" class="h-6 w-6 fill-current text-green-600" viewBox="0 0 24 24" >
-          <path fill-rule="evenodd" d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"/>
-        </svg>
-      </button>
-    </div>
+      <svg v-if="!isOpen" class="h-6 w-6 fill-current text-green-600" viewBox="0 0 24 24" >
+        <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
+      </svg>
+      <svg v-if="isOpen" class="h-6 w-6 fill-current text-green-600" viewBox="0 0 24 24" >
+        <path fill-rule="evenodd" d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"/>
+      </svg>
+    </button>
   </div>
-  <nav :class="isOpen ? 'block' : 'hidden'" class="z-10 px-2 pt-2 pb-4  lg:flex sm:p-0">
-    <div class="lg:flex block justify-between items-center rounded-xl">
+</div>
+<nav :class="isOpen ? 'block' : 'hidden'" class="z-10 px-2 pt-2 pb-4  lg:flex sm:p-0">
+  <div class="lg:flex block justify-between items-center rounded-xl">
+      <!-- Profile -->
+      <div class="text-center mb-4 sm:mb-0 sm:ml-4 flex justify-center sm:text-left font-semibold text-sm"
+        v-if="store.state.username"
+      >
+        <button>
+          <img class="w-10 rounded-full mr-4" :src="pfp" alt="pfp" />
+        </button>
+        <div>
+          <span class="text-xs">Welcome,</span><br/>{{store.state.username}}
+        </div>
+      </div>
       <nav-menu />
       <social-buttons />
       <settings-buttons />
