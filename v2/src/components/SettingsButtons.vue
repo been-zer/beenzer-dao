@@ -19,7 +19,7 @@ export default {
 }
 </script>
 <template>
-<div class="flex justify-center 2xl:ml-8 p-4">
+<div class="flex justify-center p-4">
     <!-- Sound Button -->
     <button class="rounded-full h-8 w-8 m-2 flex justify-center items-center shadow-xl border " 
     @click="store.dispatch('switchSound')" 

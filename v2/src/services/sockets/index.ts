@@ -15,6 +15,10 @@ export function socketConnection(): Socket {
     console.log(message) 
   });
 
+  socket.on('nUsers', (nUsers: number) => {
+    store.dispatch('nUsers', nUsers);
+  });
+
   socket.on('isNewUser', (isNew: boolean) => {
     store.dispatch('switchSignup', isNew);
   });

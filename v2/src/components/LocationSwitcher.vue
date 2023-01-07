@@ -1,21 +1,35 @@
-<script>
+<script lang='ts'>
+import { ref, watchEffect } from 'vue';
+import { useStore } from '../services/store';
+import { setLocation } from '../utils';
+
 export default {
-  el: 'LocationSwitcher',
-  data() {
+  setup() {
+    const store = useStore();
+    watchEffect( async () => {
+      await setLocation();
+    });
     return {
-      checkbox: true
+      store,
     }
-  },
+  }
 }
 </script>
 <template>
-  <label class="switch">
-    <input type="checkbox"
-    @click="this.$store.dispatch('setFlag', '🏴‍☠️')" >
-    <div class="slider round"></div>
-  </label>
+  <div class="flex mt-8 justify-center text-center">
+    <div class="mr-4">{{store.state.flag}}</div>
+    <div>
+      <label class="switch">
+        <input type="checkbox"
+        @click="store.dispatch('switchPrivate')" >
+        <div class="slider round"></div>
+      </label>
+    </div>
+    <div class="ml-4">🏴‍☠️</div>
+  </div>
+  
 </template>
-<style scoped="true">
+<style scoped>
 .switch {
   position: relative;
   display: inline-block;

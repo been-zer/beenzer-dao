@@ -1,5 +1,5 @@
 <script lang='ts'>
-import { ref, watchEffect } from 'vue';
+import { ref } from 'vue';
 import { useStore } from '../services/store';
 import { searchUsersSocket } from '../services/sockets/user.socket';
 import { useNotification } from "@kyvg/vue3-notification";

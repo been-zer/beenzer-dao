@@ -1,3 +1,7 @@
+import { useStore } from '../services/store';
+
+const store = useStore();
+
 export function shortWallet (addrs: string, n: number): string {
   return addrs.slice(0, n)+'...'+addrs.slice(-n)
 }
@@ -25,4 +29,50 @@ export function sqlFilter (text: string): string {
     return text.replace(/ /g, '');
   }
   return '';
+}
+
+export async function setLocation () {
+  fetch('https://api.ipregistry.co/?key=0nxj6f90k9nup0j3')
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (payload) {
+    store.dispatch('setIp', payload.ip);
+    store.dispatch('setFlag', payload.location.country.flag.emoji);
+    store.dispatch('setCountry',  payload.location.country.code);
+    store.dispatch('setCity', payload.location.city);
+  });
+}
+
+
+export function formatTime (num: number) {
+  if (String(num).length < 2) 
+    return '0' + String(num);
+  else if (String(num).length < 1) 
+    return '00';
+  return String(num);
+}
+
+export function getDate () {
+  const d = new Date;
+  const year = formatTime(d.getUTCFullYear());
+  const month = formatTime(d.getUTCMonth()+1);
+  const day = formatTime(d.getUTCDate());
+  return `${year}-${month}-${day}`;
+}
+
+export function getTime () {
+  const d = new Date;
+  const hours = formatTime(d.getUTCHours());
+  const minutes = formatTime(d.getMinutes());
+  const seconds = formatTime(d.getSeconds());
+  return `${hours}:${minutes}:${seconds}`;
+}
+
+export function countDown () {
+  const time: Array<string> = getTime().split(':');
+  const hours = formatTime(23-Number(time[0]));
+  const minutes = formatTime(59-Number(time[1]));
+  const seconds = formatTime(59-Number(time[2]));
+  return `${hours}h ${minutes}m ${seconds}s`;
 }

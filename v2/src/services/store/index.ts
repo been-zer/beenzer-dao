@@ -8,22 +8,43 @@ import { user } from './user';
 
 export const store: Store<any> = createStore({
   state: {
+    users: 0,
     welcome: true,
     pubkey: '',
     username: '',
-    usernameAv: false,
-    singup: true,
+    ip: '',
+    flag: '',
+    country: '',
+    city: '',
     newuser: true,
+    singup: true,
+    usernameAv: false,
     dark: true,
     sound: true,
-    private: true,
+    private: false,
+
   },
   actions: {
+    nUsers (store, users: number) {
+      this.state.users = users;
+    },
     dispatchPubkey (store, pubkey: string) {
       this.state.pubkey = pubkey;
     },
     dispatchUsername (store, username: string) {
       this.state.username = username;
+    },
+    setIp (store, ip: string) {
+      this.state.ip = ip;
+    },
+    setFlag (store, flag: string) {
+      this.state.flag = flag;
+    },
+    setCountry (store, country: string) {
+      this.state.country = country;
+    },
+    setCity (store, city: string) {
+      this.state.city = city;
     },
     switchWelcome (store, to: boolean) {
       this.state.welcome = to;
@@ -43,6 +64,9 @@ export const store: Store<any> = createStore({
     switchSound () {
       this.state.sound = !this.state.sound;
     },
+    switchPrivate () {
+      this.state.private = !this.state.private;
+    }
   },
   modules: {
     user

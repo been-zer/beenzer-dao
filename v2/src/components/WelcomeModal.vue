@@ -14,7 +14,9 @@ export default {
   },
   setup(){
     const store = useStore();
-    return { store };
+    return { 
+      store,
+    };
   },
   data() {
     return {
@@ -50,8 +52,11 @@ export default {
           <p class="mt-2 px-2 uppercase text-sm tracking-widest font-semibold" >
             TO LOGIN TO BEENZER DAO
           </p>
-          <div class="my-6 flex align-center justify-center">
+          <div class="mt-6 flex align-center justify-center">
             <wallet-multi-button :dark="store.state.dark" :login="true" />
+          </div>
+          <div class="mt-2">
+            <SettingsButtons/>
           </div>
           <p class="mt-2 text-sm tracking-widest font-semibold">
             FROM HERE YOU CAN:
@@ -70,16 +75,9 @@ export default {
             <p class="mt-2 text-sm tracking-widest">
               You can turn anonymous if you want
             </p>
-            <div class="flex mt-8 justify-center text-center">
-              <div class="mr-4">{{'x'}}</div>
-              <div>
-                <location-switcher />
-              </div>
-              <div class="ml-4">🏴‍☠️</div>
-            </div>
-          </div>
+            <location-switcher />
+          </div> 
           <FooterBar />
-          <SettingsButtons/>
         </div>
       </div>
     </div>
