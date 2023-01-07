@@ -17,7 +17,7 @@ export default {
       </router-link>
     </div>
     <div class="m-4 sm:m-0">
-      <router-link class="px-4" to="/staking">
+      <router-link class="px-4" to="/stake">
         STAKING
       </router-link>
     </div>
@@ -28,7 +28,7 @@ export default {
     </div>
     <div class="m-4 sm:m-0">
       <router-link class="px-4" to="/socials">
-        SOCIALS STATS
+        SOCIAL STATS
       </router-link>
     </div>
     <div class="m-4 sm:m-0">

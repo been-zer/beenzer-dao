@@ -22,7 +22,7 @@ export const store: Store<any> = createStore({
     dark: true,
     sound: true,
     private: false,
-
+    holders: []
   },
   actions: {
     nUsers (store, users: number) {
@@ -66,7 +66,10 @@ export const store: Store<any> = createStore({
     },
     switchPrivate () {
       this.state.private = !this.state.private;
-    }
+    },
+    getTokenHolders (store, holders: any) {
+      this.state.holders = holders;
+    },
   },
   modules: {
     user

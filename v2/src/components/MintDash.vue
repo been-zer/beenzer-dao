@@ -26,7 +26,7 @@ export default {
 
 <template>
   <div class="m-auto p-2 mt-0">
-    <div class="flex flex-wrap p-4 text-gray-600 rounded-xl text-center shadow-xl shadow-yellow-400" 
+    <div class="flex flex-wrap justify-center p-4 text-gray-600 rounded-xl text-center shadow-xl shadow-yellow-400" 
     :class="store.state.dark ? 'bg-gray-800' : 'bg-white'">
       <div>
         <transaction-area />

@@ -2,18 +2,9 @@
 // import LineChart from './charts/lineChart.ts';
 import { shortWallet, markWallet } from '../utils';
 import { useStore } from '../services/store';
+import { getTokenHoldersSocket } from '../services/sockets/token.socket';
 
 export default {
-  props: [
-    'history',
-    'totalCountries',
-    'totalPlayers',
-    'maxPot',
-    'avgPot',
-    'chartData',
-    'chartLabels',
-    'wallet'
-  ],
   methods: {
     shortWallet,
     markWallet
@@ -22,6 +13,7 @@ export default {
     // LineChart,
   },
   setup () {
+    getTokenHoldersSocket();
     const store = useStore();
     const nf = Intl.NumberFormat();    
     return {
@@ -32,76 +24,61 @@ export default {
 }
 </script>
 <template>
-  <!-- Right Panel -->
-    <div class="p-2 text-center">
-
-      <div class="uppercase text-sm tracking-widest text-gray-400 font-semibold mt-8">CURRENT</div>
-      <div class="uppercase text-3xl tracking-widest text-gray-400 font-semibold">HOLDERS</div>
-      
-      <div class="text-center uppercase text-sm tracking-widest font-semibold justify-center">
-        <div class="flex justify-center mr-3 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600" >
-          <div class="uppercase text-xl font-semibold m-4">&nbsp;&nbsp; Total</div>
-          <div class="font-bold text-4xl mt-2" :class="store.state.dark ? 'text-gray-200' : 'text-gray-800'"> 
-            {{ 12 }}
+    <div class="p-2 text-center min-w-[423px]">
+      <div class="uppercase text-sm tracking-widest text-gray-400 font-semibold mt-8">
+        CURRENT
+      </div>
+      <div class="uppercase text-3xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+        HOLDERS
+      </div>
+      <div class="grid grid-cols-3 grid-flow-row gap-4 mt-8 align-center justify-center text-center">
+        <div class="p-2 text-center">
+          <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
+            Total
+          </p>
+          <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+            Supply
+          </p>
+          <div class="flex justify-center" >
+            <p class="font-bold text-lg mt-2"
+              :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
+            >{{ 1000000 }}</p>
           </div>
-          <div class="uppercase text-xl font-semibold m-4">Games</div>
+        </div>
+        <div class="p-2 text-center">
+          <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
+            Total
+          </p>
+          <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+            Holders
+          </p>
+          <div class="flex justify-center" >
+            <p class="font-bold text-lg mt-2"
+              :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
+            >{{ 1200 }}</p>
+          </div>
+        </div>
+        <div class="p-2 text-center">
+          <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
+            Average
+          </p>
+          <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+            Holded
+          </p>
+          <div class="flex justify-center" >
+            <p class="font-bold text-lg mt-2" 
+            :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'" > 
+              {{ 33 }} BEEN</p>
+          </div>
         </div>
       </div>
-
-      <div class="grid grid-cols-4 grid-flow-row gap-4 align-center justify-center text-center">
-
-        <div class="p-2 text-center">
-          <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">Total</p>
-          <p class="uppercase text-xs tracking-widest text-gray-400 font-semibold">Countries</p>
-          <div class="flex justify-center" >
-            <p class="font-bold text-lg mt-2"
-              :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
-            >{{ 12 }}</p>
-          </div>
-        </div>
-
-        <div class="p-2 text-center">
-          <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">Total</p>
-          <p class="uppercase text-xs tracking-widest text-gray-400 font-semibold">Players</p>
-          <div class="flex justify-center" >
-            <p class="font-bold text-lg mt-2"
-              :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
-            >{{ 34 }}</p>
-          </div>
-        </div>
-
-        <div class="p-2 text-center">
-          <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">Average</p>
-          <p class="uppercase text-xs tracking-widest text-gray-400 font-semibold">SOLPOT</p>
-          <div class="flex justify-center" >
-            <p class="font-bold text-lg mt-2" :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'" > 
-              <span class="text-sm text-gray-400">
-                ◎ </span>
-              {{ avgPot }}</p>
-          </div>
-        </div>
-
-        <div class="p-2 text-center mr-2">
-          <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">Greatest</p>
-          <p class="uppercase text-xs tracking-widest text-gray-400 font-semibold">SOLPOT</p>
-          <div class="flex justify-center" >
-            <p class="font-bold text-lg mt-2"
-              :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
-            > <span class="text-sm text-gray-400">
-              ◎ </span>
-              {{ maxPot }}</p>
-          </div>
-        </div>
-
-      </div>
-
       <div class="flex flex-wrap" >
         <div class="w-full h-full">
           <div class="uppercase text-xs mb-4 mt-4 tracking-widest text-gray-400 font-semibold">
             HOLDERS DISTRIBUTION
           </div>
           <lo class="flex flex-col flex-grow overflow-y-auto bg-gray-100 p-2 rounded-xl shadow-inner" :class="store.state.dark ? 'bg-gray-700' : 'bg-text-gray-200'">
-            <div v-for="x of history" :key="x.__date__" >
+            <div v-for="x of store.state.holders" :key="x.__date__" >
               <div class="hover:font-semibold grid grid-cols-12 justify-center align-center align-middle"  :class="store.state.dark ? 'text-gray-200' : 'bg-text-gray-800'">
                 <div class="text-xs text.left   col-span-3"  :class="markWallet(wallet, x._owner) ? 'text-green-400 font-bold' : 'text-grey-600'">
                   {{ x.__date__ }}
