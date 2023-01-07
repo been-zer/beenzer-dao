@@ -5,8 +5,6 @@ import { searchUsersSocket } from '../services/sockets/user.socket';
 import { useNotification } from "@kyvg/vue3-notification";
 import { createUser } from '../services/sockets/user.socket';
 import CountDown from './CountDown.vue';
-import router from '../router';
-import { sleep } from '../utils';
 
 export default {
   components: {
