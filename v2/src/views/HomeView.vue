@@ -1,11 +1,12 @@
 <script lang='ts'>
+import { watchEffect } from 'vue';
 import MintPanel from '../components/MintPanel.vue';
 import MintDash from '../components/MintDash.vue';
 import WelcomeModal from '../components/WelcomeModal.vue';
 import SignupModal from '../components/SignupModal.vue';
 import { useStore } from '../services/store';
 import { useNotification } from '@kyvg/vue3-notification';
-import { watchEffect } from 'vue';
+import { getUsersFlags } from '../services/sockets/user.socket';
 
 export default {
   components: {
@@ -15,18 +16,19 @@ export default {
     SignupModal,
   },
   setup() {
+    getUsersFlags();
     const store = useStore();
     const { notify } = useNotification();
-    let run = false;
+    let run = true;
     watchEffect(() => {
-      if (store.state.username && !run) {
+      if (run && store.state.username) {
         notify({
           title: "Welcome 👋",
           text: `Hi ${store.state.username}! You have logged in successfully!`,
           type: "success",
         });
-        run = true;
-        return;
+        run = false;
+        return 0;
       }
     });
     return { store };

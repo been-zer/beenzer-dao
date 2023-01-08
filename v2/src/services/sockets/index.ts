@@ -3,38 +3,36 @@ import { User } from '../../types';
 import { useStore } from '../store';
 
 export function socketConnection(): Socket {
-
   const store = useStore();
-
   const socket: Socket = io(process.env.VUE_APP_SOCKET_ENDPOINT as string, {
     transports: ["websocket"],
     autoConnect: true,
   });
-
-  socket.on('serverConnection', (message: string) => { 
+  socket.on('serverConnection', (message:string) => { 
     console.log(message) 
   });
-
-  socket.on('nUsers', (nUsers: number) => {
+  socket.on('nUsers', (nUsers:number) => {
     store.dispatch('nUsers', nUsers);
   });
-
-  socket.on('isNewUser', (isNew: boolean) => {
+  socket.on('isNewUser', (isNew:boolean) => {
     store.dispatch('switchSignup', isNew);
   });
-  
-  socket.on('userInfo', (userInfo: Array<User>) => {
+  socket.on('userInfo', (userInfo:Array<User>) => {
     if ( userInfo.length > 0 ) {
     store.dispatch('dispatchUsername', userInfo[0]._username_);
     } else {
       console.log('User does not exist. Please sign up and try again.');
     }
   });
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  socket.on('getTokenHoldersRes', (holders: any) => {
+  socket.on('getTokenHoldersRes', (holders:any) => {
     console.log('holders:', holders);
     store.dispatch('setTokenHolders', holders);
+  });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  socket.on('getUserFlagsRes', (flags:any) => {
+    console.log('flags:', flags);
+    store.dispatch('setUserFlags', flags);
   });
   
   return socket;

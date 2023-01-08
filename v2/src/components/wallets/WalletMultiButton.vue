@@ -184,20 +184,28 @@ export default defineComponent({
             >
               <slot name="dropdown-list" v-bind="{ ...modalScope, ...scope }">
                 <li
-                  @click="selectCurrency('SOL')"
-                  :class="currency === 'SOL' ? 'bg-green-500 border border-green-500' : 'bg-transparent'"
-                  class="swv-dropdown-list-item"
-                  role="menuitem"
-                >
-                {{`${formatNumber(walletSOL)} SOL`}}
-                </li>
-                <li
                   @click="selectCurrency('BEEN')"
                   :class="currency === 'BEEN' ? 'bg-green-500 border border-green-500' : 'bg-transparent'"
                   class="swv-dropdown-list-item"
                   role="menuitem"
                 >
                   {{`${formatNumber(walletBEEN)} BEEN`}}
+                </li>
+                <li
+                  @click="selectCurrency('BEENZ')"
+                  :class="currency === 'BEENZ' ? 'bg-green-500 border border-green-500' : 'bg-transparent'"
+                  class="swv-dropdown-list-item"
+                  role="menuitem"
+                >
+                  {{`${formatNumber(0)} BEENZ`}}
+                </li>
+                <li
+                  @click="selectCurrency('SOL')"
+                  :class="currency === 'SOL' ? 'bg-green-500 border border-green-500' : 'bg-transparent'"
+                  class="swv-dropdown-list-item"
+                  role="menuitem"
+                >
+                {{`${formatNumber(walletSOL)} SOL`}}
                 </li>
                 <li
                   @click="selectCurrency('USDC')"

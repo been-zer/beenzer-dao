@@ -42,3 +42,8 @@ export interface UserState {
   user?: User;
   error: boolean;
 }
+
+export interface UsersFlags {
+  pubkey: string;
+  flag: string;
+}

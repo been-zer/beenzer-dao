@@ -32,7 +32,6 @@ export default {
     async function signUp () {
       if ( store.state.usernameAv ) {
         createUser(username.value);
-        username.value = '';
       } else {
         notify({
           title: "Error",

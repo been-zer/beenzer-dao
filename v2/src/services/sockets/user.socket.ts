@@ -1,8 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { socket } from './';
-import { User } from '../../types';
 import { useStore } from '../store';
 import { useNotification } from "@kyvg/vue3-notification";
+import { 
+  User,
+  UsersFlags,
+} from '../../types';
 
 const store = useStore();
 const { notify }  = useNotification();
@@ -76,5 +79,13 @@ export const userInfo = () => {
     const username = userInfo[0]._username_;
     store.dispatch('dispatchUsername', username);
     socket.off('userInfo');
+  });
+};
+
+export const getUsersFlags = () => {
+  socket.on('getUsersFlagsRes', (usersFlags: Array<UsersFlags>) => {
+    console.log('usersFlags', usersFlags);
+    store.dispatch('setUsersFlags', usersFlags);
+    if (usersFlags.length > 0) socket.off('userInfo');
   });
 };
