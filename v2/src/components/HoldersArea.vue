@@ -91,7 +91,7 @@ export default {
       <div class="flex flex-wrap" >
         <div class="w-full h-full">
           <div class="uppercase text-xs mb-4 mt-4 tracking-widest text-gray-400 font-semibold">
-            HOLDERS DISTRIBUTION
+            HOLDERS RANKING
           </div>
           <lo class="max-h-96 min-h-96 h-96 max-w-[365px] min-w-[365px] flex flex-col align-start overflow-y-auto p-2 rounded-xl shadow-inner" 
           :class="store.state.dark ? 'bg-gray-700 shadow-white/20' : 'bg-gray-200 shadow-black/20'">
@@ -101,7 +101,7 @@ export default {
               :href="'https://solscan.io/address/'+x.holder+'?cluster='+cluster" target="_blank" >
                 <div class="text-xs text.left col-span-1 font-semibold" 
                 :class="markWallet(store.state.pubkey, x.holder) ? 'text-green-400 font-bold hover:text-yellow-500' : ''">
-                  {{ x.ranking }}
+                  #{{ x.ranking }}
                 </div>
                 <div class="text-xs text-center col-span-2" 
                 :class="markWallet(store.state.pubkey, x.holder) ? 'text-green-400 font-bold hover:text-yellow-500' : ''">
