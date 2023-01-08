@@ -35,7 +35,7 @@ export default {
 </script>
 <template>
 <div>
-  <notifications position="top left" class="mt-2" animation-type="velocity"/>
+  <notifications position="top left" class="mt-2 cursor-pointer" animation-type="velocity"/>
   <welcome-modal/>
   <signup-modal/>
   <div class="flex flex-wrap" >
