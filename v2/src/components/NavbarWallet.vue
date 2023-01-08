@@ -61,7 +61,7 @@
           <img class="w-10 rounded-full mr-4" :src="pfp" alt="pfp" />
         </button>
         <div>
-          <span class="text-xs">Welcome,</span><br/>{{store.state.username}}
+          <span class="text-xs">Welcome,</span><br/>@{{store.state.username}}
         </div>
       </div>
       <nav-menu />

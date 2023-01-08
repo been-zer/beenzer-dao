@@ -44,8 +44,26 @@ export async function setLocation () {
   });
 }
 
+export function formatPercentage (num: number): string {
+  const split = String(num).split('.');
+  if ( split.length === 1 ) {
+    return split[0]+'.00%';
+  } else if ( split.length === 2 ) {
+    if ( String(split[1]).length === 0 ) {
+      return split[0]+'.00%';
+    } else if ( String(split[1]).length === 1 ) {
+      return split[0]+'.'+split[1]+'0%';
+    } else if ( String(split[1]).length === 2 ) {
+      return split[0]+'.'+split[1]+'%';
+    } else {
+      return split[0] + '.' + split[1].slice(0,2) + '%';
+    }
+  } else {
+    return 'Invalid input num!'
+  }
+}
 
-export function formatTime (num: number) {
+export function formatTime (num: number): string {
   if (String(num).length < 2) 
     return '0' + String(num);
   else if (String(num).length < 1) 

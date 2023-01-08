@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
-import { Connection, PublicKey } from "@solana/web3.js";
+// import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
+import { Connection, PublicKey } from '@solana/web3.js';
+import { formatPercentage } from '../utils';
 import { useStore } from '../services/store';
 
 const store = useStore();
@@ -17,7 +18,7 @@ export interface TokenHolder {
   decimal: number;
   supply: number;
   amount: number;
-  allocation: number;
+  allocation: string;
   ranking: number;
 }
 
@@ -50,22 +51,22 @@ export const getTokenHolders = async ( _token: string = TOKEN ): Promise<Array<T
         decimal: acc.account.data.parsed.info.tokenAmount.decimals,
         supply: 0,
         amount: acc.account.data.parsed.info.tokenAmount.uiAmount,
-        allocation: 0,
+        allocation: '',
         ranking: -1
       }
       supply += holder.amount
       holders.push(holder);
     });
-    holders.sort((a, b) => (a.amount > b.amount) ? 1 : -1)
-    let i = holders.length;
+    holders.sort((a, b) => (a.amount < b.amount) ? 1 : -1)
+    let i = 1;
     holders.map((acc: TokenHolder) => { 
       acc.supply = supply;
-      acc.allocation = Math.floor((acc.amount/supply)*100000)/100000;
+      acc.allocation = formatPercentage(Math.floor((acc.amount/supply)*10000)/100);
       acc.ranking = i;
-      i--;
+      i++;
     });
-    if ( store.state.usersFlags.length === 0 ) {
-      console.log('Init store.state.usersFlags first!');
-    }
+    // if ( store.state.usersFlags.length === 0 ) {
+    //   console.log('Init store.state.usersFlags first!');
+    // }
     return holders;
 };

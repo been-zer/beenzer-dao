@@ -1,4 +1,3 @@
-
 <script>
 import { ref } from 'vue';
 import click_sound from '../assets/sounds/beep.mp3';
@@ -40,9 +39,6 @@ export default {
   setup () {
 
     const store = useStore();
-
-    const sound = true;
-
     const BEEN = ref('0');
     const BEENZ = ref('0');
     const DISCOUNT = 30;
@@ -54,7 +50,7 @@ export default {
 
     // Keyboard functionality
     function clickNum (n) {
-      if ( sound )
+      if ( store.state.sound )
         audio.play();
 
       if (BEEN.value[0] === '0') {
@@ -128,9 +124,11 @@ export default {
           <p class="uppercase text-xl tracking-widest text-gray-400 font-semibold">
             MINT OPEN
           </p>
-          <p class="uppercase text-6xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-800">
-            $BEEN
-          </p>
+          <a :href="'https://solscan.io/token/DoA5HLxcNGuqGb4wAfTXJZzAzt1juhgpYCxZpuvzgUTy'" target="_blank" >
+            <p class="uppercase text-6xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-800">
+              $BEEN
+            </p>
+          </a>
           <div class="py-4 text-center uppercase text-sm tracking-widest font-semibold justify-center">
             <div class="pl-2 pt-2">
               <p class="uppercase text-xl tracking-widest text-gray-400 font-semibold">
@@ -220,7 +218,6 @@ export default {
 
       </div>
 
-
       </div>
       <div v-else>
         <!-- Title Box -->
@@ -228,11 +225,12 @@ export default {
           <p class="uppercase text-xl tracking-widest text-gray-400 font-semibold">
             BURN CLOSE
           </p>
-          <p class="uppercase text-6xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600">
-            $BEEN
-          </p>
+          <a :href="'https://solscan.io/token/DoA5HLxcNGuqGb4wAfTXJZzAzt1juhgpYCxZpuvzgUTy'" target="_blank" >
+            <p class="uppercase text-6xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600">
+              $BEEN
+            </p>
+          </a>
           <div class="py-4 text-center uppercase text-sm tracking-widest font-semibold justify-center">
-
             <div class="pl-2 pt-2">
               <p class="uppercase text-xl tracking-widest text-gray-400 font-semibold">
                 BURN 🔥 STARTS
