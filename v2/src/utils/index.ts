@@ -8,7 +8,7 @@ export function shortWallet (addrs: string, n: number): string {
 
 export function markWallet (address: string, wallet: string): string{
   if( wallet == address ) 
-    return 'font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600';
+    return 'font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-400 border-y border-green-500';
   else
     return '';
 }

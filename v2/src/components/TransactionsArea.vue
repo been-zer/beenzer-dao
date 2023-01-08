@@ -31,16 +31,11 @@ export default {
 
 <template>
 <div class="p-2 text-center">
-  <div class="uppercase text-sm tracking-widest text-gray-400 font-semibold mt-8">HISTORICAL</div>
-  <div class="uppercase text-3xl tracking-widest text-gray-400 font-semibold">TRANSACTIONS</div>
-  <div class="text-center uppercase text-sm tracking-widest font-semibold justify-center">
-    <div class="flex justify-center mr-3 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600" >
-      <div class="uppercase text-xl font-semibold m-4">&nbsp;&nbsp; Total</div>
-      <div class="font-bold text-4xl mt-2" :class="store.state.dark ? 'text-gray-200' : 'text-gray-800'"> 
-        {{ 12 }}
-      </div>
-      <div class="uppercase text-xl font-semibold m-4">Games</div>
-    </div>
+  <div class="uppercase text-sm tracking-widest text-gray-400 font-semibold mt-8">
+    HISTORICAL
+  </div>
+  <div class="uppercase text-3xl tracking-widest  font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+    TRANSACTIONS
   </div>
   <div class="grid grid-cols-4 grid-flow-row gap-4 align-center justify-center text-center">
     <div class="p-2 text-center">
@@ -88,25 +83,34 @@ export default {
       <div class="uppercase text-xs mb-4 mt-4 tracking-widest text-gray-400 font-semibold">
         HOLDERS DISTRIBUTION
       </div>
-      <lo class="flex flex-col flex-grow overflow-y-auto bg-gray-100 p-2 rounded-xl shadow-inner" :class="store.state.dark ? 'bg-gray-700' : 'bg-text-gray-200'">
-        <div v-for="x of history" :key="x.__date__" >
-          <div class="hover:font-semibold grid grid-cols-12 justify-center align-center align-middle"  :class="store.state.dark ? 'text-gray-200' : 'bg-text-gray-800'">
-            <div class="text-xs text.left   col-span-3"  :class="markWallet(wallet, x._owner) ? 'text-green-400 font-bold' : 'text-grey-600'">
-              {{ x.__date__ }}
+      <lo class="max-h-96 min-h-96 h-96 flex flex-col align-start overflow-y-auto p-2 rounded-xl shadow-inner" 
+      :class="store.state.dark ? 'bg-gray-700 shadow-white/20' : 'bg-gray-200 shadow-black/20'">
+        <div v-for="x of holders" :key="x.ranking" >
+          <a class="hover:font-semibold hover:text-green-500 grid grid-cols-10 justify-center align-center align-middle"
+          :class="store.state.dark ? 'text-gray-300' : 'text-gray-500'"
+          :href="'https://solscan.io/address/'+x.holder+'?cluster='+cluster" target="_blank" >
+            <div class="text-xs text.left col-span-1 font-semibold " 
+            :class="markWallet(store.state.pubkey, x.holder) ? 'text-green-400 font-bold hover:text-green-500' : ''">
+              {{ x.ranking }}
             </div>
-            <div class="text-xs text-right col-span-2 font-semibold flex text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
-              <div class="text-xs mb-3 pl-1 pr-1"> 📍 </div>{{ x._pot }}
+            <div class="text-xs text.left col-span-2" 
+            :class="markWallet(store.state.pubkey, x.holder) ? 'text-green-400 font-bold hover:text-green-500' : ''">
+              {{ x.allocation }}
             </div>
-            <div class="text-xs text-left col-span-3"  :class="markWallet(wallet, x._owner) ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 font-bold' : 'text-grey-600'" >
-              {{ shortWallet(x._owner, 4) }}
+            <div class="flex text-xs text-right col-span-3 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
+              <div class="text-xs mb-3 pl-1 pr-1"> 
+                📍 
+              </div>
+              {{ nf.format(x.amount).replaceAll(',', ' ') }}
+            </div>
+            <div class="flex text-xs text-right col-span-3"
+            :class="markWallet(store.state.pubkey, x.holder) ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 font-bold' : 'text-grey-600'" >
+              {{ shortWallet(x.holder, 6) }}
             </div>
             <div class="text-xs text-center col-span-1" >
-              {{ x._flag }}
+              {{ x.flag }}
             </div>
-            <div class="text-xs text-center col-span-3"  :class="markWallet(wallet, x._owner) ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 font-bold' : 'text-grey-600'" > 
-              {{ nf.format(x._num).replaceAll(',', ' ') }}
-            </div>
-          </div>
+          </a>
         </div>
       </lo>
     </div>
