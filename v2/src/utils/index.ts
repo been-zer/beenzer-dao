@@ -3,7 +3,7 @@ import { useStore } from '../services/store';
 const store = useStore();
 
 export function shortWallet (addrs: string, n: number): string {
-  return addrs.slice(0, n)+'...'+addrs.slice(-n)
+  return addrs.slice(0, n)+'..'+addrs.slice(-n)
 }
 
 export function markWallet (address: string, wallet: string): string{
