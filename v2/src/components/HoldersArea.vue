@@ -96,15 +96,15 @@ export default {
           <lo class="max-h-96 min-h-96 h-96 flex flex-col align-start overflow-y-auto p-2 rounded-xl shadow-inner" 
           :class="store.state.dark ? 'bg-gray-700 shadow-white/20' : 'bg-gray-200 shadow-black/20'">
             <div v-for="x of holders" :key="x.ranking" >
-              <a class="hover:font-semibold grid grid-cols-10 justify-center align-center align-middle"
+              <a class="hover:font-semibold hover:text-green-500 grid grid-cols-10 justify-center align-center align-middle"
               :class="store.state.dark ? 'text-gray-300' : 'text-gray-500'"
               :href="'https://solscan.io/address/'+x.holder+'?cluster='+cluster" target="_blank" >
                 <div class="text-xs text.left col-span-1 font-semibold " 
-                :class="markWallet(store.state.pubkey, x.holder) ? 'text-green-400 font-bold' : 'text-grey-600'">
+                :class="markWallet(store.state.pubkey, x.holder) ? 'text-green-400 font-bold hover:text-green-500' : ''">
                   {{ x.ranking }}
                 </div>
                 <div class="text-xs text.left col-span-2" 
-                :class="markWallet(store.state.pubkey, x.holder) ? 'text-green-400 font-bold' : 'text-grey-600'">
+                :class="markWallet(store.state.pubkey, x.holder) ? 'text-green-400 font-bold hover:text-green-500' : ''">
                   {{ x.allocation }}
                 </div>
                 <div class="flex text-xs text-right col-span-3 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
