@@ -99,7 +99,7 @@ export default {
               <a class=" grid grid-cols-12 hover:font-semibold hover:text-yellow-500 justify-center align-center align-middle"
               :class="store.state.dark ? 'text-gray-300' : 'text-gray-500'"
               :href="'https://solscan.io/address/'+x.holder+'?cluster='+cluster" target="_blank" >
-                <div class="text-xs text.left col-span-1 font-semibold" 
+                <div class="text-xs text-left col-span-1 font-semibold" 
                 :class="markWallet(store.state.pubkey, x.holder) ? 'text-green-400 font-bold hover:text-yellow-500' : ''">
                   #{{ x.ranking }}
                 </div>
