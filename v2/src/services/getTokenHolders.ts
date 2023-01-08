@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
+import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import { Connection, PublicKey } from '@solana/web3.js';
 import { formatPercentage } from '../utils';
 import { useStore } from '../services/store';
@@ -24,7 +24,7 @@ export interface TokenHolder {
 
 export const getTokenHolders = async ( _token: string = TOKEN ): Promise<Array<TokenHolder>> => {
   const rawAccounts = await SOLANA_CONNECTION.getParsedProgramAccounts(
-    new PublicKey('TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA'), // new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA")
+    new PublicKey(TOKEN_PROGRAM_ID), // new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA")
       {
         filters: [
           {

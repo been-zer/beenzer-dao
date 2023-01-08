@@ -57,8 +57,9 @@ export default {
           </p>
           <div class="flex justify-center" >
             <p class="font-bold text-lg mt-2"
-              :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
-            >{{ nf.format(supply).replaceAll(',', ' ') }}</p>
+            :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'">
+            {{ nf.format(supply).replaceAll(',', ' ') }}
+            </p>
           </div>
         </div>
         <div class="p-2 text-center">
