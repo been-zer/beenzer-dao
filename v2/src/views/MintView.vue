@@ -6,12 +6,14 @@ export default {
   components: {
     MintPanel,
     MintDash
-  },
+  }
 }
 </script>
 <template>
+<div>
   <div class="flex flex-wrap" >
     <mint-panel/>
     <mint-dash/>
   </div>
+</div>
 </template>

@@ -30,6 +30,12 @@ export function socketConnection(): Socket {
       console.log('User does not exist. Please sign up and try again.');
     }
   });
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  socket.on('getTokenHoldersRes', (holders: any) => {
+    console.log('holders:', holders);
+    store.dispatch('setTokenHolders', holders);
+  });
   
   return socket;
 }
