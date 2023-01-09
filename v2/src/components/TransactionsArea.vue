@@ -41,8 +41,8 @@ export default {
 </script>
 <template>
     <div class="p-0 sm:p-2 text-center">
-      <div class="uppercase text-sm tracking-widest text-gray-400 font-semibold mt-8">
-        HISTORICAL
+      <div class="uppercase text-lg tracking-widest text-gray-400 font-semibold mt-8">
+        LAST 1,000
       </div>
       <div class="uppercase text-3xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
         TRANSACTIONS
@@ -111,7 +111,7 @@ export default {
                 :class="markWallet(store.state.pubkey, x.holder) ? 'text-green-400 font-bold hover:text-yellow-500' : ''">
                   {{ x.type }}
                 </div>
-                <div class="flex text-xs text-center col-span-2 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
+                <div class="flex text-xs text-left -ml-4 col-span-2 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
                   <div class="text-xs mb-3 pl-1 pr-1">
                     📍 
                   </div>

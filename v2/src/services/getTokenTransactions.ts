@@ -52,7 +52,9 @@ export const getTokenTransactions = async ( _token: string = TOKEN, _symbol: str
       type: txType,
       sender: transaction.meta.preTokenBalances[0].owner,
       receiver: transaction.meta.preTokenBalances.length === 2 ? transaction.meta.preTokenBalances[1].owner : transaction.meta.preTokenBalances[0].owner,
-      amount: transaction.meta.preTokenBalances[0].uiTokenAmount.uiAmount,
+      amount: transaction.meta.preTokenBalances.length === 2 && transaction.meta.postTokenBalances.length === 2 ? 
+              transaction.meta.preTokenBalances[1].uiTokenAmount.uiAmount - transaction.meta.postTokenBalances[1].uiTokenAmount.uiAmount : 
+              transaction.meta.preTokenBalances[0].uiTokenAmount.uiAmount,
       symbol: _symbol,
       token: _token
     }
