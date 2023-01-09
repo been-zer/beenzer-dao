@@ -98,32 +98,32 @@ export default {
             <div v-for="x of trans" :key="x.date+x.time">
               <a class=" grid grid-cols-12 hover:font-semibold hover:text-yellow-500 justify-center align-center align-middle"
               :class="store.state.dark ? 'text-gray-300' : 'text-gray-500'"
-              :href="'https://solscan.io/address/'+x.holder+'?cluster='+cluster" target="_blank" >
-                <div class="text-xs text-left col-span-1 font-semibold" 
+              :href="'https://solscan.io/tx/'+x.signature+'?cluster='+cluster" target="_blank" >
+                <div class="text-xs text-left col-span-2" 
                 :class="markWallet(store.state.pubkey, x.holder) ? 'text-green-400 font-bold hover:text-yellow-500' : ''">
                   {{ x.date }}
                 </div>
-                <div class="text-xs text-left col-span-1 font-semibold" 
+                <div class="text-xs text-left col-span-2 ml-3" 
                 :class="markWallet(store.state.pubkey, x.holder) ? 'text-green-400 font-bold hover:text-yellow-500' : ''">
                   {{ x.time }}
                 </div>
-                <div class="text-xs text-center col-span-2" 
+                <div class="text-xs text-left col-span-3 ml-2" 
                 :class="markWallet(store.state.pubkey, x.holder) ? 'text-green-400 font-bold hover:text-yellow-500' : ''">
                   {{ x.type }}
                 </div>
-                <div class="flex text-xs text-right col-span-3 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
-                  <div class="text-xs mb-3 pl-1 pr-1"> 
+                <div class="flex text-xs text-left col-span-2 -ml-4 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
+                  <div class="text-xs mb-3 pl-1 pr-1">
                     📍 
                   </div>
-                  {{ nf.format(x.amount).replaceAll(',', ' ') }}
+                  {{ nf.format(Math.floor(x.amount*100)/100).replaceAll(',', ' ') }}
                 </div>
-                <div class="text-xs text-left col-span-2"
+                <div class="text-xs text-left col-span-1"
                 :class="markWallet(store.state.pubkey, x.holder) ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 font-bold hover:text-yellow-500' : 'text-grey-600'" >
-                  {{ shortWallet(x.sender, 4) }}
+                  {{ shortWallet(x.sender, 2) }}
                 </div>
-                <div class="text-xs text-right col-span-3"
+                <div class="text-xs text-right col-span-2"
                 :class="markWallet(store.state.pubkey, x.holder) ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 font-bold hover:text-yellow-500' : 'text-grey-600'" >
-                  {{ shortWallet(x.receiver, 4) }}
+                  {{ shortWallet(x.receiver, 2) }}
                 </div>
               </a>
             </div>
