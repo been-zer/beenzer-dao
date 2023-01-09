@@ -35,7 +35,7 @@ export const getTokenTransactions = async ( _token: string = TOKEN, _symbol: str
     const dateTimeStr = getDateTime(date);
     const dateTimeArr = dateTimeStr.split(' ');
     const txLogs = transaction.meta.logMessages;
-    let txType = '?';
+    let txType = '⛏️ Mint';
     txLogs.forEach((log:string) => {
       if ( log == "Program log: Instruction: TransferChecked" ) {
         txType = '💸 Transfer';
@@ -50,10 +50,10 @@ export const getTokenTransactions = async ( _token: string = TOKEN, _symbol: str
       time: dateTimeArr[1],
       signature: transaction.transaction.signatures[0],
       type: txType,
-      sender: transaction.meta.preTokenBalances[0].owner,
-      receiver: transaction.meta.preTokenBalances.length === 2 ? transaction.meta.preTokenBalances[1].owner : transaction.meta.preTokenBalances[0].owner,
+      sender: transaction.meta.preTokenBalances.length === 2 ? transaction.meta.preTokenBalances[1].owner : transaction.meta.preTokenBalances[0].owner,
+      receiver: transaction.meta.preTokenBalances[0].owner,
       amount: transaction.meta.preTokenBalances.length === 2 && transaction.meta.postTokenBalances.length === 2 ? 
-              transaction.meta.preTokenBalances[1].uiTokenAmount.uiAmount - transaction.meta.postTokenBalances[1].uiTokenAmount.uiAmount : 
+              Math.abs(transaction.meta.preTokenBalances[1].uiTokenAmount.uiAmount - transaction.meta.postTokenBalances[1].uiTokenAmount.uiAmount) : 
               transaction.meta.preTokenBalances[0].uiTokenAmount.uiAmount,
       symbol: _symbol,
       token: _token
