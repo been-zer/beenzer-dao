@@ -104,7 +104,7 @@ export default {
               Type
             </div>
             <div class="text-[11px] text-center col-span-2">
-              Amount
+              BEEN
             </div>
             <div class="text-[11px] text-center col-span-2">
               From

@@ -102,8 +102,8 @@ export default {
             <div class="text-[11px] text-left col-span-2 ml-2">
               Percentage
             </div>
-            <div class="text-[11px] text-center col-span-2 -ml-4">
-              Amount
+            <div class="text-[11px] text-center col-span-2 -ml-6">
+              BEEN
             </div>
             <div class="text-[11px] text-center col-span-2 -ml-4">
               Public Key
