@@ -111,7 +111,7 @@ export default {
                 :class="markWallet(store.state.pubkey, x.holder) ? 'text-green-400 font-bold hover:text-yellow-500' : ''">
                   {{ x.type }}
                 </div>
-                <div class="flex text-xs text-left col-span-2 -ml-4 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
+                <div class="flex text-xs text-center col-span-2 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
                   <div class="text-xs mb-3 pl-1 pr-1">
                     📍 
                   </div>

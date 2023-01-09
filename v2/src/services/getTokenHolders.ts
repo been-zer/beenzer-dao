@@ -59,7 +59,7 @@ export const getTokenHolders = async ( _token: string = TOKEN ): Promise<Array<T
     let i = 1;
     holders.map((acc: TokenHolder) => { 
       acc.supply = supply;
-      acc.allocation = formatPercentage(Math.floor((acc.amount/supply)*(10*acc.decimals))/10*acc.decimals);
+      acc.allocation = formatPercentage(Math.floor((acc.amount/supply)*(10**(acc.decimals*2)))/10**acc.decimals);
       acc.ranking = i;
       i++;
     });
