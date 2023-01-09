@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import { Connection, PublicKey } from '@solana/web3.js';
-import { getDate, getTime, getDateTime } from '../utils';
+import { getDateTime } from '../utils';
 
 const SOLANA_RPC_URL = process.env.VUE_APP_SOLANA_RPC_URL as string;
 const SOLANA_CONNECTION = new Connection(SOLANA_RPC_URL);
