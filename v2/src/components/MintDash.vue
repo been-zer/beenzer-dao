@@ -32,11 +32,11 @@ export default {
         <transaction-area />
       </div>
       <div>
-        <holders-area />
-      </div>
-      <div>
         <charts-area />
       </div> 
+      <div>
+        <holders-area />
+      </div>
     </div>
   </div>
 </template>

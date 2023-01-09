@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
 // import LineChart from './charts/lineChart.ts';
-import { ref, watchEffect } from 'vue';
+import { ref, watchEffect, Ref } from 'vue';
 import { useStore } from '../services/store';
 import { shortWallet, markWallet } from '../utils';
-import { getTokenTransactions } from '../services/getTokenTransactions';
+import { getTokenTransactions, TokenTransaction } from '../services/getTokenTransactions';
 
 export default {
   methods: {
@@ -15,84 +15,102 @@ export default {
   },
   setup () {
     const store = useStore();
-    const trans = ref([]);
-    const supply = ref(0);
-    const nHolders = ref(0);
-    const avgHolded = ref(0);
+    const trans: Ref<TokenTransaction[]> = ref([]);
+    const volume = ref(0);
+    const minted = ref(0);
+    const burned = ref(0);
+    const transfer = ref(0);
     watchEffect(async () => {
       trans.value = await getTokenTransactions();
-      // supply.value = transfers.value[0].supply;
-      // nHolders.value = transfers.value.length;
-      // avgHolded.value = Math.floor((supply.value/nHolders.value)*10000)/100;
+      let volu = 0; let mint = 0; let burn = 0; let tran = 0;
+      trans.value.forEach((trans:TokenTransaction) => {
+        volu += trans.amount;
+        if (trans.type == '⛏️ Mint') mint += trans.amount;
+        else if (trans.type == '🔥 Burn') burn += trans.amount;
+        else if (trans.type == '💸 Transfer') tran += trans.amount;
+      });
+      volume.value = Math.floor(volu);
+      minted.value = Math.floor(mint);
+      burned.value = Math.floor(burn);
+      transfer.value = Math.floor(tran);
     });
     const cluster = process.env.VUE_APP_CLUSTER;
     const nf = Intl.NumberFormat();    
     return {
       store,
       trans,
-      supply,
-      nHolders,
-      avgHolded,
+      volume,
+      transfer,
+      minted,
+      burned,
       cluster,
-      nf
+      nf,
     }
   }
 }
 </script>
 <template>
     <div class="p-0 sm:p-2 text-center">
-      <div class="mt-4 uppercase text-lg tracking-widest text-gray-400 font-semibold">
+      <div class="mt-6 uppercase text-lg tracking-widest text-gray-400 font-semibold">
         LAST 1,000
       </div>
       <div class="uppercase text-3xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
         TRANSACTIONS
       </div>
-      <div class="grid grid-cols-3 grid-flow-row gap-4 mt-4 align-center justify-center text-center">
-        <div class="p-2 text-center">
+      <div class="max-w-[365px] min-w-[280px] grid grid-cols-4 grid-flow-row gap-4 mt-4 align-center justify-center text-center">
+        <div class="p-2 text-center -mr-4">
           <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
             Total
           </p>
           <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
             Volume
           </p>
-          <div class="flex justify-center" >
-            <p class="font-bold text-lg mt-2"
-              :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
-            >{{ nf.format(0).replaceAll(',', ' ') }}</p>
-          </div>
+          <p class="font-bold text-sm mt-2"
+          :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'">
+          {{ nf.format(volume).replaceAll(',', ' ') }}
+          </p>
         </div>
-        <div class="p-2 text-center">
+        <div class="p-2 text-center ml-2">
           <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
-            Last
+            Total
           </p>
           <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
-            24H
+            Minted
           </p>
-          <div class="flex justify-center" >
-            <p class="font-bold text-lg mt-2"
-              :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
-            >{{ 0 }}</p>
-          </div>
+          <p class="font-bold text-sm mt-2"
+          :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'">
+          {{ nf.format(minted).replaceAll(',', ' ') }}
+          </p>
         </div>
-        <div class="p-2 text-center">
+        <div class="p-2 text-center mr-2">
           <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
-            Average
+            Total
           </p>
           <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
-            Transaction
+            Burned
           </p>
-          <div class="flex justify-center" >
-            <p class="font-bold text-lg mt-2" 
-            :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'" > 
-              {{ 33 }} BEEN</p>
-          </div>
+
+          <p class="font-bold text-sm mt-2" 
+          :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'" > 
+          {{ nf.format(burned).replaceAll(',', ' ') }}
+          </p>
+
+        </div>
+        <div class="p-2 text-center -ml-4">
+          <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
+            Total
+          </p>
+          <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+            Transfer
+          </p>
+          <p class="font-bold text-sm mt-2" 
+          :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'" > 
+          {{ nf.format(transfer).replaceAll(',', ' ') }}
+          </p>
         </div>
       </div>
       <div class="flex flex-wrap" >
-        <div class="w-full h-full">
-          <div class="uppercase text-xs mb-4 mt-4 tracking-widest text-gray-400 font-semibold">
-            LAST 1,000 TRANSACTIONS
-          </div>
+        <div class="w-full h-full mt-4">
           <div class=" grid grid-cols-12 font-semibold text-gray-400 hover:text-yellow-500 justify-center align-center align-middle pb-2">
             <div class="text-[11px] text-center col-span-2">
               Date
@@ -106,10 +124,10 @@ export default {
             <div class="text-[11px] text-center col-span-2">
               BEEN
             </div>
-            <div class="text-[11px] text-center col-span-2">
+            <div class="text-[11px] text-center col-span-2 ml-2">
               From
             </div>
-            <div class="text-[11px] text-center col-span-1">
+            <div class="text-[11px] text-center col-span-1 ml-2">
               To
             </div>
           </div>

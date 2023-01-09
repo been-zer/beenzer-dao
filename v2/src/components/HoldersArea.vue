@@ -42,26 +42,24 @@ export default {
 </script>
 <template>
     <div class="p-0 sm:p-2 text-center">
-      <div class="mt-4 uppercase text-lg tracking-widest text-gray-400 font-semibold">
+      <div class="mt-6 uppercase text-lg tracking-widest text-gray-400 font-semibold">
         CURRENT
       </div>
       <div class="uppercase text-3xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
         HOLDERS
       </div>
       <div class="grid grid-cols-3 grid-flow-row gap-4 mt-4 align-center justify-center text-center">
-        <div class="p-2 text-center">
+        <div class="p-2 text- ml-4">
           <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
             Total
           </p>
           <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
             Supply
           </p>
-          <div class="flex justify-center" >
-            <p class="font-bold text-lg mt-2"
-            :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'">
-            {{ nf.format(supply).replaceAll(',', ' ') }}
-            </p>
-          </div>
+          <p class="font-bold text-sm mt-2"
+          :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'">
+          {{ nf.format(supply).replaceAll(',', ' ') }}
+          </p>
         </div>
         <div class="p-2 text-center">
           <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
@@ -70,31 +68,26 @@ export default {
           <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
             Holders
           </p>
-          <div class="flex justify-center" >
-            <p class="font-bold text-lg mt-2"
-              :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
-            >{{ holders.length }}</p>
-          </div>
+          <p class="font-bold text-sm mt-2"
+          :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'">
+          {{ holders.length }}
+          </p>
         </div>
-        <div class="p-2 text-center">
+        <div class="p-2 text-center mr-4">
           <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
             Average
           </p>
           <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
             Holded
           </p>
-          <div class="flex justify-center" >
-            <p class="font-bold text-lg mt-2" 
-            :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'" > 
-              {{ avgHolded }} BEEN</p>
-          </div>
+          <p class="font-bold text-sm mt-2" 
+          :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'" > 
+          {{ avgHolded }}
+          </p>
         </div>
       </div>
       <div class="flex flex-wrap" >
-        <div class="w-full h-full">
-          <div class="uppercase text-xs mb-4 mt-4 tracking-widest text-gray-400 font-semibold">
-            HOLDERS RANKING
-          </div>
+        <div class="w-full h-full mt-4">
           <div class=" grid grid-cols-10 font-semibold text-gray-400 hover:text-yellow-500 justify-center align-center align-middle pb-2">
             <div class="text-[11px] text-left col-span-1">
               Rank
@@ -105,8 +98,8 @@ export default {
             <div class="text-[11px] text-center col-span-2 -ml-6">
               BEEN
             </div>
-            <div class="text-[11px] text-center col-span-2 -ml-4">
-              Public Key
+            <div class="text-[11px] text-center col-span-2 -ml-5">
+              PublicKey
             </div>
             <div class="text-[11px] text-center col-span-2">
               Username
