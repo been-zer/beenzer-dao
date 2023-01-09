@@ -4,6 +4,7 @@ import './registerServiceWorker';
 import './assets/css/tailwind.css';
 import './assets/css/wallets.css';
 import Notifications from '@kyvg/vue3-notification';
+import VueApexCharts from "vue3-apexcharts";
 import velocity from 'velocity-animate';
 import { store } from './services/store';
 import router from './router';
@@ -59,4 +60,5 @@ createApp(App)
   .use(router)
   .use(Notifications, { velocity })
   .use(SolanaWallets, walletOptions)
+  .use(VueApexCharts)
   .mount('#app');

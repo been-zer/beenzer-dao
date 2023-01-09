@@ -46,6 +46,89 @@ export default {
       cluster,
       nf,
     }
+  },
+  data () {
+    const lineData = { 
+      series: [{
+        name: '⛏️ Minted',
+        color: 'green',
+        data: [{
+          x: 1,
+          y: 76,
+        }, {
+          x: 2,
+          y: 100
+        }, {
+          x: 3,
+          y: 76
+        }]
+      },{
+        name: '🔥 Burned',
+        color: 'red',
+        data: [{
+          x: 1,
+          y: 44,
+        }, {
+          x: 2,
+          y: 55
+        }, {
+          x: 3,
+          y: 90
+        }]
+      }, {
+        name: '💸 Transfered',
+        color: 'yellow',
+        data: [{
+          x: 1,
+          y: 23,
+        }, {
+          x: 2,
+          y: 55
+        }, {
+          x: 3,
+          y: 88
+        }],
+      }],
+      chart: {
+        type: 'area',
+        stacked: false,
+        height: 350,
+        zoom: {
+          type: 'x',
+          enabled: true,
+          autoScaleYaxis: true
+        },
+        toolbar: {
+          autoSelected: 'zoom'
+        }
+      },
+      chartOptions: {
+        legend: { position: 'top' },
+        fill: {
+          type: 'gradient',
+        },
+        markers: {
+          size: 3,
+        },
+        grid: {
+          borderColor: '#cccccc',
+          width: 1,
+        },
+        title: {
+          text: '.',
+          align: 'right',
+        },
+        stroke: {
+          width: 2,
+        },
+        text: {
+          color: '#cccccc',
+        }
+      },
+    };
+    return {
+      lineData
+    }
   }
 }
 </script>
@@ -65,7 +148,7 @@ export default {
           <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
             Volume
           </p>
-          <p class="font-bold text-sm mt-2"
+          <p class="font-bold text-sm mt-2 -ml-1"
           :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'">
           {{ nf.format(volume).replaceAll(',', ' ') }}
           </p>
@@ -107,8 +190,8 @@ export default {
           </p>
         </div>
       </div>
-      <div class="flex flex-wrap" >
-        <div class="w-full h-full mt-4">
+      <!-- <div class="flex flex-wrap" > -->
+        <div class="mt-4">
           <div class=" grid grid-cols-12 font-semibold text-gray-400 hover:text-yellow-500 justify-center align-center align-middle pb-2">
             <div class="text-[11px] text-center col-span-2">
               Date
@@ -122,14 +205,14 @@ export default {
             <div class="text-[11px] text-center col-span-2">
               BEEN
             </div>
-            <div class="text-[11px] text-center col-span-2 ml-2">
+            <div class="text-[11px] text-center col-span-2 -ml-4">
               From
             </div>
-            <div class="text-[11px] text-center col-span-1 ml-2">
+            <div class="text-[11px] text-center col-span-1 -ml-4">
               To
             </div>
           </div>
-          <lo class="max-h-96 min-h-96 h-96 max-w-[365px] min-w-[280px] flex flex-col align-start overflow-y-auto p-2 rounded-xl shadow-inner" 
+          <lo class="max-h-56 min-h-56 h-56 max-w-[365px] min-w-[280px] flex flex-col align-start overflow-y-auto p-2 rounded-xl shadow-inner" 
           :class="store.state.dark ? 'bg-gray-700 shadow-white/20' : 'bg-gray-200 shadow-black/20'">
             <div v-for="x of trans" :key="x.date+x.time">
               <a class=" grid grid-cols-12 hover:font-semibold hover:text-yellow-500 justify-center align-center align-middle"
@@ -165,6 +248,9 @@ export default {
             </div>
           </lo>
         </div>
+        <div class="uppercase text-xs mt-6 px-2 tracking-widest text-gray-400 font-semibold">
+          <apexchart class="mt-4 -mb-8 -ml-8 flex justify-center" type="line" height="280" width="400" :options="lineData.chartOptions" :series="lineData.series"></apexchart>
+        </div>
           <!-- <div class="w-1/2"> -->
             <!-- <Bar class="m-h-24 h-24" /> -->
             <!-- <div class="uppercase text-xs mt-3 tracking-widest text-gray-400 font-semibold">
@@ -178,7 +264,7 @@ export default {
           </div> -->
 
   
-    </div>
+    <!-- </div> -->
   </div>
 
 

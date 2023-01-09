@@ -90,7 +90,7 @@ export default {
             Total
           </p>
           <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
-            Countries
+            Flags
           </p>
           <p class="font-bold text-sm mt-2" 
           :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'" > 
@@ -111,7 +111,7 @@ export default {
               BEEN
             </div>
             <div class="text-[11px] text-center col-span-2 -ml-5">
-              PublicKey
+              Owner
             </div>
             <div class="text-[11px] text-center col-span-2">
               Username

@@ -40,7 +40,7 @@ export default {
   <notifications position="top left" class="mt-2 cursor-pointer" animation-type="velocity"/>
   <welcome-modal/>
   <signup-modal/>
-  <div class="flex flex-wrap" >
+  <div class="flex flex-wrap mb-12" >
     <mint-panel/>
     <mint-dash/>
   </div>

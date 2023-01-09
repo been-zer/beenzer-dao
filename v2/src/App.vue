@@ -40,13 +40,14 @@ html {
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
-  background-color: rgba(34, 34, 34, 0.692);
+  background-color: transparent !important;
 }
 
 ::-webkit-scrollbar-track {
   background-color: rgba(179, 179, 179, 0.692);
-  border-radius: 0.75rem;
+  border-radius: 1rem;
   margin: 0.4rem;
+  margin-top: 0.4rem;
   border-left: 1px solid rgba(211, 211, 211, 0);
 }
 

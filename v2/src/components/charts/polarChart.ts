@@ -1,4 +1,4 @@
-import { defineComponent, h } from 'vue'
+import { PropType, defineComponent, h, Plugin } from 'vue'
 import { PolarArea } from 'vue-chartjs'
 import {
   Chart as ChartJS,
@@ -38,7 +38,8 @@ export default defineComponent({
     //   default: () => {}
     // },
     // plugins: {
-    //   type: Array as PropType<Plugin<'polarArea'>[]>,
+    //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //   type: Array as PropType<Plugin<any>[]>,
     //   default: () => []
     // }
   },

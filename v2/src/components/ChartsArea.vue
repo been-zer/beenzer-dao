@@ -1,25 +1,12 @@
-<script>
-// import LineChart from './charts/lineChart.ts';
+<script lang="ts">
+// import PolarChart from './charts/polarChart';
 import { shortWallet, markWallet } from '../utils';
 import { useStore } from '../services/store';
 
 export default {
-  props: [
-    'history',
-    'totalCountries',
-    'totalPlayers',
-    'maxPot',
-    'avgPot',
-    'chartData',
-    'chartLabels',
-    'wallet'
-  ],
   methods: {
     shortWallet,
     markWallet
-  },
-  components: {
-    // LineChart,
   },
   setup () {
     const store = useStore();
@@ -28,116 +15,109 @@ export default {
       store,
       nf
     }
+  },
+  data () {
+    const pieData = { 
+      series: [400, 200, 120, 80, 70, 50, 45, 30, 20, 17, 12, 10, 8],
+      chartOptions: {
+        chart: {
+          width: 380,
+          type: 'donut',
+          sparkline: {
+            enabled: false,
+          },
+          donut: {
+          labels: {
+            show: true,
+            name: 'Total Supply',
+            value: 99999
+          }
+        }
+        },
+        theme: {
+          monochrome: {
+            enabled: true,
+            color: '#16a34a',
+            shadeTo: 'dark',
+            shadeIntensity: 1
+          }
+        },
+        legend: false,
+        labels: ['#1', '#2', '#3', '#4', '#5', '#6', '#7', '#8', '#9', '#10', '#11', '#12', '#13', '#14' ],
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }],
+      },
+    };
+    const pieData2 = { 
+      series: [300, 55, 13, 43, 22],
+      chartOptions: {
+        chart: {
+          type: 'donut',
+        },
+        labels: ['🏴‍☠️', '🇪🇸', '🇨🇭', '🇺🇸', '🇷🇺'],
+        legend: false,
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 280
+            },
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }],
+        theme: {
+          monochrome: {
+            enabled: true,
+            color: '#16a34a',
+            shadeTo: 'light',
+            shadeIntensity: 1
+          }
+        },
+      },
+    };
+
+    return {
+      pieData,
+      pieData2,
+    }
+    
+    
   }
 }
 </script>
 <template>
-  <!-- Right Panel -->
-    <div class="p-2 text-center">
-
-      <div class="uppercase text-sm tracking-widest text-gray-400 font-semibold mt-8">TOKEN</div>
-      <div class="uppercase text-3xl tracking-widest text-gray-400 font-semibold">CHARTS</div>
-      
-      <div class="text-center uppercase text-sm tracking-widest font-semibold justify-center">
-        <div class="flex justify-center mr-3 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600" >
-          <div class="uppercase text-xl font-semibold m-4">&nbsp;&nbsp; Total</div>
-          <div class="font-bold text-4xl mt-2" :class="store.state.dark ? 'text-gray-200' : 'text-gray-800'"> 
-            {{ 12 }}
-          </div>
-          <div class="uppercase text-xl font-semibold m-4">Games</div>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-4 grid-flow-row gap-4 align-center justify-center text-center">
-
-        <div class="p-2 text-center">
-          <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">Total</p>
-          <p class="uppercase text-xs tracking-widest text-gray-400 font-semibold">Countries</p>
-          <div class="flex justify-center" >
-            <p class="font-bold text-lg mt-2"
-              :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
-            >{{ 12 }}</p>
-          </div>
-        </div>
-
-        <div class="p-2 text-center">
-          <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">Total</p>
-          <p class="uppercase text-xs tracking-widest text-gray-400 font-semibold">Players</p>
-          <div class="flex justify-center" >
-            <p class="font-bold text-lg mt-2"
-              :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
-            >{{ 34 }}</p>
-          </div>
-        </div>
-
-        <div class="p-2 text-center">
-          <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">Average</p>
-          <p class="uppercase text-xs tracking-widest text-gray-400 font-semibold">SOLPOT</p>
-          <div class="flex justify-center" >
-            <p class="font-bold text-lg mt-2" :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'" > 
-              <span class="text-sm text-gray-400">
-                ◎ </span>
-              {{ avgPot }}</p>
-          </div>
-        </div>
-
-        <div class="p-2 text-center mr-2">
-          <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">Greatest</p>
-          <p class="uppercase text-xs tracking-widest text-gray-400 font-semibold">SOLPOT</p>
-          <div class="flex justify-center" >
-            <p class="font-bold text-lg mt-2"
-              :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
-            > <span class="text-sm text-gray-400">
-              ◎ </span>
-              {{ maxPot }}</p>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="flex flex-wrap" >
-        <div class="w-full h-full">
-          <div class="uppercase text-xs mb-4 mt-4 tracking-widest text-gray-400 font-semibold">
-            HOLDERS DISTRIBUTION
-          </div>
-          <lo class="flex flex-col flex-grow overflow-y-auto bg-gray-100 p-2 rounded-xl shadow-inner" :class="store.state.dark ? 'bg-gray-700' : 'bg-text-gray-200'">
-            <div v-for="x of history" :key="x.__date__" >
-              <div class="hover:font-semibold grid grid-cols-12 justify-center align-center align-middle"  :class="store.state.dark ? 'text-gray-200' : 'bg-text-gray-800'">
-                <div class="text-xs text.left   col-span-3"  :class="markWallet(wallet, x._owner) ? 'text-green-400 font-bold' : 'text-grey-600'">
-                  {{ x.__date__ }}
-                </div>
-                <div class="text-xs text-right col-span-2 font-semibold flex text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
-                  <div class="text-xs mb-3 pl-1 pr-1"> 📍 </div>{{ x._pot }}
-                </div>
-                <div class="text-xs text-left col-span-3"  :class="markWallet(wallet, x._owner) ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 font-bold' : 'text-grey-600'" >
-                  {{ shortWallet(x._owner, 4) }}
-                </div>
-                <div class="text-xs text-center col-span-1" >
-                  {{ x._flag }}
-                </div>
-                <div class="text-xs text-center col-span-3"  :class="markWallet(wallet, x._owner) ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 font-bold' : 'text-grey-600'" > 
-                  {{ nf.format(x._num).replaceAll(',', ' ') }}
-                </div>
-              </div>
-            </div>
-          </lo>
-        </div>
-          <!-- <div class="w-1/2"> -->
-            <!-- <Bar class="m-h-24 h-24" /> -->
-            <!-- <div class="uppercase text-xs mt-3 tracking-widest text-gray-400 font-semibold">
-              Cumulative SOLPOT -->
-              <!-- <LineChart class="m-h-52 h-52" :chartData="chartData" :chartLabels="chartLabels" /> -->
-            <!-- </div>
-          </div> -->
-          <!-- <div class="uppercase text-xs mt-2 tracking-widest text-gray-400 font-semibold">
-            POT country distribution
-            <PolarChart class="m-h-24 h-24"/>
-          </div> -->
-
-  
-    </div>
+<div class="p-2 text-center">
+  <div class="mt-6 uppercase text-lg tracking-widest text-gray-400 font-semibold">
+    TOKEN
   </div>
-
-
+  <div class="uppercase text-3xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+    DISTRIBUTION
+  </div>
+  <div class="uppercase text-xs mt-6 px-2 tracking-widest text-gray-400 font-semibold">
+    DISTRIBUTION BY WALLET
+    <apexchart class="mt-4 flex justify-center" type="donut" height="300" width="300" :options="pieData.chartOptions" :series="pieData.series"></apexchart>
+  </div>
+  <div class="uppercase text-xs mt-6 -mb-2 px-2 tracking-widest text-gray-400 font-semibold">
+    DISTRIBUTION BY COUNTRY
+    <apexchart class="mt-4 flex justify-center" type="polarArea" height="300" width="300" :options="pieData2.chartOptions" :series="pieData2.series"></apexchart>
+  </div>
+</div>
 </template>
-
+<style scoped>
+#chart {
+  border: none !important;
+  border: 2px solid black !important;
+  background: transparent !important;
+}
+</style>
