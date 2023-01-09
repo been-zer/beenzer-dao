@@ -4,6 +4,7 @@ import { ref, watchEffect } from 'vue';
 import { shortWallet, markWallet } from '../utils';
 import { useStore } from '../services/store';
 import { getTokenHolders } from '../services/getTokenHolders';
+import { LineChart } from './charts/lineChart.ts';
 
 export default {
   methods: {
@@ -11,7 +12,7 @@ export default {
     markWallet
   },
   components: {
-    // LineChart,
+    LineChart,
   },
   setup () {
     const store = useStore();
@@ -101,10 +102,10 @@ export default {
             <div class="text-[11px] text-left col-span-2 ml-2">
               Percentage
             </div>
-            <div class="text-[11px] text-center col-span-2">
+            <div class="text-[11px] text-center col-span-2 -ml-4">
               Amount
             </div>
-            <div class="text-[11px] text-center col-span-2">
+            <div class="text-[11px] text-center col-span-2 -ml-4">
               Public Key
             </div>
             <div class="text-[11px] text-center col-span-2">
@@ -149,13 +150,12 @@ export default {
             </div>
           </lo>
         </div>
-          <!-- <div class="w-1/2"> -->
-            <!-- <Bar class="m-h-24 h-24" /> -->
-            <!-- <div class="uppercase text-xs mt-3 tracking-widest text-gray-400 font-semibold">
-              Cumulative SOLPOT -->
-              <!-- <LineChart class="m-h-52 h-52" :chartData="chartData" :chartLabels="chartLabels" /> -->
-            <!-- </div>
-          </div> -->
+          <div class="">
+            <Bar class="m-h-24 h-24" />
+            <div class="uppercase text-xs mt-3 tracking-widest text-gray-400 font-semibold">
+             <LineChart class="m-h-52 h-52" :chartData="chartData" :chartLabels="chartLabels" />
+            </div>
+          </div>
           <!-- <div class="uppercase text-xs mt-2 tracking-widest text-gray-400 font-semibold">
             POT country distribution
             <PolarChart class="m-h-24 h-24"/>
