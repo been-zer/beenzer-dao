@@ -41,13 +41,13 @@ export default {
 </script>
 <template>
     <div class="p-0 sm:p-2 text-center">
-      <div class="uppercase text-lg tracking-widest text-gray-400 font-semibold mt-8">
+      <div class="mt-4 uppercase text-lg tracking-widest text-gray-400 font-semibold">
         CURRENT
       </div>
       <div class="uppercase text-3xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
         HOLDERS
       </div>
-      <div class="grid grid-cols-3 grid-flow-row gap-4 mt-8 align-center justify-center text-center">
+      <div class="grid grid-cols-3 grid-flow-row gap-4 mt-4 align-center justify-center text-center">
         <div class="p-2 text-center">
           <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
             Total
