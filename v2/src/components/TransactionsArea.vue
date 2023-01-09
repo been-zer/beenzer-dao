@@ -93,6 +93,26 @@ export default {
           <div class="uppercase text-xs mb-4 mt-4 tracking-widest text-gray-400 font-semibold">
             LAST 1,000 TRANSACTIONS
           </div>
+          <div class=" grid grid-cols-12 font-semibold text-gray-400 hover:text-yellow-500 justify-center align-center align-middle pb-2">
+            <div class="text-[11px] text-center col-span-2">
+              Date
+            </div>
+            <div class="text-[11px] text-center col-span-2">
+              Time
+            </div>
+            <div class="text-[11px] text-center col-span-2">
+              Type
+            </div>
+            <div class="text-[11px] text-center col-span-2">
+              Amount
+            </div>
+            <div class="text-[11px] text-center col-span-2">
+              From
+            </div>
+            <div class="text-[11px] text-center col-span-1">
+              To
+            </div>
+          </div>
           <lo class="max-h-96 min-h-96 h-96 max-w-[365px] min-w-[280px] flex flex-col align-start overflow-y-auto p-2 rounded-xl shadow-inner" 
           :class="store.state.dark ? 'bg-gray-700 shadow-white/20' : 'bg-gray-200 shadow-black/20'">
             <div v-for="x of trans" :key="x.date+x.time">
@@ -112,7 +132,7 @@ export default {
                   {{ x.type }}
                 </div>
                 <div class="flex text-[11px] text-left -ml-4 col-span-2 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
-                  <div class="mb-3 pl-1 pr-1">
+                  <div class="mb-3 pl-1">
                     📍 
                   </div>
                   {{ nf.format(Math.floor(x.amount*100)/100).replaceAll(',', ' ') }}

@@ -100,25 +100,25 @@ export default {
               <a class=" grid grid-cols-12 hover:font-semibold hover:text-yellow-500 justify-center align-center align-middle"
               :class="store.state.dark ? 'text-gray-300' : 'text-gray-500'"
               :href="'https://solscan.io/address/'+x.holder+'?cluster='+cluster" target="_blank" >
-                <div class="text-xs text-left col-span-1 font-semibold" 
+                <div class="text-[11px] text-left col-span-1 font-semibold" 
                 :class="markWallet(store.state.pubkey, x.holder) ? 'text-green-400 font-bold hover:text-yellow-500' : ''">
                   #{{ x.ranking }}
                 </div>
-                <div class="text-xs text-center col-span-2" 
+                <div class="text-[11px] text-center col-span-2" 
                 :class="markWallet(store.state.pubkey, x.holder) ? 'text-green-400 font-bold hover:text-yellow-500' : ''">
                   {{ x.allocation }}
                 </div>
-                <div class="flex text-xs text-right col-span-3 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
-                  <div class="text-xs mb-3 pl-1 pr-1"> 
+                <div class="flex text-[11px] text-right col-span-3 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
+                  <div class="text-xs mb-3 pl-1"> 
                     📍 
                   </div>
                   {{ nf.format(x.amount).replaceAll(',', ' ') }}
                 </div>
-                <div class="text-xs text-left col-span-2"
+                <div class="text-[11px] text-left col-span-2"
                 :class="markWallet(store.state.pubkey, x.holder) ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 font-bold hover:text-yellow-500' : 'text-grey-600'" >
                   {{ shortWallet(x.holder, 4) }}
                 </div>
-                <div class="text-xs text-right col-span-3"
+                <div class="text-[11px] text-right col-span-3"
                 :class="markWallet(store.state.pubkey, x.holder) ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 font-bold hover:text-yellow-500' : 'text-grey-600'" >
                   {{ 'username' }}
                 </div>
