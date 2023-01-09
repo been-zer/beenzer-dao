@@ -43,13 +43,13 @@ export default {
 <template>
     <div class="p-0 sm:p-2 text-center">
       <div class="mt-6 uppercase text-lg tracking-widest text-gray-400 font-semibold">
-        CURRENT
+        RANKING
       </div>
       <div class="uppercase text-3xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
         HOLDERS
       </div>
-      <div class="grid grid-cols-3 grid-flow-row gap-4 mt-4 align-center justify-center text-center">
-        <div class="p-2 text- ml-4">
+      <div class="max-w-[365px] min-w-[280px] grid grid-cols-4 grid-flow-row gap-4 mt-4 align-center justify-center text-center">
+        <div class="p-2 text-center -mr-4">
           <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
             Total
           </p>
@@ -61,7 +61,7 @@ export default {
           {{ nf.format(supply).replaceAll(',', ' ') }}
           </p>
         </div>
-        <div class="p-2 text-center">
+        <div class="p-2 text-center -mr-2">
           <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
             Total
           </p>
@@ -73,7 +73,7 @@ export default {
           {{ holders.length }}
           </p>
         </div>
-        <div class="p-2 text-center mr-4">
+        <div class="p-2 text-center -ml-2">
           <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
             Average
           </p>
@@ -83,6 +83,18 @@ export default {
           <p class="font-bold text-sm mt-2" 
           :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'" > 
           {{ avgHolded }}
+          </p>
+        </div>
+        <div class="p-2 text-center -ml-4">
+          <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
+            Total
+          </p>
+          <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+            Countries
+          </p>
+          <p class="font-bold text-sm mt-2" 
+          :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'" > 
+          {{ 12 }}
           </p>
         </div>
       </div>

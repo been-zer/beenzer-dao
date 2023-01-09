@@ -89,12 +89,10 @@ export default {
           <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
             Burned
           </p>
-
           <p class="font-bold text-sm mt-2" 
           :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'" > 
           {{ nf.format(burned).replaceAll(',', ' ') }}
           </p>
-
         </div>
         <div class="p-2 text-center -ml-4">
           <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
