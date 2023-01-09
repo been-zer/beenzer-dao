@@ -2,12 +2,10 @@
 import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import { Connection, PublicKey } from '@solana/web3.js';
 import { formatPercentage } from '../utils';
-import { useStore } from '../services/store';
 
-const store = useStore();
 const SOLANA_RPC_URL = process.env.VUE_APP_SOLANA_RPC_URL as string;
-const TOKEN = process.env.VUE_APP_BEEN_TOKEN as string;
 const SOLANA_CONNECTION = new Connection(SOLANA_RPC_URL);
+const TOKEN = process.env.VUE_APP_BEEN_TOKEN as string;
 
 export interface TokenHolder {
   holder: string;
@@ -15,7 +13,7 @@ export interface TokenHolder {
   account: string;
   lamports: number;
   token: string;
-  decimal: number;
+  decimals: number;
   supply: number;
   amount: number;
   allocation: string;
@@ -48,7 +46,7 @@ export const getTokenHolders = async ( _token: string = TOKEN ): Promise<Array<T
         account: acc.pubkey.toBase58(),
         lamports: acc.account.lamports,
         token: acc.account.data.parsed.info.mint,
-        decimal: acc.account.data.parsed.info.tokenAmount.decimals,
+        decimals: acc.account.data.parsed.info.tokenAmount.decimals,
         supply: 0,
         amount: acc.account.data.parsed.info.tokenAmount.uiAmount,
         allocation: '',
@@ -61,7 +59,7 @@ export const getTokenHolders = async ( _token: string = TOKEN ): Promise<Array<T
     let i = 1;
     holders.map((acc: TokenHolder) => { 
       acc.supply = supply;
-      acc.allocation = formatPercentage(Math.floor((acc.amount/supply)*10000)/100);
+      acc.allocation = formatPercentage(Math.floor((acc.amount/supply)*(10*acc.decimals))/10*acc.decimals);
       acc.ranking = i;
       i++;
     });
