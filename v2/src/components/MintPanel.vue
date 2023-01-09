@@ -40,7 +40,7 @@ export default {
 
     const store = useStore();
     const BEEN = ref('0');
-    const BEENZ = ref('0');
+    const BEENZER = ref('0');
     const DISCOUNT = 30;
     const USD = ref('0');
     const SOL = ref('0');
@@ -55,14 +55,14 @@ export default {
 
       if (BEEN.value[0] === '0') {
         BEEN.value = String(n);
-        BEENZ.value = BEEN.value * 4;
+        BEENZER.value = BEEN.value * 4;
         USD.value = Math.floor((BEEN.value * (100-DISCOUNT)/100)*100)/100;
         SOL.value = Math.floor((BEEN.value / 14)*100)/100;
         return
       }
       if ( BEEN.value+n <= maxNumber ) {
         BEEN.value += n;
-        BEENZ.value = BEEN.value * 4;
+        BEENZER.value = BEEN.value * 4;
         if ( BEEN.value+n > 100000) {
           SOL.value = Math.floor((BEEN.value / 14));
           USD.value = Math.floor((BEEN.value * (100-DISCOUNT)/100));
@@ -84,7 +84,7 @@ export default {
       SOL.value = '0';
       USD.value = '0';
       BEEN.value = '0';
-      BEENZ.value = '0';
+      BEENZER.value = '0';
     }
 
     const commitPop = ref(false);
@@ -99,7 +99,7 @@ export default {
       commitPop,
       USD,
       BEEN,
-      BEENZ,
+      BEENZER,
       SOL,
       DISCOUNT
     }
@@ -146,7 +146,9 @@ export default {
         <div class="py-4 text-center uppercase tracking-widest font-semibold justify-center border-1 rounded-xl -my-3">
           <div class="grid grid-cols-4 grid-flow-row align-center justify-center mb-4 px-4 text-center">
             <div class="text-center">
-              <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">SOL</p>
+              <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">
+                SOL
+              </p>
               <div class="flex justify-center" >
                 <p class="font-bold text-md mt-2"
                   :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
@@ -154,7 +156,9 @@ export default {
               </div>
             </div>
             <div class="text-center">
-              <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">USD</p>
+              <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">
+                USD
+              </p>
               <div class="flex justify-center" >
                 <p class="lowercase font-bold text-md mt-2"
                   :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
@@ -162,7 +166,9 @@ export default {
               </div>
             </div>
             <div class="text-center">
-              <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">BEEN</p>
+              <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">
+                BEEN
+              </p>
               <div class="flex justify-center" >
                 <p class="lowercase font-bold text-md mt-2"
                   :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
@@ -170,11 +176,13 @@ export default {
               </div>
             </div>
             <div class="text-center">
-              <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">BEENZ</p>
+              <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">
+                BEENZER
+              </p>
               <div class="flex justify-center" >
                 <p class="font-bold text-md mt-2"
                   :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
-                > +{{ nf.format(BEENZ).replaceAll(',', ' ') }}</p>
+                > +{{ nf.format(BEENZER).replaceAll(',', ' ') }}</p>
               </div>
             </div>
           </div>

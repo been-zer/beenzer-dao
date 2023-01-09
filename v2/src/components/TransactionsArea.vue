@@ -93,36 +93,36 @@ export default {
           <div class="uppercase text-xs mb-4 mt-4 tracking-widest text-gray-400 font-semibold">
             LAST 1,000 TRANSACTIONS
           </div>
-          <lo class="max-h-96 min-h-96 h-96 max-w-[365px] min-w-[365px] flex flex-col align-start overflow-y-auto p-2 rounded-xl shadow-inner" 
+          <lo class="max-h-96 min-h-96 h-96 max-w-[365px] min-w-[280px] flex flex-col align-start overflow-y-auto p-2 rounded-xl shadow-inner" 
           :class="store.state.dark ? 'bg-gray-700 shadow-white/20' : 'bg-gray-200 shadow-black/20'">
             <div v-for="x of trans" :key="x.date+x.time">
               <a class=" grid grid-cols-12 hover:font-semibold hover:text-yellow-500 justify-center align-center align-middle"
               :class="store.state.dark ? 'text-gray-300' : 'text-gray-500'"
               :href="'https://solscan.io/tx/'+x.signature+'?cluster='+cluster" target="_blank" >
-                <div class="text-xs text-left col-span-2" 
+                <div class="text-[11px] text-left col-span-2" 
                 :class="markWallet(store.state.pubkey, x.sender) ? 'text-green-400 font-bold hover:text-yellow-500' : ''">
                   {{ x.date }}
                 </div>
-                <div class="text-xs text-left col-span-2 ml-3" 
+                <div class="text-[11px] text-left col-span-2 ml-3" 
                 :class="markWallet(store.state.pubkey, x.sender) ? 'text-green-400 font-bold hover:text-yellow-500' : ''">
                   {{ x.time }}
                 </div>
-                <div class="text-xs text-left col-span-3 ml-2" 
+                <div class="text-[11px] text-left col-span-3 ml-2" 
                 :class="markWallet(store.state.pubkey, x.sender) ? 'text-green-400 font-bold hover:text-yellow-500' : ''">
                   {{ x.type }}
                 </div>
-                <div class="flex text-xs text-left -ml-4 col-span-2 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
-                  <div class="text-xs mb-3 pl-1 pr-1">
+                <div class="flex text-[11px] text-left -ml-4 col-span-2 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
+                  <div class="mb-3 pl-1 pr-1">
                     📍 
                   </div>
                   {{ nf.format(Math.floor(x.amount*100)/100).replaceAll(',', ' ') }}
                 </div>
-                <div class="text-xs text-left col-span-1"
-                :class="markWallet(store.state.pubkey, x.sender) ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 font-bold hover:text-yellow-500' : 'text-grey-600'" >
+                <div class="z-0 text-[11px] text-left col-span-1"
+                :class="markWallet(store.state.pubkey, x.sender) ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 font-bold hover:text-yellow-500' : ''" >
                   {{ shortWallet(x.sender, 2) }}
                 </div>
-                <div class="text-xs text-right col-span-2"
-                :class="markWallet(store.state.pubkey, x.receiver) ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 font-bold hover:text-yellow-500' : 'text-grey-600'" >
+                <div class="text-[11px] text-right col-span-2"
+                :class="markWallet(store.state.pubkey, x.receiver) ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 font-bold hover:text-yellow-500' : ''" >
                   {{ shortWallet(x.receiver, 2) }}
                 </div>
               </a>

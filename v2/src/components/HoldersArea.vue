@@ -94,7 +94,7 @@ export default {
           <div class="uppercase text-xs mb-4 mt-4 tracking-widest text-gray-400 font-semibold">
             HOLDERS RANKING
           </div>
-          <lo class="max-h-96 min-h-96 h-96 max-w-[365px] min-w-[365px] flex flex-col align-start overflow-y-auto p-2 rounded-xl shadow-inner" 
+          <lo class="max-h-96 min-h-96 h-96 max-w-[365px] min-w-[280px] flex flex-col align-start overflow-y-auto p-2 rounded-xl shadow-inner" 
           :class="store.state.dark ? 'bg-gray-700 shadow-white/20' : 'bg-gray-200 shadow-black/20'">
             <div v-for="x of holders" :key="x.ranking">
               <a class=" grid grid-cols-12 hover:font-semibold hover:text-yellow-500 justify-center align-center align-middle"
