@@ -23,7 +23,7 @@ export default {
       holders.value = await getTokenHolders();
       supply.value = holders.value[0].supply;
       nHolders.value = holders.value.length;
-      avgHolded.value = Math.floor((supply.value/nHolders.value)*10000)/100;
+      avgHolded.value = Math.floor((supply.value/nHolders.value));
     });
     const cluster = process.env.VUE_APP_CLUSTER;
     const nf = Intl.NumberFormat();    
@@ -85,7 +85,7 @@ export default {
           <div class="flex justify-center" >
             <p class="font-bold text-lg mt-2" 
             :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'" > 
-              {{ 33 }} BEEN</p>
+              {{ avgHolded }} BEEN</p>
           </div>
         </div>
       </div>
@@ -93,6 +93,26 @@ export default {
         <div class="w-full h-full">
           <div class="uppercase text-xs mb-4 mt-4 tracking-widest text-gray-400 font-semibold">
             HOLDERS RANKING
+          </div>
+          <div class=" grid grid-cols-10 font-semibold text-gray-400 hover:text-yellow-500 justify-center align-center align-middle pb-2">
+            <div class="text-[11px] text-left col-span-1">
+              Rank
+            </div>
+            <div class="text-[11px] text-left col-span-2 ml-2">
+              Percentage
+            </div>
+            <div class="text-[11px] text-center col-span-2">
+              Amount
+            </div>
+            <div class="text-[11px] text-center col-span-2">
+              Public Key
+            </div>
+            <div class="text-[11px] text-center col-span-2">
+              Username
+            </div>
+            <div class="text-[11px] text-left col-span-1">
+              Flag
+            </div>
           </div>
           <lo class="max-h-96 min-h-96 h-96 max-w-[365px] min-w-[280px] flex flex-col align-start overflow-y-auto p-2 rounded-xl shadow-inner" 
           :class="store.state.dark ? 'bg-gray-700 shadow-white/20' : 'bg-gray-200 shadow-black/20'">
