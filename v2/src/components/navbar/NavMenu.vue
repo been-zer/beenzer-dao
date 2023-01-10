@@ -28,12 +28,12 @@ export default {
     </div>
     <div class="m-4 sm:m-0">
       <router-link class="px-4" to="/socials">
-        SOCIAL STATS
+        MARKETPLACE
       </router-link>
     </div>
     <div class="m-4 sm:m-0">
       <router-link class="px-4" to="/app">
-        APP STATS
+        STATS
       </router-link>
     </div>
   </div>

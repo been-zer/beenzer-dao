@@ -1,5 +1,4 @@
 <script>
-// import LineChart from './charts/lineChart.ts';
 import { ref, watchEffect } from 'vue';
 import { shortWallet, markWallet } from '../../utils';
 import { useStore } from '../../services/store';
