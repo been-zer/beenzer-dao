@@ -1,7 +1,7 @@
 <script>
 import { ref, watchEffect } from 'vue';
 import { shortWallet, markWallet } from '../../utils';
-import { getTokenHolders } from '../../services/getTokenHolders';
+import { getTokenHolders } from '../../services/token/getTokenHolders';
 import { useStore } from '../../services/store';
 
 export default {

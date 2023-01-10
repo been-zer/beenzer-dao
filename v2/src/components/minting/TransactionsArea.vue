@@ -3,7 +3,7 @@
 import { ref, watchEffect, Ref } from 'vue';
 import { useStore } from '../../services/store';
 import { shortWallet, markWallet } from '../../utils';
-import { getTokenTransactions, TokenTransaction } from '../../services/getTokenTransactions';
+import { getTokenTransactions, TokenTransaction } from '../../services/token/getTokenTransactions';
 
 export default {
   methods: {

@@ -2,6 +2,7 @@
 import { ref, watchEffect } from 'vue';
 import { shortWallet, markWallet } from '../../utils';
 import { useStore } from '../../services/store';
+import { getWalletNFTs } from '../../services/nfts/getWalletNFTs';
 
 export default {
   methods: {
@@ -10,10 +11,13 @@ export default {
   },
   setup () {
     const store = useStore();
+
+    const nfts = getWalletNFTs();
     
     const nf = Intl.NumberFormat();    
     return {
       store,
+      nfts,
       nf
     }
   }
