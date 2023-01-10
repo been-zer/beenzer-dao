@@ -1,6 +1,6 @@
 <script lang='ts'>
-import GovernPanel from '../components/GovernPanel.vue';
-import VotingPanel from '../components/VotingPanel.vue';
+import GovernPanel from '../components/governance/GovernPanel.vue';
+import VotingPanel from '../components/governance/VotingPanel.vue';
 
 export default {
   components: {

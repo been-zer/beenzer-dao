@@ -1,18 +1,14 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script lang="ts">
-// import LineChart from './charts/lineChart.ts';
 import { ref, watchEffect, Ref } from 'vue';
-import { useStore } from '../services/store';
-import { shortWallet, markWallet } from '../utils';
-import { getTokenTransactions, TokenTransaction } from '../services/getTokenTransactions';
+import { useStore } from '../../services/store';
+import { shortWallet, markWallet } from '../../utils';
+import { getTokenTransactions, TokenTransaction } from '../../services/getTokenTransactions';
 
 export default {
   methods: {
     shortWallet,
     markWallet
-  },
-  components: {
-    // LineChart,
   },
   setup () {
     const store = useStore();

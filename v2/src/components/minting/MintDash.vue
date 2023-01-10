@@ -2,7 +2,7 @@
 import TransactionArea from './TransactionsArea.vue';
 import HoldersArea from './HoldersArea.vue';
 import ChartsArea from './ChartsArea.vue';
-import { useStore } from '../services/store';
+import { useStore } from '../../services/store';
 
 export default {
   components: {

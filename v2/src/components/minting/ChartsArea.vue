@@ -1,7 +1,7 @@
 <script lang="ts">
 // import PolarChart from './charts/polarChart';
-import { shortWallet, markWallet } from '../utils';
-import { useStore } from '../services/store';
+import { shortWallet, markWallet } from '../../utils';
+import { useStore } from '../../services/store';
 
 export default {
   methods: {
@@ -28,7 +28,7 @@ export default {
                 show: true,
                 color: '#16a34a',
                 label: 'Supply',
-                formatter: () => '999000',
+                formatter: () => '999916',
               }
             }
           }

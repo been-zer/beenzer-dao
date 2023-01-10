@@ -1,8 +1,8 @@
 
 <script>
 import { ref } from 'vue';
-import click_sound from '../assets/sounds/beep.mp3';
-import CountDown from './CountDown';
+import click_sound from '../../assets/sounds/beep.mp3';
+import CountDown from '../modules/CountDown';
 
 export default {
   components: {

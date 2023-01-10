@@ -1,3 +1,64 @@
+<script>
+import { shortWallet, markWallet } from '../../utils';
+
+export default {
+  props: [
+    'history',
+    'totalCountries',
+    'totalPlayers',
+    'maxPot',
+    'avgPot',
+    'chartData',
+    'chartLabels',
+    'wallet'
+  ],
+  methods: {
+    shortWallet,
+    markWallet
+  },
+  setup () {
+    const nf = Intl.NumberFormat();    
+    return { 
+      nf
+    }
+  },
+  data () {
+    const motions = [
+      {
+        closed: '2023-02-01',
+        votes: 103,
+        proposal: 'Should we open an Instagram account?',
+        a: 'Yes! Potential users can be found there!',
+        b: 'No, thanks to the people who are interested in.',
+        c: 'No, thanks to the people who are interested in',
+        d: 'Yes',
+        'a%': 23.44,
+        'b%': 13.15,
+        'c%': 33.72,
+        'd%': 7.33
+      },
+      {
+        closed: '2023-01-01',
+        votes: 22,
+        proposal: 'Should we open an Instagram account?',
+        a: 'Yes! Potential users can be found there!',
+        b: 'No, thanks to the people who are interested in.',
+        c: 'No, thanks to the people who are interested in',
+        d: 'Yes',
+        'a%': 23.44,
+        'b%': 13.15,
+        'c%': 33.72,
+        'd%': 7.33
+      },
+    ];
+
+    return {
+      motions
+    }
+
+  }
+}
+</script>
 <template>
   <!-- Right Panel -->
 
@@ -120,71 +181,4 @@
     </div>
   </div>
 </div>
-
 </template>
-
-<script>
-// import LineChart from './charts/lineChart.ts';
-import { shortWallet, markWallet } from '../utils';
-
-export default {
-  props: [
-    'history',
-    'totalCountries',
-    'totalPlayers',
-    'maxPot',
-    'avgPot',
-    'chartData',
-    'chartLabels',
-    'wallet'
-  ],
-  methods: {
-    shortWallet,
-    markWallet
-  },
-  components: {
-    // LineChart,
-  },
-  setup () {
-    const nf = Intl.NumberFormat();    
-    return { 
-      nf
-    }
-  },
-  data () {
-    const motions = [
-      {
-        closed: '2023-02-01',
-        votes: 103,
-        proposal: 'Should we open an Instagram account?',
-        a: 'Yes! Potential users can be found there!',
-        b: 'No, thanks to the people who are interested in.',
-        c: 'No, thanks to the people who are interested in',
-        d: 'Yes',
-        'a%': 23.44,
-        'b%': 13.15,
-        'c%': 33.72,
-        'd%': 7.33
-      },
-      {
-        closed: '2023-01-01',
-        votes: 22,
-        proposal: 'Should we open an Instagram account?',
-        a: 'Yes! Potential users can be found there!',
-        b: 'No, thanks to the people who are interested in.',
-        c: 'No, thanks to the people who are interested in',
-        d: 'Yes',
-        'a%': 23.44,
-        'b%': 13.15,
-        'c%': 33.72,
-        'd%': 7.33
-      },
-    ];
-
-    return {
-      motions
-    }
-
-  }
-}
-</script>

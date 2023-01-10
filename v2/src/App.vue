@@ -1,6 +1,6 @@
 <script lang="ts">
-import NavbarWallet from './components/NavbarWallet.vue';
-import FooterBar from './components/FooterBar.vue';
+import NavbarWallet from './components/navbar/NavbarWallet.vue';
+import FooterBar from './components/footer/FooterBar.vue';
 import { useStore } from './services/store'
 
 export default {

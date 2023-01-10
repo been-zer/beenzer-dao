@@ -1,11 +1,11 @@
 <script lang='ts'>
 import { watchEffect } from 'vue';
-import MintPanel from '../components/MintPanel.vue';
-import MintDash from '../components/MintDash.vue';
-import WelcomeModal from '../components/WelcomeModal.vue';
-import SignupModal from '../components/SignupModal.vue';
-import { useStore } from '../services/store';
 import { useNotification } from '@kyvg/vue3-notification';
+import MintPanel from '../components/minting/MintPanel.vue';
+import MintDash from '../components/minting/MintDash.vue';
+import WelcomeModal from '../components/modals/WelcomeModal.vue';
+import SignupModal from '../components/modals/SignupModal.vue';
+import { useStore } from '../services/store';
 import { getUsersFlags } from '../services/sockets/user.socket';
 
 export default {

@@ -1,15 +1,21 @@
 <script lang='ts'>
 import { ref } from 'vue';
-import { useStore } from '../services/store';
-import { searchUsersSocket } from '../services/sockets/user.socket';
 import { useNotification } from "@kyvg/vue3-notification";
-import { createUser } from '../services/sockets/user.socket';
-import { sqlFilter } from '../utils';
-import CountDown from './CountDown.vue';
+import { useStore } from '../../services/store';
+import { searchUsersSocket } from '../../services/sockets/user.socket';
+import { createUser } from '../../services/sockets/user.socket';
+import { sqlFilter } from '../../utils';
+import CountDown from '../modules/CountDown.vue';
 
 export default {
   components: {
     CountDown,
+  },
+  data () {
+    return {
+      fireworks: require("../../assets/gif/fireworks.gif"),
+      countdown_date: '2023/01/01',
+    }
   },
   setup () {
     
@@ -48,12 +54,6 @@ export default {
       signUp,
       sqlFilter,
     };
-  },
-  data () {
-    return {
-      fireworks: require("../assets/fireworks.gif"),
-      countdown_date: '2023/01/01',
-    }
   }
 }
 </script>

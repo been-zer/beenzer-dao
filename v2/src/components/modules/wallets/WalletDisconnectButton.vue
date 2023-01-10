@@ -1,6 +1,6 @@
 <script lang="ts">
 import { computed, defineComponent, toRefs } from "vue";
-import { useWallet } from "../../services/wallets/useWallet";
+import { useWallet } from "../../../services/wallets/useWallet";
 import WalletIcon from "./WalletIcon.vue";
 
 export default defineComponent({
@@ -12,28 +12,26 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const { disabled } = toRefs(props);
-    const { wallet, connect, connecting, connected } = useWallet();
+    const { wallet, disconnect, disconnecting } = useWallet();
 
     const content = computed(() => {
-      if (connecting.value) return "Connecting ...";
-      if (connected.value) return "Connected";
-      if (wallet.value) return "Connect";
-      return "Connect Wallet";
+      if (disconnecting.value) return "Disconnecting ...";
+      if (wallet.value) return "Disconnect";
+      return "Disconnect Wallet";
     });
 
-    const onClick = (event: MouseEvent) => {
+    const handleClick = (event: MouseEvent) => {
       emit("click", event);
       if (event.defaultPrevented) return;
-      connect().catch(() => { console.log("Wallet connected"); });
+      disconnect().catch(() => { console.log("Wallet disconnected");});
     };
 
     const scope = {
       wallet,
+      disconnecting,
       disabled,
-      connecting,
-      connected,
       content,
-      onClick,
+      handleClick,
     };
 
     return {
@@ -49,8 +47,8 @@ export default defineComponent({
   <slot v-bind="scope">
     <button
       class="swv-button swv-button-trigger"
-      :disabled="disabled || !wallet || connecting || connected"
-      @click="onClick"
+      :disabled="disabled || disconnecting || !wallet"
+      @click="handleClick"
     >
       <wallet-icon v-if="wallet" :wallet="wallet"></wallet-icon>
       <p v-text="content"></p>

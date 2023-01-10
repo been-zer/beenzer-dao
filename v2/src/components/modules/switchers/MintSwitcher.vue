@@ -1,10 +1,3 @@
-<template>
-  <label class="switch">
-    <input type="checkbox" @click="toggleCheckbox">
-    <div class="slider round"></div>
-  </label>
-</template>
-
 <script>
 export default {
   el: 'MintSwitcher',
@@ -22,8 +15,13 @@ export default {
 
 }
 </script>
-
-<style scope="true">
+<template>
+  <label class="switch">
+    <input type="checkbox" @click="toggleCheckbox">
+    <div class="slider round"></div>
+  </label>
+</template>
+<style scope>
 .switch {
   position: relative;
   display: inline-block;

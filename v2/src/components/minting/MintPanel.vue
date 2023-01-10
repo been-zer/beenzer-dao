@@ -1,9 +1,9 @@
 <script>
 import { ref } from 'vue';
-import click_sound from '../assets/sounds/beep.mp3';
-import CountDown from './CountDown';
-import MintSwitcher from './MintSwitcher.vue';
-import { useStore } from '../services/store';
+import click_sound from '../../assets/sounds/beep.mp3';
+import MintSwitcher from '../modules/switchers/MintSwitcher.vue';
+import CountDown from '../modules/CountDown';
+import { useStore } from '../../services/store';
 
 export default {
   components: {

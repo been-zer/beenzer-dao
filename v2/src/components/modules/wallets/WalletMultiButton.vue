@@ -1,18 +1,18 @@
 <script lang="ts">
 import { computed, defineComponent, ref, toRefs, watchEffect } from "vue";
 import { onClickOutside, useClipboard } from "@vueuse/core";
-import { useWallet } from "../../services/wallets/useWallet";
+import { useWallet } from "../../../services/wallets/useWallet";
 import WalletConnectButton from "./WalletConnectButton.vue";
 import WalletIcon from "./WalletIcon.vue";
 import WalletModalProvider from "./WalletModalProvider.vue";
-import { balanceBEEN, balanceSOL, balanceUSDC } from '../../services/wallets/getBalances';
+import { balanceBEEN, balanceSOL, balanceUSDC } from '../../../services/wallets/getBalances';
 import { PublicKey } from '@solana/web3.js';
-import { formatNumber } from '../../utils';
-import { useStore } from '../../services/store';
+import { formatNumber } from '../../../utils';
+import { useStore } from '../../../services/store';
 import { 
   emitConnection, 
   emitDisconnection
-} from "../../services/sockets/user.socket";
+} from "../../../services/sockets/user.socket";
 
 export default defineComponent({
   components: {

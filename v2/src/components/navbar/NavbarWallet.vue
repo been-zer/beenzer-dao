@@ -1,9 +1,9 @@
 <script lang="ts">
-  import WalletMultiButton from './wallets/WalletMultiButton.vue';
+  import WalletMultiButton from '../modules/wallets/WalletMultiButton.vue';
   import SettingsButtons from './SettingsButtons.vue';
   import SocialButtons from './SocialButtons.vue';
   import NavMenu from './NavMenu.vue';
-  import { useStore } from '../services/store';
+  import { useStore } from '../../services/store';
 
   export default {
     setup() {
@@ -16,7 +16,7 @@
       return {
         isOpen: false,
         landing_url: "https://beenzer.app",
-        pfp: require("../assets/ico/profile.png"),
+        pfp: require("../../assets/ico/profile.png"),
       }
     },
     components: {

@@ -1,9 +1,9 @@
 <script lang='ts'>
-import WalletMultiButton from './wallets/WalletMultiButton.vue';
-import LocationSwitcher from './LocationSwitcher.vue';
-import SettingsButtons from './SettingsButtons.vue';
-import FooterBar from './FooterBar.vue';
-import { useStore } from '../services/store';
+import WalletMultiButton from '../modules/wallets/WalletMultiButton.vue';
+import LocationSwitcher from '../modules/switchers/LocationSwitcher.vue';
+import SettingsButtons from '../navbar/SettingsButtons.vue';
+import FooterBar from '../footer/FooterBar.vue';
+import { useStore } from '../../services/store';
 
 export default {
   components: {
@@ -12,17 +12,17 @@ export default {
     SettingsButtons,
     FooterBar
   },
+  data() {
+    return {
+      fireworks: require("../../assets/gif/fireworks.gif"),
+    }
+  },
   setup(){
     const store = useStore();
     return { 
       store,
     };
-  },
-  data() {
-    return {
-      fireworks: require("../assets/fireworks.gif"),
-    }
-  },
+  }
 }
 </script>
 <template>

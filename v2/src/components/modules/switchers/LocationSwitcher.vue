@@ -1,7 +1,7 @@
 <script lang='ts'>
-import { ref, watchEffect } from 'vue';
-import { useStore } from '../services/store';
-import { setLocation } from '../utils';
+import { watchEffect } from 'vue';
+import { useStore } from '../../../services/store';
+import { setLocation } from '../../../utils';
 
 export default {
   setup() {
