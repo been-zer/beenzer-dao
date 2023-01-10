@@ -54,15 +54,15 @@
 <nav :class="isOpen ? 'block' : 'hidden'" class="z-10 px-2 pt-2 pb-4  lg:flex sm:p-0">
   <div class="lg:flex block justify-between items-center rounded-xl">
       <!-- Profile -->
-      <div class="text-center mb-4 sm:mb-0 sm:ml-4 flex justify-center sm:text-left font-semibold text-sm"
+      <div class="text-center mb-4 sm:mb-0 sm:ml-4 sm:text-left font-semibold text-sm"
         v-if="store.state.username"
       >
-        <button>
+        <router-link class="flex justify-center " to="/profile">
           <img class="w-10 rounded-full mr-4" :src="pfp" alt="pfp" />
-        </button>
-        <div>
-          <span class="text-xs">Welcome,</span><br/>@{{store.state.username}}
-        </div>
+          <div>
+            <span class="text-xs">Welcome,</span><br/>@{{store.state.username}}
+          </div>
+        </router-link>
       </div>
       <nav-menu />
       <social-buttons />

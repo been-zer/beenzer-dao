@@ -12,7 +12,7 @@ export default {
     const store = useStore();
     const nf = Intl.NumberFormat();  
     
-    const pieData = { 
+    const donutData = { 
       series: [400, 200, 120, 80, 70, 50, 45, 30, 20, 17, 12, 10, 8],
       chartOptions: {
         chart: {
@@ -47,55 +47,69 @@ export default {
         },
         legend: false,
         labels: ['#1', '#2', '#3', '#4', '#5', '#6', '#7', '#8', '#9', '#10', '#11', '#12', '#13', '#14' ],
-        responsive: [{
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: 'bottom'
-            }
-          }
-        }],
+        // responsive: [{
+        //   breakpoint: 480,
+        //   options: {
+        //     chart: {
+        //       width: 200
+        //     },
+        //     legend: {
+        //       position: 'bottom'
+        //     }
+        //   }
+        // }],
       },
     };
 
-    const pieData2 = { 
-      series: [300, 55, 13, 43, 22],
+    const radarData = { 
+      series: [ 20, 100, 40, 30, 50, 80],
       chartOptions: {
+
         chart: {
-          type: 'donut',
+          type: 'radar',
+          foreColor: '#9CA3AF',
         },
-        labels: ['🏴‍☠️', '🇪🇸', '🇨🇭', '🇺🇸', '🇷🇺'],
-        legend: false,
-        responsive: [{
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 280
-            },
-            legend: {
-              position: 'bottom'
+        dataLabels: {
+          enabled: true
+        },
+        plotOptions: {
+          radar: {
+            size: 140,
+            polygons: {
+              strokeColors: '#e9e9e9',
+              fill: {
+                colors: ['#f8f8f8', '#fff']
+              }
             }
           }
-        }],
+        },
+        labels: ['🏴‍☠️', '🇪🇸', '🇨🇭', '🇺🇸', '🇷🇺', '🇦🇷'],
+        xaxis: {
+          categories: ['🏴‍☠️', '🇪🇸', '🇨🇭', '🇺🇸', '🇷🇺', '🇦🇷'],
+          labels: {
+            show: true,
+            
+          }
+        },
+        legend: false,
+        
         theme: {
           monochrome: {
             enabled: true,
             color: '#16a34a',
-            shadeTo: 'light',
+            shadeTo: store.state.dark ? 'dark' : 'light',
             shadeIntensity: 1
           }
         },
+       
       },
     };
 
     return {
       store,
       nf,
-      pieData,
-      pieData2,
+      donutData,
+      radarData,
     }
     
     
@@ -112,11 +126,17 @@ export default {
   </div>
   <div class="uppercase text-xs mt-6 px-2 sm:mx-8 tracking-widest text-gray-400 font-semibold">
     DISTRIBUTION BY WALLET
-    <apexchart class="mt-4 flex justify-center" type="donut" height="300" width="300" :options="pieData.chartOptions" :series="pieData.series"></apexchart>
+    <apexchart class="mt-4 flex justify-center" 
+    type="donut" height="300" width="300" 
+    :options="donutData.chartOptions" 
+    :series="donutData.series" />
   </div>
   <div class="uppercase text-xs mt-6 -mb-2 px-2 sm:mx-8 tracking-widest text-gray-400 font-semibold">
     DISTRIBUTION BY COUNTRY
-    <apexchart class="mt-4 flex justify-center" type="polarArea" height="300" width="300" :options="pieData2.chartOptions" :series="pieData2.series"></apexchart>
+    <apexchart class="mt-4 flex justify-center" 
+    type="polarArea" height="300" width="300" 
+    :options="radarData.chartOptions" 
+    :series="radarData.series" />
   </div>
 </div>
 </template>

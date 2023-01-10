@@ -1,10 +1,10 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
-import MintView from '../views/MintView.vue';
 import StakeView from '../views/StakeView.vue';
 import GovernanceView from '../views/GovernanceView.vue';
 import SocialsView from '../views/SocialsView.vue';
 import AppView from '../views/AppView.vue';
+import ProfileView from '../views/ProfileView.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -13,9 +13,9 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView
   },
   {
-    path: '/mint',
-    name: 'Mint',
-    component: MintView
+    path: '/profile',
+    name: 'Profile',
+    component: ProfileView
   },
   {
     path: '/stake',
