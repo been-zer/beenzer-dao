@@ -11,7 +11,7 @@ export default {
 </script>
 <template>
 <div>
-  <div class="flex flex-wrap" >
+  <div class="flex flex-wrap justify-center" >
     <ProfileDash />
     <NFTsDash />
   </div>

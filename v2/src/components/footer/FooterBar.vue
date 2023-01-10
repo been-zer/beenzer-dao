@@ -22,7 +22,7 @@ export default {
 }
 </script>
 <template>
-  <div class="p-4 text-center text-xs text-gray-400" > 
+  <div class="p-4 mt-12 text-center text-xs text-gray-400" > 
     <div class="flex justify-center items-center rounded-xl m-4">
       <!-- Server time -->
       <div class="text-center text-md tracking-widest font-semibold justify-center mr-8 text-gray-400">

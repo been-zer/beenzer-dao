@@ -21,14 +21,14 @@ export default {
 <template>
 <div class="flex justify-center p-4">
     <!-- Sound Button -->
-    <button class="rounded-full h-8 w-8 m-2 flex justify-center items-center shadow-xl border " 
+    <button class="rounded-full h-8 w-8 m-2 flex justify-center items-center shadow-xl" 
     @click="store.dispatch('switchSound')" 
     :class="store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-black/20 text-gray-600'">
       <img v-if="store.state.sound" :src="store.state.dark ? sound_white : sound_black" class="h-4 w-4"/>
       <img v-else :src="store.state.dark ? mute_white : mute_black" class="h-4 w-4"/>
     </button>
   <!-- Dark Button -->
-  <button class="rounded-full h-8 w-8 m-2 flex justify-center items-center shadow-xl border " 
+  <button class="rounded-full h-8 w-8 m-2 flex justify-center items-center shadow-xl" 
   @click="store.dispatch('switchDark')" 
   :class="store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-black/20 text-gray-600'">
     <svg v-if="store.state.dark" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

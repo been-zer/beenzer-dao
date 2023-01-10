@@ -25,14 +25,14 @@ export default {
 }
 </script>
 <template>
-    <div class="max-w-[900px] pb-12 text-center">
-      <div class="mt-6 uppercase text-lg tracking-widest text-gray-400 font-semibold">
-        YOUR
-      </div>
-      <div class="mb-8 uppercase text-3xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
-        COLLECTION
-      </div>
-      <lo class="flex flex-wrap justify-center">
+  <div class="max-w-[900px] pb-12 text-center">
+    <div class="mt-6 uppercase text-lg tracking-widest text-gray-400 font-semibold">
+      YOUR
+    </div>
+    <div class="mb-8 uppercase text-3xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+      COLLECTION
+    </div>
+    <lo class="flex flex-wrap justify-center rounded-xl">
       <div v-for="x of nfts" :key="x.token" >
         <div class="m-1 mt-4 text-sm">{{x.name}}</div>
         <button class="rounded-xl m-2  h-48 w-48 border border-gray-500">
@@ -42,9 +42,5 @@ export default {
         </button>
       </div>
     </lo>
-
-      
   </div>
-
-
 </template>

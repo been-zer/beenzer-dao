@@ -1,6 +1,5 @@
 <script>
 import { useStore } from '../../services/store';
-
 export default {
   setup() {
     const store = useStore();
@@ -10,29 +9,29 @@ export default {
 </script>
 <template>
   <div id="menu" class="z-22 sm:flex uppercase justify-center align-center rounded-3xl font-semibold px-4 py-3 mx-2 text-sm shadow-xl 2xl:mx-12" 
-  :class="store.state.dark ? 'bg-white/10 shadow-gray-700 text-gray-200' : 'bg-white text-gray-600'">
-    <div class="m-4 sm:m-0">
-      <router-link class="px-4" to="/">
+  :class="store.state.dark ? 'bg-white/10 shadow-gray-800 text-gray-200' : 'bg-white shadow-gray-200 text-gray-600'">
+    <div class="m-4 sm:m-0 hover:scale-110">
+      <router-link class="px-4 hover:animate-bounce" to="/">
         MINTING
       </router-link>
     </div>
-    <div class="m-4 sm:m-0">
-      <router-link class="px-4" to="/stake">
+    <div class="m-4 sm:m-0 hover:scale-110">
+      <router-link class="px-4 hover:animate-bounce" to="/stake">
         STAKING
       </router-link>
     </div>
-    <div class="m-4 sm:m-0">
-      <router-link class="px-4" to="/governance">
+    <div class="m-4 sm:m-0 hover:scale-110">
+      <router-link class="px-4 hover:animate-bounce" to="/governance">
         GOVERNANCE
       </router-link>
     </div>
-    <div class="m-4 sm:m-0">
-      <router-link class="px-4" to="/socials">
+    <div class="m-4 sm:m-0 hover:scale-110">
+      <router-link class="px-4 hover:animate-bounce" to="/socials">
         MARKETPLACE
       </router-link>
     </div>
-    <div class="m-4 sm:m-0">
-      <router-link class="px-4" to="/app">
+    <div class="m-4 sm:m-0 hover:scale-110">
+      <router-link class="px-4 hover:animate-bounce" to="/app">
         STATS
       </router-link>
     </div>
