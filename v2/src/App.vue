@@ -28,7 +28,7 @@ export default {
 </div>
 </template>
 
-<style lang="scss">
+<style >
 #app {
   text-align: center;
 }
@@ -55,6 +55,10 @@ html {
   border-radius: 20px;
   background:  linear-gradient(30deg, #1bd3247c, #21b913be);
   box-shadow: inset 0 0 6px #30d31b,
+}
+
+.apexcharts-tooltip span {
+  color: #fff !important;
 }
 </style>
 

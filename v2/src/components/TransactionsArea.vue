@@ -1,3 +1,4 @@
+<!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script lang="ts">
 // import LineChart from './charts/lineChart.ts';
 import { ref, watchEffect, Ref } from 'vue';
@@ -20,90 +21,75 @@ export default {
     const minted = ref(0);
     const burned = ref(0);
     const transfer = ref(0);
+    const mintedArr: Ref<Array<any>> = ref([]);
+    const burnedArr: Ref<Array<any>> = ref([]);
+    const transferArr: Ref<Array<any>> = ref([]);
     watchEffect(async () => {
       trans.value = await getTokenTransactions();
-      let volu = 0; let mint = 0; let burn = 0; let tran = 0;
+      trans.value = trans.value.reverse();
+      let volu = 0; let mint = 0; let burn = 0; let tran = 0; 
       trans.value.forEach((trans:TokenTransaction) => {
         volu += trans.amount;
-        if (trans.type == '⛏️ Mint') mint += trans.amount;
-        else if (trans.type == '🔥 Burn') burn += trans.amount;
-        else if (trans.type == '💸 Transfer') tran += trans.amount;
+        const dt = new Date(trans.date+' '+trans.time).getTime();
+        if (trans.type == '⛏️ Mint') { 
+          mint += trans.amount; 
+          mintedArr.value.push({x: dt, y: mint })
+        } else if (trans.type == '🔥 Burn') {
+          burn += trans.amount;
+          burnedArr.value.push({x: dt, y: burn })
+        } else if (trans.type == '💸 Transfer') {
+          tran += trans.amount;
+          transferArr.value.push({x: dt, y: tran })
+        }
       });
       volume.value = Math.floor(volu);
       minted.value = Math.floor(mint);
       burned.value = Math.floor(burn);
       transfer.value = Math.floor(tran);
+      mint
     });
     const cluster = process.env.VUE_APP_CLUSTER;
     const nf = Intl.NumberFormat();    
-    return {
-      store,
-      trans,
-      volume,
-      transfer,
-      minted,
-      burned,
-      cluster,
-      nf,
-    }
-  },
-  data () {
+    
     const lineData = { 
       series: [{
         name: '⛏️ Minted',
         color: 'green',
-        data: [{
-          x: 1,
-          y: 76,
-        }, {
-          x: 2,
-          y: 100
-        }, {
-          x: 3,
-          y: 76
-        }]
+        data: mintedArr.value
       },{
         name: '🔥 Burned',
         color: 'red',
-        data: [{
-          x: 1,
-          y: 44,
-        }, {
-          x: 2,
-          y: 55
-        }, {
-          x: 3,
-          y: 90
-        }]
+        data: burnedArr.value
       }, {
         name: '💸 Transfered',
         color: 'yellow',
-        data: [{
-          x: 1,
-          y: 23,
-        }, {
-          x: 2,
-          y: 55
-        }, {
-          x: 3,
-          y: 88
-        }],
+        data: transferArr.value
       }],
-      chart: {
-        type: 'area',
-        stacked: false,
-        height: 350,
-        zoom: {
-          type: 'x',
-          enabled: true,
-          autoScaleYaxis: true
-        },
-        toolbar: {
-          autoSelected: 'zoom'
-        }
-      },
       chartOptions: {
-        legend: { position: 'top' },
+        tooltip: {
+          theme: store.state.dark ? 'dark' : 'light',
+        },
+        chart: {
+          foreColor: '#9CA3AF',
+        },
+        xaxis: {
+          type: 'datetime'
+        },
+        yaxis: [
+          {
+            labels: {
+              formatter: function(val:number) {
+                return val.toFixed(0);
+              }
+            }
+          }
+        ],
+        dataLabels: {
+          enabled: false,
+        },
+        legend: { 
+          position: 'top' 
+        },
         fill: {
           type: 'gradient',
         },
@@ -121,13 +107,18 @@ export default {
         stroke: {
           width: 2,
         },
-        text: {
-          color: '#cccccc',
-        }
       },
     };
     return {
-      lineData
+      store,
+      trans,
+      volume,
+      transfer,
+      minted,
+      burned,
+      cluster,
+      nf,
+      lineData,
     }
   }
 }
@@ -192,8 +183,8 @@ export default {
       </div>
       <!-- <div class="flex flex-wrap" > -->
         <div class="mt-4">
-          <div class=" grid grid-cols-12 font-semibold text-gray-400 hover:text-yellow-500 justify-center align-center align-middle pb-2">
-            <div class="text-[11px] text-center col-span-2">
+          <div class=" grid grid-cols-12 font-semibold text-gray-400 ustify-center align-center align-middle pb-2">
+            <div class="text-[11px] text-center col-span-2 ml-2">
               Date
             </div>
             <div class="text-[11px] text-center col-span-2">
@@ -205,29 +196,29 @@ export default {
             <div class="text-[11px] text-center col-span-2">
               BEEN
             </div>
-            <div class="text-[11px] text-center col-span-2 -ml-4">
+            <div class="text-[11px] text-center col-span-2 ml-2">
               From
             </div>
-            <div class="text-[11px] text-center col-span-1 -ml-4">
+            <div class="text-[11px] text-center col-span-1 ml-2">
               To
             </div>
           </div>
           <lo class="max-h-56 min-h-56 h-56 max-w-[365px] min-w-[280px] flex flex-col align-start overflow-y-auto p-2 rounded-xl shadow-inner" 
           :class="store.state.dark ? 'bg-gray-700 shadow-white/20' : 'bg-gray-200 shadow-black/20'">
-            <div v-for="x of trans" :key="x.date+x.time">
-              <a class=" grid grid-cols-12 hover:font-semibold hover:text-yellow-500 justify-center align-center align-middle"
+            <div v-for="x of trans.reverse()" :key="x.date+x.time">
+              <a class=" grid grid-cols-12 hover:font-semibold justify-center align-center align-middle"
               :class="store.state.dark ? 'text-gray-300' : 'text-gray-500'"
               :href="'https://solscan.io/tx/'+x.signature+'?cluster='+cluster" target="_blank" >
                 <div class="text-[11px] text-left col-span-2" 
-                :class="markWallet(store.state.pubkey, x.sender) ? 'text-green-400 font-bold hover:text-yellow-500' : ''">
+                :class="markWallet(store.state.pubkey, x.sender) ? 'text-green-400 font-bold' : ''">
                   {{ x.date }}
                 </div>
                 <div class="text-[11px] text-left col-span-2 ml-3" 
-                :class="markWallet(store.state.pubkey, x.sender) ? 'text-green-400 font-bold hover:text-yellow-500' : ''">
+                :class="markWallet(store.state.pubkey, x.sender) ? 'text-green-400 font-bold' : ''">
                   {{ x.time }}
                 </div>
                 <div class="text-[11px] text-left col-span-3 ml-2" 
-                :class="markWallet(store.state.pubkey, x.sender) ? 'text-green-400 font-bold hover:text-yellow-500' : ''">
+                :class="markWallet(store.state.pubkey, x.sender) ? 'text-green-400 font-bold' : ''">
                   {{ x.type }}
                 </div>
                 <div class="flex text-[11px] text-left -ml-4 col-span-2 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
@@ -237,11 +228,11 @@ export default {
                   {{ nf.format(Math.floor(x.amount*100)/100).replaceAll(',', ' ') }}
                 </div>
                 <div class="z-0 text-[11px] text-left col-span-1"
-                :class="markWallet(store.state.pubkey, x.sender) ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 font-bold hover:text-yellow-500' : ''" >
+                :class="markWallet(store.state.pubkey, x.sender) ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 font-bold' : ''" >
                   {{ shortWallet(x.sender, 2) }}
                 </div>
                 <div class="text-[11px] text-right col-span-2"
-                :class="markWallet(store.state.pubkey, x.receiver) ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 font-bold hover:text-yellow-500' : ''" >
+                :class="markWallet(store.state.pubkey, x.receiver) ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 font-bold' : ''" >
                   {{ shortWallet(x.receiver, 2) }}
                 </div>
               </a>
@@ -249,23 +240,13 @@ export default {
           </lo>
         </div>
         <div class="uppercase text-xs mt-6 px-2 tracking-widest text-gray-400 font-semibold">
-          <apexchart class="mt-4 -mb-8 -ml-8 flex justify-center" type="line" height="280" width="400" :options="lineData.chartOptions" :series="lineData.series"></apexchart>
+          <apexchart class="mt-4 -mb-8 -ml-8 flex justify-center text-gray-400" 
+          type="area" height="280" width="380" theme="light"
+          :options="lineData.chartOptions" 
+          :series="lineData.series"/>
         </div>
-          <!-- <div class="w-1/2"> -->
-            <!-- <Bar class="m-h-24 h-24" /> -->
-            <!-- <div class="uppercase text-xs mt-3 tracking-widest text-gray-400 font-semibold">
-              Cumulative SOLPOT -->
-              <!-- <LineChart class="m-h-52 h-52" :chartData="chartData" :chartLabels="chartLabels" /> -->
-            <!-- </div>
-          </div> -->
-          <!-- <div class="uppercase text-xs mt-2 tracking-widest text-gray-400 font-semibold">
-            POT country distribution
-            <PolarChart class="m-h-24 h-24"/>
-          </div> -->
-
-  
-    <!-- </div> -->
   </div>
-
-
 </template>
+<style>
+
+</style>

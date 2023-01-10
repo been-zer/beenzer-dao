@@ -6,7 +6,8 @@ const SOLANA_RPC_URL = process.env.VUE_APP_SOLANA_RPC_URL as string;
 const SOLANA_CONNECTION = new Connection(SOLANA_RPC_URL);
 const TOKEN = process.env.VUE_APP_BEEN_TOKEN as string;
 const SYMBOL = 'BEEN';
-const TX_LIMIT = 20;
+const TX_LIMIT = 10;
+
 
 export interface TokenTransaction {
   date: string;
@@ -20,10 +21,10 @@ export interface TokenTransaction {
   token: string;
 }
 
-export const getTokenTransactions = async ( _token: string = TOKEN, _symbol: string = SYMBOL ): Promise<Array<TokenTransaction>> => {
+export const getTokenTransactions = async ( _token: string = TOKEN, _symbol: string = SYMBOL, _txLimit: number = TX_LIMIT ): Promise<Array<TokenTransaction>> => {
   const signatures = await SOLANA_CONNECTION.getConfirmedSignaturesForAddress2(
     new PublicKey(_token),
-    {limit: TX_LIMIT}
+    {limit: _txLimit}
   );
   console.log('trans', signatures);
   const signatureList = signatures.map((transaction:any)=>transaction.signature);
@@ -36,6 +37,9 @@ export const getTokenTransactions = async ( _token: string = TOKEN, _symbol: str
     const dateTimeArr = dateTimeStr.split(' ');
     const txLogs = transaction.meta.logMessages;
     let txType = '⛏️ Mint';
+    // let sender = '';
+    // let receiver = '';
+    // let amount = 0;
     txLogs.forEach((log:string) => {
       if ( log == "Program log: Instruction: TransferChecked" ) {
         txType = '💸 Transfer';

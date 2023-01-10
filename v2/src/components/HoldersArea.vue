@@ -4,15 +4,11 @@ import { ref, watchEffect } from 'vue';
 import { shortWallet, markWallet } from '../utils';
 import { useStore } from '../services/store';
 import { getTokenHolders } from '../services/getTokenHolders';
-import { LineChart } from './charts/lineChart.ts';
 
 export default {
   methods: {
     shortWallet,
     markWallet
-  },
-  components: {
-    LineChart,
   },
   setup () {
     const store = useStore();
@@ -53,7 +49,7 @@ export default {
           <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
             Total
           </p>
-          <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+          <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
             Supply
           </p>
           <p class="font-bold text-sm mt-2"
@@ -65,7 +61,7 @@ export default {
           <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
             Total
           </p>
-          <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+          <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
             Holders
           </p>
           <p class="font-bold text-sm mt-2"
@@ -77,7 +73,7 @@ export default {
           <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
             Average
           </p>
-          <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+          <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
             Holded
           </p>
           <p class="font-bold text-sm mt-2" 
@@ -89,7 +85,7 @@ export default {
           <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
             Total
           </p>
-          <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+          <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
             Flags
           </p>
           <p class="font-bold text-sm mt-2" 
@@ -100,7 +96,7 @@ export default {
       </div>
       <div class="flex flex-wrap" >
         <div class="w-full h-full mt-4">
-          <div class=" grid grid-cols-10 font-semibold text-gray-400 hover:text-yellow-500 justify-center align-center align-middle pb-2">
+          <div class=" grid grid-cols-10 font-semibold text-gray-400 justify-center align-center align-middle pb-2">
             <div class="text-[11px] text-left col-span-1">
               Rank
             </div>
@@ -120,18 +116,18 @@ export default {
               Flag
             </div>
           </div>
-          <lo class="max-h-96 min-h-96 h-96 max-w-[365px] min-w-[280px] flex flex-col align-start overflow-y-auto p-2 rounded-xl shadow-inner" 
+          <lo class="h-[520px] max-w-[365px] min-w-[280px] flex flex-col align-start overflow-y-auto p-2 rounded-xl shadow-inner" 
           :class="store.state.dark ? 'bg-gray-700 shadow-white/20' : 'bg-gray-200 shadow-black/20'">
             <div v-for="x of holders" :key="x.ranking">
-              <a class=" grid grid-cols-12 hover:font-semibold hover:text-yellow-500 justify-center align-center align-middle"
+              <a class=" grid grid-cols-12 hover:font-semibold  justify-center align-center align-middle"
               :class="store.state.dark ? 'text-gray-300' : 'text-gray-500'"
               :href="'https://solscan.io/address/'+x.holder+'?cluster='+cluster" target="_blank" >
                 <div class="text-[11px] text-left col-span-1 font-semibold" 
-                :class="markWallet(store.state.pubkey, x.holder) ? 'text-green-400 font-bold hover:text-yellow-500' : ''">
+                :class="markWallet(store.state.pubkey, x.holder) ? 'font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600' : ''">
                   #{{ x.ranking }}
                 </div>
                 <div class="text-[11px] text-center col-span-2" 
-                :class="markWallet(store.state.pubkey, x.holder) ? 'text-green-400 font-bold hover:text-yellow-500' : ''">
+                :class="markWallet(store.state.pubkey, x.holder) ? 'font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600' : ''">
                   {{ x.allocation }}
                 </div>
                 <div class="flex text-[11px] text-right col-span-3 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
@@ -141,11 +137,11 @@ export default {
                   {{ nf.format(x.amount).replaceAll(',', ' ') }}
                 </div>
                 <div class="text-[11px] text-left col-span-2"
-                :class="markWallet(store.state.pubkey, x.holder) ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 font-bold hover:text-yellow-500' : 'text-grey-600'" >
+                :class="markWallet(store.state.pubkey, x.holder) ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600 font-bold ' : 'text-grey-600'" >
                   {{ shortWallet(x.holder, 4) }}
                 </div>
                 <div class="text-[11px] text-right col-span-3"
-                :class="markWallet(store.state.pubkey, x.holder) ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 font-bold hover:text-yellow-500' : 'text-grey-600'" >
+                :class="markWallet(store.state.pubkey, x.holder) ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600 font-bold ' : 'text-grey-600'" >
                   {{ 'username' }}
                 </div>
                 <div class="text-xs text-center col-span-1" >
@@ -155,18 +151,6 @@ export default {
             </div>
           </lo>
         </div>
-          <div class="">
-            <Bar class="m-h-24 h-24" />
-            <div class="uppercase text-xs mt-3 tracking-widest text-gray-400 font-semibold">
-             <LineChart class="m-h-52 h-52" :chartData="chartData" :chartLabels="chartLabels" />
-            </div>
-          </div>
-          <!-- <div class="uppercase text-xs mt-2 tracking-widest text-gray-400 font-semibold">
-            POT country distribution
-            <PolarChart class="m-h-24 h-24"/>
-          </div> -->
-
-  
     </div>
   </div>
 

@@ -34,7 +34,7 @@ export interface User {
   _magiceden: string;
   _opensea: string;
   _appuser: boolean;
-  _created_ad: number,
+  _created_at: number,
   _timestamp: number
 }
 
