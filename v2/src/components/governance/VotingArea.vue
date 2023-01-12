@@ -104,32 +104,25 @@ export default {
 }
 </script>
 <template>
-  <!-- Play Panel. -->
-
-  <div class="m-auto w-full max-w-md p-2 mt-0">
-
-    <div class="rounded-xl shadow-xl" :class="this.checkbox ? 'shadow-green-600' : 'shadow-red-600'" >
-    <div class="min-h-[840px] rounded-xl pt-2 pb-10" :class="this.$store.state.dark ? 'bg-gray-800 shadow-gray-700' : 'bg-white'">
-     
-
-      <p class="mt-6 tracking-widestfont-semibold py-4 text-center uppercase text-sm tracking-widest font-semibold justify-center">
-        ⚖️ USE YOUR TOKENS TO VOTE ⚖️
-        </p>
-        <!-- Title Box -->
-        <div class="px-4 text-center mt-2">
+  <div class="p-2 max-w-md ">
+    <!-- Title Box -->
+    <div class="px-4 mt-8 text-center mt-2">
           <p class="uppercase text-xl tracking-widest text-gray-400 font-semibold">
             GOVERNANCE
           </p>
           <p class="uppercase text-6xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-800">
             BEENZER
           </p>
+          <p class="mt-6 tracking-widestfont-semibold py-4 text-center uppercase text-sm tracking-widest font-semibold justify-center">
+            ⚖️ USE YOUR TOKENS TO VOTE ⚖️
+            </p>
           <div class="py-4 text-center uppercase text-sm tracking-widest font-semibold justify-center">
 
             <div class="pl-2 pt-2">
             
               <p class="uppercase text-xl tracking-widestfont-semibold">
               NEXT VOTING ENDS IN
-              </p>
+            </p>
               <CountDown :target_date="date" class="text-2xl text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-400" />
             </div>    
 
@@ -188,8 +181,6 @@ export default {
         </div>
 
       <div>
-    </div>
-    </div>
   </div>
 </div>
 

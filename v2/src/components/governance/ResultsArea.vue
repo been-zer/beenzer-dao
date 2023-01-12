@@ -62,8 +62,7 @@ export default {
 <template>
   <!-- Right Panel -->
 
-  <div class="m-auto w-full max-w-md p-2 mt-0">
-    <div class="h-[840px] p-4 text-gray-600 rounded-xl text-center shadow-xl shadow-yellow-400" :class="this.$store.state.dark ? 'bg-gray-800' : 'bg-white'">
+  <div class="p-2 max-w-md ">
 
       <div class="uppercase text-sm tracking-widest text-gray-400 font-semibold mt-8">Voting</div>
       <div class="uppercase text-3xl tracking-widest text-gray-400 font-semibold">Stats</div>
@@ -180,5 +179,5 @@ export default {
   
     </div>
   </div>
-</div>
+
 </template>
