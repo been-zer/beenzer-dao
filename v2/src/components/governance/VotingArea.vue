@@ -8,15 +8,6 @@ export default {
   components: {
     CountDown,
   },
-  props: [
-    'potSOL',
-    'wallet',
-    'balance',
-    'tickets',
-    'yourNumbers',
-    'yourProbability',
-    'yourROI'
-  ],
   methods: {
     commitNumber () {
       this.$emit('commit', this.commitNumber)

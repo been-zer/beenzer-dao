@@ -1,7 +1,6 @@
 
 <script lang="ts">
 import { ref } from 'vue';
-import click_sound from '../../assets/sounds/beep.mp3';
 import VotingArea from './VotingArea.vue';
 import ResultsArea from './ResultsArea.vue';
 import { useStore } from '../../services/store';
@@ -10,11 +9,6 @@ export default {
   components: {
     VotingArea,
     ResultsArea
-  },
-  methods: {
-    commitNumber () {
-      this.$emit('commit', this.commitNumber)
-    },
   },
   data() {
     return {
@@ -26,9 +20,12 @@ export default {
   },
   setup () {
     const store = useStore();
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const clickSound = require('../../assets/sounds/beep.mp3');
     const selTab = ref('Vote')
     function onTab ( tab:string ) {
       selTab.value = tab;
+      clickSound.play();
     }
 
     return {
