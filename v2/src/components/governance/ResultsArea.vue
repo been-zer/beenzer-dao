@@ -60,7 +60,6 @@ export default {
 }
 </script>
 <template>
-  <!-- Right Panel -->
 
   <div class="p-2 max-w-md ">
 

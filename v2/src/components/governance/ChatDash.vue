@@ -2,13 +2,13 @@
 <script>
 import { ref } from 'vue';
 import click_sound from '../../assets/sounds/beep.mp3';
-import VotingArea from './VotingArea.vue';
-import ResultsArea from './ResultsArea.vue';
+import MessagesArea from './MessagesArea.vue';
+import ChatsArea from './ChatsArea.vue';
 
 export default {
   components: {
-    VotingArea,
-    ResultsArea
+    MessagesArea,
+    ChatsArea
   },
   props: [
     'potSOL',
@@ -39,10 +39,10 @@ export default {
 </script>
 <template>
 <div class="m-auto p-2 mt-0">
-  <div class="flex flex-wrap justify-center h-[840px] p-4 text-gray-600 rounded-xl text-center shadow-xl shadow-yellow-400" 
+  <div class="flex justify-center h-[840px] p-4 text-gray-600 rounded-xl text-center shadow-xl shadow-yellow-400" 
   :class="this.$store.state.dark ? 'bg-gray-800' : 'bg-white'">
-    <VotingArea />
-    <ResultsArea />
+    <MessagesArea />
+    <ChatsArea />
   </div>
 </div>
 
