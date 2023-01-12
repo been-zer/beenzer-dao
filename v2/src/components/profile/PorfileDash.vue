@@ -17,8 +17,8 @@ export default {
 </script>
 
 <template>
-  <div class="p-2">
-    <div class="rounded-xl text-center shadow-xl border" 
+  <div class="p-2 mr-8">
+    <div class="min-h-screen rounded-xl text-center shadow-xl border" 
     :class="store.state.dark ? 'bg-gray-800 shadow-white/20 border-gray-600' : 'bg-white shadow-black/20 border-gray-400'">
       <div class="">
         <CoverArea />

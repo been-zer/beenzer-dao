@@ -20,7 +20,7 @@ export default {
 }
 </script>
 <template>
-    <div class="mt-24 text-center">
+    <div class="mt-24  text-center">
       <div class="mt-6 uppercase text-lg tracking-widest text-gray-400 font-semibold">
         RANKING
       </div>

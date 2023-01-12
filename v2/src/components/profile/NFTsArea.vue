@@ -25,7 +25,7 @@ export default {
 }
 </script>
 <template>
-  <div class="max-w-[900px] pb-12 text-center">
+  <div class="max-w-[900px] sm:min-w-[900px] min-h-screen pb-12 text-center">
     <div class="mt-6 uppercase text-lg tracking-widest text-gray-400 font-semibold">
       YOUR
     </div>

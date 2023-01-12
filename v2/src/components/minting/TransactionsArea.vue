@@ -86,6 +86,13 @@ export default {
         },
         fill: {
           type: 'gradient',
+          gradient: {
+            shadeIntensity: 1,
+            opacityFrom: 0.7,
+            opacityTo: 0.9,
+            shade: store.state.dark ? 'dark' : 'light',
+            type: "horizontal"
+          }
         },
         markers: {
           size: 3,
