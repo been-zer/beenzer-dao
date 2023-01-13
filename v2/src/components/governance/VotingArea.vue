@@ -148,7 +148,7 @@ export default {
       <div class="my-2 flex w-full rounded-xl cursor-pointer border hover:bg-green-500 hover:text-white"
         :class="store.state.dark ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-400'">
         <div class="rounded-l-xl p-4 align-text-middle font-semibold w-12"
-        :class="store.state.dark ? 'bg-black/20 border-r border-gray-600' : 'bg-white/10 border-r border-gray-400'">
+        :class="store.state.dark ? 'bg-black/20 border-r border-gray-600' : 'bg-black/10 border-r border-gray-400'">
           D
         </div>
         <div class="text-center w-full rounded-r-xl p-2 my-2 font-bold -ml-12">
