@@ -67,7 +67,7 @@ export default {
           {{ x.msg }}
         </div>
         <div class="flex mb-4 ml-1 text-xs">
-          <div class="text-left text-green-500 font-semibold">
+          <div class="text-left font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-yellow-400">
             @{{ x.username }}
           </div>
           <div class="ml-4 text-gray-500">
@@ -86,7 +86,7 @@ export default {
             <div class="mr-4 text-gray-500">
               {{ x.date }}
             </div>
-            <div class="text-right pr-2 text-green-500 font-semibold">
+            <div class="text-right pr-2 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-yellow-400">
               @{{ x.username }}
             </div>
           </div>
