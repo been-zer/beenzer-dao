@@ -245,6 +245,113 @@ export default {
                 </div>
               </div>
             </div>
+            <div v-else-if="tokenSel==='BEENZ'">
+              <div class="mb-6">
+                <h1 class="text-gray-400 p-1">
+                  TOKEN ADDRESS
+                </h1>
+                <a class="text-sm hover:text-green-500 hover:font-semibold" target="_blank"
+                href="https://solscan.io/token/C883VsqqQoj39QpUzd54ncJes2Q8SubD24WWuDmsVa3n">
+                  C883VsqqQoj39QpUzd54ncJes2Q8SubD24WWuDmsVa3n
+                </a>
+              </div>
+              <div class="border border-white/50 rounded-xl text-left pl-2 py-4 mb-[10px]">
+                <div class="grid grid-cols-2 p-2">
+                  <div class="uppercase font-semibold">
+                    Token Type
+                  </div>
+                  <div class="ml-4">
+                    📜 &nbsp; Stock
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 p-2">
+                  <div class="uppercase font-semibold">
+                    Maximum Supply
+                  </div>
+                  <div class="ml-4">
+                    <span class="text-yellow-600 font-bold ml-1">
+                      ₿ 
+                    </span>
+                    &nbsp; &nbsp; 21,000,000
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 p-2">
+                  <div class="uppercase font-semibold">
+                    Decimals
+                  </div>
+                  <div class="ml-4">
+                    ➗ &nbsp; 2
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 p-2">
+                  <div class="uppercase font-semibold">
+                    Mint
+                  </div>
+                  <div class="ml-4">
+                    ❌ &nbsp; FALSE
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 p-2">
+                  <div class="uppercase font-semibold">
+                    Burn
+                  </div>
+                  <div class="ml-4">
+                    ❌ &nbsp; FALSE
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 p-2">
+                  <div class="uppercase font-semibold">
+                    Stake
+                  </div>
+                  <div class="ml-4">
+                    ❌ &nbsp; FALSE
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 p-2">
+                  <div class="uppercase font-semibold">
+                    Tradeable
+                  </div>
+                  <div class="ml-4">
+                    ✅ &nbsp; TRUE
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 p-2">
+                  <div class="uppercase font-semibold">
+                    Price
+                  </div>
+                  <div class="ml-4">
+                    📈 &nbsp; Market Price
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 p-2">
+                  <div class="uppercase font-semibold">
+                    App Utility
+                  </div>
+                  <div class="ml-4">
+                    💱 &nbsp; Money Transfer
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 p-2">
+                  <div class="uppercase font-semibold">
+                    Financial Utility
+                  </div>
+                  <div class="ml-4">
+                    <span class="text-purple-500 font-bold">
+                      ☉ 
+                    </span>
+                    &nbsp; &nbsp;SOL Dividend
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 p-2">
+                  <div class="uppercase font-semibold">
+                    Governance Utility
+                  </div>
+                  <div class="ml-4">
+                    💪 &nbsp; Voting Power
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div v-else>
