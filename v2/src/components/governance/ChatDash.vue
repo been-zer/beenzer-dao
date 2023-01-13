@@ -22,8 +22,8 @@ export default {
 </script>
 <template>
 <div class="m-auto p-2 mt-0">
-  <div class="flex justify-center h-[820px] p-4 text-gray-600 rounded-xl text-center shadow-xl" 
-  :class="store.state.dark ? 'shadow-white/20' : 'shadow-black/20'">
+  <div class="flex justify-center h-[820px] p-4 text-gray-600 rounded-xl text-center shadow-xl border-t" 
+  :class="store.state.dark ? 'shadow-white/20 border-white/20' : 'shadow-black/20 border-black/20'">
     <MessagesArea />
     <ChatsArea />
   </div>

@@ -1,6 +1,6 @@
 <script lang="ts">
 import { ref, Ref } from 'vue';
-import { shortWallet, markWallet } from '../../utils';
+import { shortWallet, markWallet, sleep } from '../../utils';
 import { useStore } from '../../services/store';
 
 export default {
@@ -19,16 +19,17 @@ export default {
       date:string 
     }
     const messages: Ref<Array<Message>> = ref([]);
-    function onEnter() {
+    async function onEnter() {
       // const date = new Date();
-      messages.value.push({ 
+      messages.value.unshift({ 
         pubkey: shortWallet(store.state.pubkey, 4),
         username: store.state.username,
         msg: msg.value, 
         date: '2013',
       });
       msg.value = '';
-      messages.value.push({ 
+      await sleep(2000)
+      messages.value.unshift({ 
         pubkey: 'beenzer',
         username: 'Beenzer bot',
         msg: 'Sorry my dear! We are still working on the chat functionality. It will be reayd very soon! Thanks for your patience.', 
@@ -48,7 +49,7 @@ export default {
 <template>
 <div class="p-2 w-[800px] relative rounded-tl-xl rounded-bl-xl shadow-inner overflow-y-scroll"
 :class="store.state.dark ? 'bg-white/10 shadow-white/20' : 'bg-black/10 shadow-black/20'">
-  <div class="p-2 fixed bottom-12 left-1/2 ml-10">
+  <div class="p-2 absolute bottom-4 left-1/2 transform -translate-x-1/2">
     <input type="text" class="text-center text-sm p-1 px-2 w-[300px] rounded-xl border border-green-500"
     id="msg" key="msg"
     :class="store.state.dark ? 'bg-black/20' : 'bg-white/20'"
@@ -71,6 +72,6 @@ export default {
     </div>
   </div>
 </div>
-
 </div>
 </template>
+
