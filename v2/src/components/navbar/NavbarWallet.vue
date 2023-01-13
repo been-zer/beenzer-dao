@@ -55,8 +55,7 @@
   <div class="lg:flex block justify-between items-center rounded-xl">
       <!-- Profile -->
       <div class="text-center mb-4 sm:mb-0 sm:ml-4 sm:text-left font-semibold text-sm"
-        v-if="store.state.username"
-      >
+      v-if="store.state.username">
         <router-link class="flex justify-center " to="/profile">
           <img class="w-10 rounded-full mr-4" :src="pfp" alt="pfp" />
           <div>
