@@ -59,11 +59,12 @@ export default {
   <div v-for="x of messages" :key="x.msg">
     <div v-if="store.state.pubkey===x.pubkey" class="flex justify-start w-full -mb-4">
       <div class="text-center flex align-bottom justify-center">
-        <img class="w-10 h-10 rounded-full mr-1 ml-2 m-auto mb-2" :src="require('../../assets/ico/profile.png')" alt="pfp" />
+        <img class="w-10 h-10 rounded-full mr-1 ml-2 m-auto mb-2" 
+        :src="require('../../assets/ico/profile.png')" alt="pfp" />
       </div>
       <div>
-        <div class="bg-black/20 p-2 px-8 my-2 rounded-xl rounded-bl-none w-[280px]"
-        :class="store.state.dark ? 'text-white/80' : 'text-black/80'">
+        <div class="p-2 px-8 my-2 rounded-xl rounded-bl-none w-[280px] shadow-lg"
+        :class="store.state.dark ? 'bg-black/40 text-white/80 shadow-white/10' : 'bg-white/40 text-black/80 shadow-black/10'">
           {{ x.msg }}
         </div>
         <div class="flex mb-4 ml-1 text-xs">
@@ -78,8 +79,8 @@ export default {
     </div>
     <div v-else class="flex justify-end w-full -mb-4">
       <div>
-        <div class="bg-black/20 p-2 px-8 my-2 rounded-xl rounded-br-none w-[280px]"
-        :class="store.state.dark ? 'text-white/80' : 'text-black/80'">
+        <div class="bg-black/20 p-2 px-8 my-2 rounded-xl rounded-br-none w-[280px] shadow-lg"
+        :class="store.state.dark ? 'bg-black/40 text-white/80 shadow-white/10' : 'bg-white/40 text-black/80 shadow-black/10'">
           {{ x.msg }}
         </div>
         <div class="flex justify-end text-xs mb-4 pl-4">

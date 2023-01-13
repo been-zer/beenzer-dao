@@ -98,14 +98,26 @@ export default {
   <!-- Mint Panel. -->
   <div class="m-auto w-full max-w-md p-2 mt-0">
 
-    <div class="rounded-xl shadow-xl" :class="this.checkbox ? 'shadow-green-600' : 'shadow-red-600'" >
-    <div class="rounded-xl pt-2 pb-6" :class="store.state.dark ? 'bg-gray-800 shadow-gray-700' : 'bg-white'">
-      <div class="flex justify-center px-4 text-center mt-10">
-        <div class="text-xl px-4">⛏️</div>
+    
+    <div class="rounded-xl shadow-xl" 
+    :class="this.checkbox ? 'shadow-green-600' : 'shadow-red-600'" >
+      <div class="rounded-xl pt-2 pb-6 relative" 
+      :class="store.state.dark ? 'bg-gray-800 shadow-gray-700' : 'bg-white'">
+        <div class="flex justify-center px-4 text-center mt-10">
+          <div class="text-xl px-4">⛏️</div>
           <MintSwitcher @checkbox="(checkbox) => checkBox(checkbox)" class="pt-1 pl-1" />
-        <div class="text-xl px-4">🔥</div>
-      </div>
+            <div class="text-xl px-4">🔥</div>
+          </div>
+          
+          <button class="absolute right-6 top-6 font-bold rounded-full border w-7 h-7 hover:bg-white/30">
+            <div v-if="true" class="text-center">
+              i
+            </div>
+            <div v-else class="text-center">
+              X
+            </div>
 
+          </button>
       <div v-if="checkbox">
         <!-- Title Box -->
         <div class="px-4 text-center mt-4">
@@ -268,11 +280,11 @@ export default {
               </div>
             </div>
             <div class="text-center">
-              <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">BEENZ</p>
+              <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">BEENZER</p>
               <div class="flex justify-center" >
                 <p class="font-bold text-md mt-2"
                   :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'"
-                > -{{ nf.format(BEENZ).replaceAll(',', ' ') }}</p>
+                > -{{ nf.format(BEENZER).replaceAll(',', ' ') }}</p>
               </div>
             </div>
           </div>

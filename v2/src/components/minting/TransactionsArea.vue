@@ -129,7 +129,7 @@ export default {
       <div class="mt-6 uppercase text-lg tracking-widest text-gray-400 font-semibold">
         LAST 1,000
       </div>
-      <div class="uppercase text-3xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+      <div class="uppercase text-3xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
         TRANSACTIONS
       </div>
       <div class="max-w-[365px] min-w-[280px] grid grid-cols-4 grid-flow-row gap-4 mt-4 align-center justify-center text-center">
@@ -137,7 +137,7 @@ export default {
           <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
             Total
           </p>
-          <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+          <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
             Volume
           </p>
           <p class="font-bold text-sm mt-2 -ml-1"
@@ -149,7 +149,7 @@ export default {
           <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
             Total
           </p>
-          <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+          <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
             Minted
           </p>
           <p class="font-bold text-sm mt-2"
@@ -161,7 +161,7 @@ export default {
           <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
             Total
           </p>
-          <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+          <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
             Burned
           </p>
           <p class="font-bold text-sm mt-2" 
@@ -173,7 +173,7 @@ export default {
           <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
             Total
           </p>
-          <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+          <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
             Transfer
           </p>
           <p class="font-bold text-sm mt-2" 
