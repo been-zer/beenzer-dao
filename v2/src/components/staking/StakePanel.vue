@@ -56,8 +56,7 @@ export default {
         }
         return
       }
-      else
-        return alert(`Number must be between 1 and ${nf.format(maxNumber)}, including both.`)     
+      else return alert(`Number must be between 1 and ${nf.format(maxNumber)}, including both.`)     
     }
     function deleteNum () {
       if (BEEN.value.length > 1)

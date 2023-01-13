@@ -10,22 +10,12 @@ export default {
     CountDown,
     MintSwitcher,
   },
-  methods: {
-    checkBox ( checkbox:boolean ) {
-      this.checkbox = checkbox;
-    },
-    infoBtn () {
-      this.info = !this.info;
-    },
-  },
   data() {
     return {
       date: "2023/1/1",
       date2: "2023/3/1",
-      checkbox: true,
       commitHover: false,
       commiting: false,
-      info: false,
     }
   },
   setup () {
@@ -40,6 +30,16 @@ export default {
     const maxNumber = 1000000;
     const tokenSel = ref('BEEN');
     const audio = new Audio('');
+    const info = ref(false);
+    const checkbox = ref(true);
+
+    function infoBtn () {
+      info.value = !info.value;
+    }
+
+    function checkBox ( check:boolean ) {
+      checkbox.value = check;
+    }
 
     // Keyboard functionality
     function clickNum (n:number) {
@@ -99,7 +99,11 @@ export default {
       SOL,
       DISCOUNT,
       tokenSel,
-      tokenSelector
+      tokenSelector,
+      info,
+      infoBtn,
+      checkbox,
+      checkBox
     }
   }
 }

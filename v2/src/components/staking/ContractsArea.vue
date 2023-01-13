@@ -192,7 +192,7 @@ export default {
       <div class="mt-12 uppercase text-lg tracking-widest text-gray-400 font-semibold">
         EXPIRED
       </div>
-      <div class="uppercase text-3xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
+      <div class="uppercase text-3xl px-20 tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
         CONTRACTS
       </div>
       <div class="mt-4">
