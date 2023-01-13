@@ -28,13 +28,13 @@ export default {
         const dt = new Date(trans.date+' '+trans.time).getTime();
         if (trans.type == '⛏️ Mint') { 
           mint += trans.amount; 
-          mintedArr.value.push({x: dt, y: mint })
+          mintedArr.value.push({ x: dt, y: mint })
         } else if (trans.type == '🔥 Burn') {
           burn += trans.amount;
-          burnedArr.value.push({x: dt, y: burn })
+          burnedArr.value.push({ x: dt, y: burn })
         } else if (trans.type == '💸 Transfer') {
           tran += trans.amount;
-          transferArr.value.push({x: dt, y: tran })
+          transferArr.value.push({ x: dt, y: tran })
         }
       });
       volume.value = Math.floor(volu);
