@@ -146,7 +146,7 @@ export default {
             </div>
             <div v-if="tokenSel==='BEEN'">
               <div class="mb-6">
-                <h1 class="text-gray-400 p-1">
+                <h1 class="text-gray-400 p-1 font-semibold">
                   TOKEN ADDRESS
                 </h1>
                 <a class="text-sm hover:text-green-500 hover:font-semibold" target="_blank"
@@ -247,7 +247,7 @@ export default {
             </div>
             <div v-else-if="tokenSel==='BEENZ'">
               <div class="mb-6">
-                <h1 class="text-gray-400 p-1">
+                <h1 class="text-gray-400 p-1 font-semibold">
                   TOKEN ADDRESS
                 </h1>
                 <a class="text-sm hover:text-green-500 hover:font-semibold" target="_blank"
