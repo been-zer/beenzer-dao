@@ -110,9 +110,9 @@ export default {
     :class="checkbox ? 'shadow-green-600' : 'shadow-red-600'" >
       <div class="rounded-xl pt-2 pb-6 relative" 
       :class="store.state.dark ? 'bg-gray-800 shadow-gray-700' : 'bg-white'">
-        <button class="absolute right-6 top-6 font-bold rounded-full border w-7 h-7 hover:bg-white/30"
+        <button class="absolute right-6 top-6 font-bold rounded-full border w-7 h-7"
         :onclick="() => ( infoBtn(), checkBox(true) )"
-        :class="store.state.dark ? 'border-gray-400' : 'border-gray-800'">
+        :class="store.state.dark ? 'border-gray-400 hover:bg-white/20' : 'border-gray-800 hover:bg-black/10'">
           <div v-if="info" class="text-center">
             ⛏️
           </div>
