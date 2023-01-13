@@ -1,13 +1,17 @@
 <script lang='ts'>
+import StakePanel from '../components/staking/StakePanel.vue';
+import StakeDash from '../components/staking/StakeDash.vue';
 
 export default {
   components: {
-
+    StakePanel,
+    StakeDash
   },
 }
 </script>
 <template>
-  <div class="h-screen w-screen flex flex-wrap top-24 left-0 right-0 justify-center align-center align-middle text-center" >
-    COMMING SOON -> MARCH 2023
+  <div class="flex flex-wrap mb-12" >
+    <StakePanel />
+    <StakeDash />
   </div>
 </template>
