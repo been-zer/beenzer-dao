@@ -28,7 +28,7 @@ export default {
         date: '2013',
       });
       msg.value = '';
-      await sleep(2000)
+      await sleep(1000)
       messages.value.unshift({ 
         pubkey: 'beenzer',
         username: 'Beenzer bot',

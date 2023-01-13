@@ -23,18 +23,26 @@ export default {
     <p class="my-2 uppercase tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
       CHATS
     </p>
-    <div class="h-[300px]">
+    <div class="h-[300px] px-2">
       <button class="my-2 p-2 w-full text-center border rounded-xl hover:border-green-500 bg-green-500"
       :class="store.state.dark ? 'bg-black/20 border-gray-800 text-white' : 'bg-white/20 border-gray-300 text-white'">
         General
       </button>
       <button class="my-2 p-2 w-full text-center border rounded-xl hover:border-green-500"
       :class="store.state.dark ? 'bg-black/20 border-gray-800 text-white' : 'bg-white/20 border-gray-300 text-black'">
-        FAQs
+        Announcements
       </button>
       <button class="my-2 p-2 w-full text-center border rounded-xl hover:border-green-500"
       :class="store.state.dark ? 'bg-black/20 border-gray-800 text-white' : 'bg-white/20 border-gray-300 text-black'">
-        Random
+        Telegram
+      </button>
+      <button class="my-2 p-2 w-full text-center border rounded-xl hover:border-green-500"
+      :class="store.state.dark ? 'bg-black/20 border-gray-800 text-white' : 'bg-white/20 border-gray-300 text-black'">
+        Discord
+      </button>
+      <button class="my-2 p-2 w-full text-center border rounded-xl hover:border-green-500"
+      :class="store.state.dark ? 'bg-black/20 border-gray-800 text-white' : 'bg-white/20 border-gray-300 text-black'">
+        FAQs
       </button>
     </div>
     <p class="my-4 uppercase tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
