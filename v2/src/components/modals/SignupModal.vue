@@ -108,7 +108,6 @@ export default {
         </div>
         <p class="m-2 uppercase text-lg sm:text-xl tracking-widest">
         </p>
-        
         <button class="m-2 mt-8 mx-12 sm:mx-36 p-3 rounded-3xl uppercase text-xl font-bold border border-gray-500 hover:border-green-600 text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400"
         @click="signUp()"
         >
@@ -130,7 +129,7 @@ export default {
   </div>
 </teleport>
 </template>
-<style lang="scss" scope>
+<style lang="scss" scoped>
 input {
   background-color: transparent;
   border: 2px solid rgb(103, 240, 11);

@@ -10,19 +10,7 @@ export default {
     CountDown,
     MintSwitcher,
   },
-  props: [
-    'potSOL',
-    'wallet',
-    'balance',
-    'tickets',
-    'yourNumbers',
-    'yourProbability',
-    'yourROI'
-  ],
   methods: {
-    commitNumber () {
-      this.$emit('commit', this.commitNumber)
-    },
     checkBox ( checkbox ) {
       this.checkbox = checkbox;
     }
@@ -125,7 +113,7 @@ export default {
             MINT OPEN
           </p>
           <a :href="'https://solscan.io/token/DoA5HLxcNGuqGb4wAfTXJZzAzt1juhgpYCxZpuvzgUTy'" target="_blank" >
-            <p class="uppercase text-6xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-800">
+            <p class="uppercase text-6xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-yellow-400">
               $BEEN
             </p>
           </a>
@@ -234,7 +222,7 @@ export default {
             BURN CLOSE
           </p>
           <a :href="'https://solscan.io/token/DoA5HLxcNGuqGb4wAfTXJZzAzt1juhgpYCxZpuvzgUTy'" target="_blank" >
-            <p class="uppercase text-6xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600">
+            <p class="uppercase text-6xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-400">
               $BEEN
             </p>
           </a>

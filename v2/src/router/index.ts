@@ -1,26 +1,21 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
-import StakeView from '../views/StakeView.vue';
+import MintingView from '../views/MintingView.vue';
+import StakingView from '../views/StakingView.vue';
 import GovernanceView from '../views/GovernanceView.vue';
-import SocialsView from '../views/SocialsView.vue';
-import AppView from '../views/AppView.vue';
+import MarketplaceView from '../views/MarketplaceView.vue';
+import StatsView from '../views/StatsView.vue';
 import ProfileView from '../views/ProfileView.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Home',
-    component: HomeView
+    name: 'Minting',
+    component: MintingView
   },
   {
-    path: '/profile',
-    name: 'Profile',
-    component: ProfileView
-  },
-  {
-    path: '/stake',
-    name: 'Stake',
-    component: StakeView
+    path: '/staking',
+    name: 'Staking',
+    component: StakingView
   },
   {
     path: '/governance',
@@ -28,15 +23,20 @@ const routes: Array<RouteRecordRaw> = [
     component: () => GovernanceView
   },
   {
-    path: '/socials',
-    name: 'Socials',
-    component: () => SocialsView
+    path: '/marketplace',
+    name: 'Marketplace',
+    component: () => MarketplaceView
   },
   {
-    path: '/app',
-    name: 'App',
-    component: () => AppView
-  }
+    path: '/stats',
+    name: 'Stats',
+    component: () => StatsView
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: ProfileView
+  },
 ]
 
 const router = createRouter({

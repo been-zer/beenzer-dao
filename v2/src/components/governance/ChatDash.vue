@@ -4,43 +4,26 @@ import { ref } from 'vue';
 import click_sound from '../../assets/sounds/beep.mp3';
 import MessagesArea from './MessagesArea.vue';
 import ChatsArea from './ChatsArea.vue';
+import { useStore } from '../../services/store';
 
 export default {
   components: {
     MessagesArea,
     ChatsArea
   },
-  props: [
-    'potSOL',
-    'wallet',
-    'balance',
-    'tickets',
-    'yourNumbers',
-    'yourProbability',
-    'yourROI'
-  ],
-  methods: {
-    commitNumber () {
-      this.$emit('commit', this.commitNumber)
-    },
-    checkBox ( checkbox ) {
-      this.checkbox = checkbox;
-    }
-  },
-  data() {
+  setup () {
+    const store = useStore();
+    
     return {
-      date: "2023/0/2",
-      checkbox: true,
-      commitHover: false,
-      commiting: false,
+      store,
     }
   }
 }
 </script>
 <template>
 <div class="m-auto p-2 mt-0">
-  <div class="flex justify-center h-[840px] p-4 text-gray-600 rounded-xl text-center shadow-xl shadow-yellow-400" 
-  :class="this.$store.state.dark ? 'bg-gray-800' : 'bg-white'">
+  <div class="flex justify-center h-[820px] p-4 text-gray-600 rounded-xl text-center shadow-xl" 
+  :class="store.state.dark ? 'shadow-white/20' : 'shadow-black/20'">
     <MessagesArea />
     <ChatsArea />
   </div>

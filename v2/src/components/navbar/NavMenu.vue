@@ -16,7 +16,7 @@ export default {
       </router-link>
     </div>
     <div class="m-4 sm:m-0 hover:scale-110">
-      <router-link class="px-4 hover:animate-bounce" to="/stake">
+      <router-link class="px-4 hover:animate-bounce" to="/staking">
         STAKING
       </router-link>
     </div>
@@ -26,12 +26,12 @@ export default {
       </router-link>
     </div>
     <div class="m-4 sm:m-0 hover:scale-110">
-      <router-link class="px-4 hover:animate-bounce" to="/socials">
+      <router-link class="px-4 hover:animate-bounce" to="/marketplace">
         MARKETPLACE
       </router-link>
     </div>
     <div class="m-4 sm:m-0 hover:scale-110">
-      <router-link class="px-4 hover:animate-bounce" to="/app">
+      <router-link class="px-4 hover:animate-bounce" to="/stats">
         STATS
       </router-link>
     </div>
