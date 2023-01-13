@@ -413,9 +413,6 @@ export default {
             </div>
           </div>
         </div>
-
-
-
         <div class="font-bold text-4xl text-center p-5 rounded-xl mx-6 mt-2 cursor-pointer border border-red-600"
         :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-600' : 'bg-gray-50 hover:bg-gray-200'"
         @click="$emit('commit', BEEN)"
@@ -425,13 +422,12 @@ export default {
             <a class="text-xl mr-5">
               🔥 BURN 
             </a>
-            {{ nf.format(BEEN).replaceAll(',', ' ') }}
+            {{ nf.format(Number(BEEN)).replaceAll(',', ' ') }}
             <a class="text-2xl ml-4 ">
               BEEN </a>
           </div>
-          <div v-else>{{ nf.format(BEEN).replaceAll(',', ' ') }} </div>
+          <div v-else>{{ nf.format(Number(BEEN)).replaceAll(',', ' ') }} </div>
         </div>
-        
         <div class="grid grid-cols-3 gap-1 text-s font-semibold text-center py-4 px-6 rounded-xl">
           <button @click="clickNum(1)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 rounded-tl-xl align-middle relative border">1</button>
           <button @click="clickNum(2)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 align-middle relative border">2</button>
@@ -446,7 +442,6 @@ export default {
           <button @click="clickNum(0)" :class="store.state.dark ? 'bg-gray-600 hover:bg-gray-400 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'" class="py-4 px-2 rounded-b-xl align-middle relative border">0</button>
           <button @click="deleteNum()" :class="store.state.dark ? 'bg-gray-600 hover:bg-red-600' : 'bg-gray-50 hover:bg-red-600'" class="py-2 px-2 rounded-3xl m-3 align-middle relative border border-red-600">🔥</button>          
         <div/>
-
       </div>
       </div>
       <div>
@@ -454,5 +449,4 @@ export default {
     </div>
   </div>
 </div>
-
 </template>

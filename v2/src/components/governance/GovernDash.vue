@@ -40,7 +40,8 @@ export default {
 </script>
 <template>
 <div class="m-auto p-2 mt-0">
-  <div class="h-[820px] rounded-xl text-center shadow-xl shadow-green-400 border-x border-b border-green-500/50" >
+  <div class="h-[820px] rounded-xl text-center shadow-xl shadow-green-400 border-x border-b border-green-500/50" 
+  :class="store.state.dark ? 'bg-gray-800 shadow-gray-700' : 'bg-white'">
   <div class="grid grid-cols-3 justify-between">
     <button class="text-center p-2 rounded-t-xl border"
     :onclick="() => onTab('Vote')"
@@ -71,5 +72,4 @@ export default {
   </div>
   </div>
 </div>
-
 </template>
