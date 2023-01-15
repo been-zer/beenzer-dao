@@ -1,11 +1,11 @@
 <script lang='ts'>
 import { ref } from 'vue';
 import { useNotification } from "@kyvg/vue3-notification";
-import { useStore } from '../../services/store';
-import { searchUsersSocket } from '../../services/sockets/user.socket';
-import { createUser } from '../../services/sockets/user.socket';
-import { sqlFilter } from '../../utils';
-import CountDown from '../modules/CountDown.vue';
+import { useStore } from '../../../services/store';
+import { searchUsersSocket } from '../../../services/sockets/user.socket';
+import { createUser } from '../../../services/sockets/user.socket';
+import { sqlFilter } from '../../../utils';
+import CountDown from '../CountDown.vue';
 
 export default {
   components: {
@@ -13,7 +13,7 @@ export default {
   },
   data () {
     return {
-      fireworks: require("../../assets/gif/fireworks.gif"),
+      fireworks: require("../../../assets/gif/fireworks.gif"),
       countdown_date: '2023/01/01',
     }
   },
@@ -61,7 +61,7 @@ export default {
 <teleport to="body">
   <notifications position="top left" class="mt-2" animation-type="velocity"/>
   <div :class="store.state.singup ? 'block' : 'hidden'">
-    <div ref="modal-backdrop" class="fixed z-10 inset-0 overflow-y-auto bg-opacity-50" 
+    <div ref="modal-backdrop" class="fixed z-40 inset-0 overflow-y-auto bg-opacity-50" 
     :class="store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-900 text-gray-700'">
       <img :src="fireworks" class="absolute mt-12 inset-0 m-auto opacity-30" />
       <div class="z-22 flex items-center justify-center min-h-screen text-center" >

@@ -1,8 +1,8 @@
 
 <script lang="ts">
 import { ref } from 'vue';
-import { useStore } from '../../services/store';
-import { getTime, getDate } from '../../utils';
+import { useStore } from '../../../services/store';
+import { getTime, getDate } from '../../../utils';
 
 export default {
   setup() {

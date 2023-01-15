@@ -1,7 +1,8 @@
 <script lang="ts">
-import WelcomeModal from './components/modals/WelcomeModal.vue';
-import NavbarWallet from './components/navbar/NavbarWallet.vue';
-import FooterBar from './components/footer/FooterBar.vue';
+import WelcomeModal from './components/modules/modals/WelcomeModal.vue';
+import SignupModal from './components/modules/modals/SignupModal.vue';
+import NavbarWallet from './components/modules/navbar/NavbarWallet.vue';
+import FooterBar from './components/modules/footer/FooterBar.vue';
 import { useStore } from './services/store'
 
 export default {
@@ -14,6 +15,7 @@ export default {
   },
   components: {
     WelcomeModal,
+    SignupModal,
     NavbarWallet,
     FooterBar
   },
@@ -26,6 +28,7 @@ export default {
   'bg-gray-100 shadow-gray-300 border-gray-900 text-gray-800'">
   <notifications position="top left" class="mt-2 cursor-pointer" animation-type="velocity"/>
   <welcome-modal/>
+  <signup-modal/>
   <navbar-wallet/>
   <router-view/>
   <footer-bar/>

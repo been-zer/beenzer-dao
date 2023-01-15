@@ -1,5 +1,5 @@
 <script>
-import { useStore } from '../../services/store';
+import { useStore } from '../../../services/store';
 export default {
   setup() {
     const store = useStore();

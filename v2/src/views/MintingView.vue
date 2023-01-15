@@ -3,15 +3,13 @@ import { watchEffect } from 'vue';
 import { useNotification } from '@kyvg/vue3-notification';
 import MintPanel from '../components/minting/MintPanel.vue';
 import MintDash from '../components/minting/MintDash.vue';
-import SignupModal from '../components/modals/SignupModal.vue';
-import { useStore } from '../services/store';
 import { getUsersFlags } from '../services/sockets/user.socket';
+import { useStore } from '../services/store';
 
 export default {
   components: {
     MintPanel,
-    MintDash,
-    SignupModal,
+    MintDash
   },
   setup() {
     getUsersFlags();
@@ -35,7 +33,6 @@ export default {
 </script>
 <template>
 <div>
-  <signup-modal/>
   <div class="flex flex-wrap mb-12" >
     <mint-panel/>
     <mint-dash/>

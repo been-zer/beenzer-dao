@@ -1,9 +1,9 @@
 <script lang='ts'>
-import WalletMultiButton from '../modules/wallets/WalletMultiButton.vue';
-import LocationSwitcher from '../modules/switchers/LocationSwitcher.vue';
+import WalletMultiButton from '../wallets/WalletMultiButton.vue';
+import LocationSwitcher from '../switchers/LocationSwitcher.vue';
 import SettingsButtons from '../navbar/SettingsButtons.vue';
 import FooterBar from '../footer/FooterBar.vue';
-import { useStore } from '../../services/store';
+import { useStore } from '../../../services/store';
 
 export default {
   components: {
@@ -14,7 +14,7 @@ export default {
   },
   data() {
     return {
-      fireworks: require("../../assets/gif/fireworks.gif"),
+      fireworks: require("../../../assets/gif/fireworks.gif"),
     }
   },
   setup(){
@@ -28,7 +28,7 @@ export default {
 <template>
 <teleport to="body">
   <div :class="store.state.welcome ? 'block' : 'hidden'">
-    <div ref="modal-backdrop" class="fixed z-20 inset-0 overflow-y-auto bg-opacity-50 " 
+    <div ref="modal-backdrop" class="fixed z-50 inset-0 overflow-y-auto bg-opacity-50 " 
     :class="store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
       <img :src="fireworks" class="absolute mt-12 inset-0 m-auto opacity-30" />
       <div class="z-22 flex items-center justify-center min-h-screen text-center" >

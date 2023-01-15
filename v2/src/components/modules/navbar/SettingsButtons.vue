@@ -1,5 +1,5 @@
 <script lang="ts">
-import { useStore } from '../../services/store';
+import { useStore } from '../../../services/store';
 
 export default {
   setup() {
@@ -10,10 +10,10 @@ export default {
     return {
       dark: true,
       sound: true,
-      sound_black: require("../../assets/ico/sound.png"),
-      sound_white: require("../../assets/ico/sound-white.png"),
-      mute_black: require("../../assets/ico/mute.png"),
-      mute_white: require("../../assets/ico/mute-white.png"),
+      sound_black: require("../../../assets/ico/sound.png"),
+      sound_white: require("../../../assets/ico/sound-white.png"),
+      mute_black: require("../../../assets/ico/mute.png"),
+      mute_white: require("../../../assets/ico/mute-white.png"),
     }
   }
 }
