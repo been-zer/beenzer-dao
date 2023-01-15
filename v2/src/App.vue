@@ -1,13 +1,29 @@
 <script lang="ts">
+import { watchEffect } from 'vue';
+import { useNotification } from '@kyvg/vue3-notification';
 import WelcomeModal from './components/modules/modals/WelcomeModal.vue';
 import SignupModal from './components/modules/modals/SignupModal.vue';
 import NavbarWallet from './components/modules/navbar/NavbarWallet.vue';
 import FooterBar from './components/modules/footer/FooterBar.vue';
+
 import { useStore } from './services/store'
 
 export default {
   setup() {
     const store = useStore();
+    const { notify } = useNotification();
+    let run = true;
+    watchEffect(() => {
+      if (run && store.state.username) {
+        notify({
+          title: "Welcome 👋",
+          text: `Hi ${store.state.username}! You have logged in successfully!`,
+          type: "success",
+        });
+        run = false;
+        return 0;
+      }
+    });
 
     return {
       store
