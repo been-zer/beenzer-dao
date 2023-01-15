@@ -1,4 +1,5 @@
 <script lang="ts">
+import WelcomeModal from './components/modals/WelcomeModal.vue';
 import NavbarWallet from './components/navbar/NavbarWallet.vue';
 import FooterBar from './components/footer/FooterBar.vue';
 import { useStore } from './services/store'
@@ -12,6 +13,7 @@ export default {
     }
   },
   components: {
+    WelcomeModal,
     NavbarWallet,
     FooterBar
   },
@@ -22,6 +24,8 @@ export default {
 <div :class="store.state.dark ? 
   'bg-gray-900 shadow-gray-700 border-gray-200 text-gray-200' : 
   'bg-gray-100 shadow-gray-300 border-gray-900 text-gray-800'">
+  <notifications position="top left" class="mt-2 cursor-pointer" animation-type="velocity"/>
+  <welcome-modal/>
   <navbar-wallet/>
   <router-view/>
   <footer-bar/>
