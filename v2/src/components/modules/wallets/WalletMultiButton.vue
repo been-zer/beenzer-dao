@@ -22,7 +22,7 @@ export default defineComponent({
   },
   props: {
     login: { type: Boolean, default: false},
-    featured: { type: Number, default: 8 },
+    featured: { type: Number, default: 1 },
     container: { type: String, default: "body" },
     logo: String,
     dark: Boolean,

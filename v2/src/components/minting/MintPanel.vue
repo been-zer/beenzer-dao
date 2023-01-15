@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 // import click_sound from '../../assets/sounds/beep.mp3';
 import InfoArea from './InfoArea.vue';
+import WalletArea from './WalletArea.vue';
 import MintSwitcher from '../modules/switchers/MintSwitcher.vue';
 import CountDown from '../modules/CountDown.vue';
 import { useStore } from '../../services/store';
@@ -9,6 +10,7 @@ import { useStore } from '../../services/store';
 export default {
   components: {
     InfoArea,
+    WalletArea,
     CountDown,
     MintSwitcher,
   },
@@ -33,10 +35,15 @@ export default {
     const tokenSel = ref('BEEN');
     const audio = new Audio('');
     const info = ref(false);
+    const wallet = ref(false);
     const checkbox = ref(true);
 
     function infoBtn () {
       info.value = !info.value;
+    }
+
+    function walletBtn () {
+      wallet.value = !wallet.value;
     }
 
     function checkBox ( check:boolean ) {
@@ -82,10 +89,6 @@ export default {
     }
 
     const commitPop = ref(false);
-
-    function tokenSelector (token:string) {
-      tokenSel.value = token;
-    }
     
     return {
       store,
@@ -101,9 +104,10 @@ export default {
       SOL,
       DISCOUNT,
       tokenSel,
-      tokenSelector,
       info,
       infoBtn,
+      wallet,
+      walletBtn,
       checkbox,
       checkBox
     }
@@ -117,27 +121,36 @@ export default {
       <div class="rounded-xl pt-2 pb-6 relative" 
       :class="store.state.dark ? 'bg-gray-800 shadow-gray-700' : 'bg-white'">
         <button class="absolute right-6 top-6 font-bold rounded-full border w-7 h-7"
-        :onclick="() => ( infoBtn(), checkBox(true) )"
+        :onclick="() => !wallet ? ( infoBtn(), checkBox(true) ) : ( walletBtn(), checkBox(true) )"
         :class="store.state.dark ? 'border-gray-400 hover:bg-white/20' : 'border-gray-800 hover:bg-black/10'">
           <div v-if="info" class="text-center">
             ⛏️
           </div>
-          <div v-else class="text-center">
+          <div v-else-if="!wallet" class="text-center">
             i
+          </div>
+          <div v-else class="text-center">
+            X
           </div>
         </button>
-        <button class="absolute right-6 top-6 font-bold rounded-full border w-7 h-7"
-        :onclick="() => ( checkBox(true) )"
+        <button class="absolute left-6 top-6 font-bold rounded-full border w-7 h-7"
+        :onclick="() => !info ? ( walletBtn(), checkBox(true) ) : ( infoBtn(), checkBox(true) )"
         :class="store.state.dark ? 'border-gray-400 hover:bg-white/20' : 'border-gray-800 hover:bg-black/10'">
-          <div v-if="info" class="text-center">
+          <div v-if="wallet" class="text-center">
             ⛏️
           </div>
+          <div v-else-if="!info" class="text-center mb-2">
+            👛
+          </div>
           <div v-else class="text-center">
-            i
+            X
           </div>
         </button>
         <div v-if="info">
           <InfoArea />
+        </div>
+        <div v-else-if="wallet">
+          <WalletArea />
         </div>
         <div v-else>
           <div class="flex justify-center px-4 text-center mt-10">
@@ -150,7 +163,7 @@ export default {
             </div>
           </div>
         </div>
-        <div v-if="(checkbox && !info)">
+        <div v-if="(checkbox && !info && !wallet)">
           <div class="px-4 text-center mt-4">
             <p class="uppercase text-xl tracking-widest text-gray-400 font-semibold">
               MINT OPEN
@@ -247,7 +260,7 @@ export default {
           <div/>
         </div>
       </div>
-      <div v-else-if="(!checkbox && !info)">
+      <div v-else-if="(!checkbox && !info && !wallet)">
         <div class="px-4 text-center mt-4">
           <p class="uppercase text-xl tracking-widest text-gray-400 font-semibold">
             BURN CLOSE

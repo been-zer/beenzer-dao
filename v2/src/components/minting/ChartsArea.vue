@@ -35,7 +35,8 @@ export default {
         },
         },
         stroke:{
-          colors:['#9CA3AF']
+          colors:['#66000000'],
+          width: 1
         },
         theme: {
           monochrome: {

@@ -38,7 +38,7 @@ export default {
 <template>
     <div class="p-0 sm:p-2 text-center">
       <div class="mt-6 uppercase text-lg tracking-widest text-gray-400 font-semibold">
-        RANKING
+        STOCK
       </div>
       <div class="uppercase text-3xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
         HOLDERS
