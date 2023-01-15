@@ -13,7 +13,7 @@ export default {
     const store = useStore();
     const nfts:Ref<NFT[]> = ref([]);
     watchEffect(async () => {
-      nfts.value = await getWalletNFTs(process.env.VUE_APP_MASTER_WALLET as string);
+      nfts.value = await getWalletNFTs(store.state.pubkey);
     });
     const nf = Intl.NumberFormat();    
     return {
