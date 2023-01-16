@@ -118,12 +118,62 @@ export default {
 }
 </script>
 <template>
-    <div class="p-0 sm:p-2 text-center">
-      <div class="mt-6 uppercase text-lg tracking-widest text-gray-400 font-semibold">
-        CURRENT
+  <div class="p-0 sm:p-2 text-center">
+    <div class="mt-6 uppercase text-lg tracking-widest text-gray-400 font-semibold">
+      STAKE
+    </div>
+    <div class="uppercase text-3xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+      CONTRACTS
+    </div>
+    <div class="max-w-[365px] min-w-[280px] grid grid-cols-4 grid-flow-row gap-4 mt-4 align-center justify-center text-center">
+      <div class="p-2 text-center -mr-4">
+        <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
+          BEEN
+        </p>
+        <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
+          Staked
+        </p>
+        <p class="font-bold text-sm mt-2"
+        :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'">
+        {{'420 666' }}
+        </p>
       </div>
-      <div class="uppercase text-3xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
-        CONTRACTS
+      <div class="p-2 text-center -mr-2">
+        <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
+          BEENZ
+        </p>
+        <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
+          Earned
+        </p>
+        <p class="font-bold text-sm mt-2"
+        :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'">
+        {{ '192 353' }}
+        </p>
+      </div>
+      <div class="p-2 text-center -ml-4">
+        <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
+          Contracts
+        </p>
+        <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
+          Live
+        </p>
+        <p class="font-bold text-sm mt-2" 
+        :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'" > 
+        {{ '📜 40 292' }}
+      </p>
+    </div>
+    <div class="p-2 text-center -ml-2">
+      <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
+        Contracts
+      </p>
+      <p class="uppercase text-xs tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
+        Expired
+      </p>
+      <p class="font-bold text-sm mt-2" 
+      :class="store.state.dark ? 'text-gray-300' : 'text-gray-600'" > 
+      {{ '📜 3 219' }}
+      </p>
+    </div>
       </div>
       <div class="mt-4">
         <div class=" grid grid-cols-12 font-semibold text-gray-400 ustify-center align-center align-middle pb-2">
@@ -146,7 +196,7 @@ export default {
             To
           </div>
         </div>
-        <lo class="max-w-sm h-xl flex flex-col align-start overflow-y-auto p-2 rounded-xl shadow-inner" 
+        <lo class="max-w-sm h-48 flex flex-col align-start overflow-y-auto p-2 rounded-xl shadow-inner" 
         :class="store.state.dark ? 'bg-gray-700 shadow-white/20' : 'bg-gray-200 shadow-black/20'">
           <div v-for="x of trans" :key="x.date+x.time">
             <a class=" grid grid-cols-12 hover:font-semibold justify-center align-center align-middle"
@@ -182,8 +232,11 @@ export default {
           </div>
         </lo>
       </div>
+      <div class="uppercase text-xs mt-8 px-2 sm:mx-8 tracking-widest text-gray-400 font-semibold">
+        CONTRACTS DISTRIBUTION BY MATURITY
+      </div>
       <apexchart class="mt-4 -mb-8 -ml-8 flex justify-center text-gray-400" 
-      type="bar" height="320" width="380" theme="light"
+      type="bar" height="300" width="380" theme="light"
       :options="barChart" 
       :series="barChart.series"/>
       

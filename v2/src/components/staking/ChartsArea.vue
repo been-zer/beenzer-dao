@@ -200,10 +200,7 @@ export default {
   </div>
   <div class="uppercase text-xs mt-8 px-2 sm:mx-8 tracking-widest text-gray-400 font-semibold">
     DISTRIBUTION BY WALLET
-    <apexchart class="mt-4 flex justify-center" 
-    type="donut" height="300" width="300" 
-    :options="donutData.chartOptions" 
-    :series="donutData.series" />
+   
   </div>
   <div class="uppercase text-left text-xs mt-8 -mb-2 px-2 sm:mx-8 tracking-widest text-gray-400 font-semibold">
     BEENZ/USD
