@@ -16,13 +16,13 @@ export default {
       </router-link>
     </div>
     <div class="m-4 sm:m-0 hover:scale-110">
-      <router-link class="px-4 hover:animate-bounce" to="/staking">
-        STAKING
+      <router-link class="px-4 hover:animate-bounce" to="/governance">
+        GOVERNANCE
       </router-link>
     </div>
     <div class="m-4 sm:m-0 hover:scale-110">
-      <router-link class="px-4 hover:animate-bounce" to="/governance">
-        GOVERNANCE
+      <router-link class="px-4 hover:animate-bounce" to="/staking">
+        STAKING
       </router-link>
     </div>
     <div class="m-4 sm:m-0 hover:scale-110">
