@@ -1,14 +1,14 @@
 <script>
 import ContractsArea from './ContractsArea.vue';
 import HoldersArea from './HoldersArea.vue';
-import ChartsArea from './ChartsArea.vue';
+import TreasuryArea from './TreasuryArea.vue';
 import { useStore } from '../../services/store';
 
 export default {
   components: {
     ContractsArea,
     HoldersArea,
-    ChartsArea,
+    TreasuryArea,
   },
   props: [
 
@@ -32,7 +32,7 @@ export default {
         <contracts-area />
       </div>
       <div>
-        <charts-area />
+        <treasury-area />
       </div> 
       <div>
         <holders-area />

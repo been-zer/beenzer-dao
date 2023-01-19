@@ -1,109 +1,27 @@
 <script lang="ts">
 // import PolarChart from './charts/polarChart';
 import { shortWallet, markWallet } from '../../utils';
+import CountDown from '../modules/CountDown.vue';
 import { useStore } from '../../services/store';
 
 export default {
+  components: {
+    CountDown
+  },
   methods: {
     shortWallet,
     markWallet
+  },
+  data () {
+    return {
+      date: '2023/02/01'
+    }
   },
   setup () {
     const store = useStore();
     const nf = Intl.NumberFormat();  
     
-    const donutData = { 
-      series: [400, 200, 120, 80, 70, 50, 45, 30, 20, 17, 12, 10, 8],
-      chartOptions: {
-        chart: {
-          type: 'donut',
-          foreColor: '#9CA3AF',
-        },
-        plotOptions: {
-          pie: {
-          donut: {
-            labels: {
-              show: true,
-              total: {
-                show: true,
-                color: '#16a34a',
-                label: 'Supply',
-                formatter: () => '999916',
-              }
-            }
-          }
-        },
-        },
-        stroke:{
-          colors:['#9CA3AF']
-        },
-        theme: {
-          monochrome: {
-            enabled: true,
-            color: '#16a34a',
-            shadeTo: store.state.dark ? 'dark' : 'light',
-            shadeIntensity: 1
-          }
-        },
-        legend: false,
-        labels: ['#1', '#2', '#3', '#4', '#5', '#6', '#7', '#8', '#9', '#10', '#11', '#12', '#13', '#14' ],
-        // responsive: [{
-        //   breakpoint: 480,
-        //   options: {
-        //     chart: {
-        //       width: 200
-        //     },
-        //     legend: {
-        //       position: 'bottom'
-        //     }
-        //   }
-        // }],
-      },
-    };
-
-    const radarData = { 
-      series: [ 20, 100, 40, 30, 50, 80],
-      chartOptions: {
-
-        chart: {
-          type: 'radar',
-          foreColor: '#9CA3AF',
-        },
-        dataLabels: {
-          enabled: true
-        },
-        plotOptions: {
-          radar: {
-            size: 140,
-            polygons: {
-              strokeColors: '#e9e9e9',
-              fill: {
-                colors: ['#f8f8f8', '#fff']
-              }
-            }
-          }
-        },
-        labels: ['🏴‍☠️', '🇪🇸', '🇨🇭', '🇺🇸', '🇷🇺', '🇦🇷'],
-        xaxis: {
-          categories: ['🏴‍☠️', '🇪🇸', '🇨🇭', '🇺🇸', '🇷🇺', '🇦🇷'],
-          labels: {
-            show: true,
-            
-          }
-        },
-        legend: false,
-        
-        theme: {
-          monochrome: {
-            enabled: true,
-            color: '#16a34a',
-            shadeTo: store.state.dark ? 'dark' : 'light',
-            shadeIntensity: 1
-          }
-        },
-       
-      },
-    };
+   
 
     const lineData = { 
       series: [{
@@ -182,7 +100,6 @@ export default {
     return {
       store,
       nf,
-      donutData,
       lineData,
     }
     
@@ -196,11 +113,25 @@ export default {
     BEENZ
   </div>
   <div class="uppercase text-3xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
-    DISTRIBUTION
+    TREASURY
   </div>
+  
+    <div class="py-4 text-center uppercase text-sm tracking-widest font-semibold justify-center">
+      <div class="pl-2 pt-2">
+        <p class="uppercase text-xl tracking-widest text-gray-400 font-semibold">
+          NEXT SOL DIVIDEND
+        </p>
+        <p class="uppercase text-3xl tracking-widestfont-semibold">
+          FEB  1  2023 
+        </p>
+        <CountDown :target_date="date" class="text-2xl text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-400" />
+      </div>    
+    </div>
+    CountDown
+    <CountDown :target_date="date" class="text-2xl uppercase p-4 text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-400" />
+  
   <div class="uppercase text-xs mt-8 px-2 sm:mx-8 tracking-widest text-gray-400 font-semibold">
-    DISTRIBUTION BY WALLET
-   
+    MARKET PRICE
   </div>
   <div class="uppercase text-left text-xs mt-8 -mb-2 px-2 sm:mx-8 tracking-widest text-gray-400 font-semibold">
     BEENZ/USD

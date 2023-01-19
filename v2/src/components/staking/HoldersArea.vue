@@ -181,7 +181,7 @@ export default {
           </div>
           <div class="flex text-[11px] text-right col-span-3 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
             <div class="text-xs mb-3 pl-1"> 
-              📍 
+               
             </div>
             {{ nf.format(x.amount).replaceAll(',', ' ') }}
           </div>
