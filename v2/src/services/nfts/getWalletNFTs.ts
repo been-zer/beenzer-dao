@@ -35,6 +35,7 @@ export const getWalletNFTs = async (
   const owner = new PublicKey(_pubkey);
   const rawNFTs = (await metaplex
     .nfts()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .findAllByOwner({ owner })) as Array<any>;
   const NFTs: NFT[] = [];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
