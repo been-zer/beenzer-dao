@@ -132,7 +132,7 @@ export default {
       <div class="uppercase text-3xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
         TRANSACTIONS
       </div>
-      <div class="max-w-[365px] min-w-[280px] grid grid-cols-4 grid-flow-row gap-4 mt-4 align-center justify-center text-center">
+      <div class="max-w-[330px] min-w-[280px] grid grid-cols-4 grid-flow-row gap-4 mt-4 align-center justify-center text-center">
         <div class="p-2 text-center -mr-4">
           <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
             Total
@@ -203,7 +203,7 @@ export default {
             To
           </div>
         </div>
-        <lo class="max-h-56 min-h-56 h-56 max-w-[365px] min-w-[280px] flex flex-col align-start overflow-y-auto p-2 rounded-xl shadow-inner" 
+        <lo class="max-h-56 min-h-56 h-56 max-w-[330px] min-w-[280px] flex flex-col align-start overflow-y-auto p-2 rounded-xl shadow-inner" 
         :class="store.state.dark ? 'bg-gray-700 shadow-white/20' : 'bg-gray-200 shadow-black/20'">
           <div v-for="x of trans" :key="x.date+x.time">
             <a class=" grid grid-cols-12 hover:font-semibold justify-center align-center align-middle"
@@ -241,7 +241,7 @@ export default {
       </div>
       <div class="uppercase text-xs mt-6 px-2 tracking-widest text-gray-400 font-semibold">
         <apexchart class="mt-4 -mb-8 -ml-8 flex justify-center text-gray-400" 
-        type="area" height="280" width="380" theme="light"
+        type="area" height="280" width="330" theme="light"
         :options="lineData.chartOptions" 
         :series="lineData.series"/>
       </div>

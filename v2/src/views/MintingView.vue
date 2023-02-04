@@ -18,7 +18,7 @@ export default {
 </script>
 <template>
 <div>
-  <div class="flex flex-wrap mb-12" >
+  <div class="flex flex-wrap mb-12 justify-center pt-4" >
     <mint-panel/>
     <mint-dash/>
   </div>

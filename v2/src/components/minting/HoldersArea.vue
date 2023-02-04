@@ -43,7 +43,7 @@ export default {
       <div class="uppercase text-3xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
         HOLDERS
       </div>
-      <div class="max-w-[365px] min-w-[280px] grid grid-cols-4 grid-flow-row gap-4 mt-4 align-center justify-center text-center">
+      <div class="max-w-[330px] min-w-[280px] grid grid-cols-4 grid-flow-row gap-4 mt-4 align-center justify-center text-center">
         <div class="p-2 text-center -mr-4">
           <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
             Total
@@ -115,7 +115,7 @@ export default {
               Flag
             </div>
           </div>
-          <lo class="h-[520px] max-w-[365px] min-w-[280px] flex flex-col align-start overflow-y-auto p-2 rounded-xl shadow-inner" 
+          <lo class="h-[520px] max-w-[330px] min-w-[280px] flex flex-col align-start overflow-y-auto p-2 rounded-xl shadow-inner" 
           :class="store.state.dark ? 'bg-gray-700 shadow-white/20' : 'bg-gray-200 shadow-black/20'">
             <div v-for="x of holders" :key="x.ranking">
               <a class=" grid grid-cols-12 hover:font-semibold  justify-center align-center align-middle"

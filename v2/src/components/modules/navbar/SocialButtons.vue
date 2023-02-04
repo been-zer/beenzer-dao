@@ -8,6 +8,7 @@ export default {
   },
   data () {
     return {
+      socials_btn: require("../../../assets/ico/socials.png"),
       twitter_img: require("../../../assets/ico/twitter.svg"),
       twitter_gif: require("../../../assets/ico/twitter.gif"),
       twitter_url: 'https://www.twitter.com/beenzer_app/',
@@ -36,13 +37,16 @@ export default {
       sound_white: require("../../../assets/ico/sound-white.png"),
       mute_black: require("../../../assets/ico/mute.png"),
       mute_white: require("../../../assets/ico/mute-white.png"),
+      show: false,
     }
   }
 }
 </script>
 
 <template>
-  <div class="flex flex-wrap justify-center items-center rounded-xl mt-8 sm:m-0">
+<div class="flex justify-center align-middle">
+  <div class="z-50 lg:absolute right-5 flex flex-wrap sm:block justify-center items-center rounded-xl" 
+   :class="store.state.dark ? 'bg-white/5 shadow-gray-800 text-gray-200' : 'bg-white shadow-gray-200 text-gray-600'" >
     <!-- Twitter Button -->
     <a :href="twitter_url" target="_blank">
       <button class="rounded-full h-10 w-10 m-2 flex justify-center items-center shadow-xl" 
@@ -111,4 +115,5 @@ export default {
       </button>
     </a>
   </div>
+</div>
 </template>
