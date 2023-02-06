@@ -33,7 +33,7 @@
       <a href="index.html" class="flex justify-center align-middle sm:mr-4">
         <img :src="logo" alt="beenzer-logo" class="rounded-full w-12 h-12" />
         <div v-if="store.state.welcome"
-        class="ml-3 mt-1 font-bold sm:text-4xl text-xl uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400">
+        class="ml-6 mt-1 font-bold sm:text-4xl text-xl uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400">
           Beenzer
         </div>
       </a>
