@@ -53,7 +53,7 @@ export default {
           <div class="mt-6 flex align-center justify-center">
             <wallet-multi-button :dark="store.state.dark" :login="true" />
           </div>
-          <div class="mt-6">
+          <div class="mt-10">
             <p class="text-sm tracking-widest font-semibold">
               FROM HERE YOU CAN:
             </p>

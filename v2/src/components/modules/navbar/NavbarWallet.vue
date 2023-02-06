@@ -25,7 +25,7 @@
   }
 </script>
 <template>
-<header class="px-4 py-4 xl:px-32 lg:flex justify-between" >
+<header class="px-4 py-4 sm:py-6 xl:px-32 lg:flex justify-between" >
   <div class="flex">
     <!-- Logo Area -->
     <div class="flex flex-wrap justify-between">
@@ -38,7 +38,7 @@
       </a>
     </div>
     <!-- Wallet Connect -->
-    <div class="ml-2 sm:ml-4 flex items-center justify-center"
+    <div class="ml-2 flex items-center justify-center"
     :class="store.state.welcome ? 'hidden' : 'block'">
       <wallet-multi-button :dark="store.state.dark"></wallet-multi-button>
     </div>
