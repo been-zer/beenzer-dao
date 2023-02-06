@@ -38,7 +38,7 @@
       </a>
     </div>
     <!-- Wallet Connect -->
-    <div class="xs:ml-4 flex items-center justify-center"
+    <div class="ml-2 sm:ml-4 flex items-center justify-center"
     :class="store.state.welcome ? 'hidden' : 'block'">
       <wallet-multi-button :dark="store.state.dark"></wallet-multi-button>
     </div>
