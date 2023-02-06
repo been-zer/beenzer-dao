@@ -38,12 +38,12 @@
       </a>
     </div>
     <!-- Wallet Connect -->
-    <div class="ml-4 flex items-center justify-center">
+    <div class="xs:ml-4 flex items-center justify-center">
       <wallet-multi-button :dark="store.state.dark"></wallet-multi-button>
     </div>
     <!-- Profile -->
     <div class="text-center font-semibold text-sm sm:ml-4" v-if="store.state.username">
-      <router-link class="flex justify-center text-left ml-2" to="/profile">
+      <router-link class="flex justify-center text-left xs:ml-2" to="/profile">
         <img class="w-12 h-12 rounded-full mr-4" :src="pfp" alt="pfp" />
         <div class="mt-1 hidden sm:block">
           <span class="text-md">Welcome,</span><br />@{{store.state.username}}
