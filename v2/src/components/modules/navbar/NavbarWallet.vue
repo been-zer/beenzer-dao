@@ -29,16 +29,17 @@
   <div class="flex">
     <!-- Logo Area -->
     <div class="flex flex-wrap justify-between">
-    <div class="p-0 sm:w-24 w-12">
-      <a href="index.html" class="flex justify-center align-middle">
+    <div class="p-0">
+      <a href="index.html" class="flex justify-center align-middle sm:mr-4">
         <img :src="logo" alt="beenzer-logo" class="rounded-full w-12 h-12" />
-        <!-- <span class="ml-3 font-bold sm:text-3xl text-xl uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400">
+        <div v-if="store.state.welcome"
+        class="ml-3 mt-1 font-bold sm:text-4xl text-xl uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400">
           Beenzer
-        </span> -->
+        </div>
       </a>
     </div>
     <!-- Wallet Connect -->
-    <div class="ml-2 flex items-center justify-center"
+    <div class="ml-2 flex justify-center"
     :class="store.state.welcome ? 'hidden' : 'block'">
       <wallet-multi-button :dark="store.state.dark"></wallet-multi-button>
     </div>
