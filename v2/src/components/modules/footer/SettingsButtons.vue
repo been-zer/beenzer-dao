@@ -10,23 +10,93 @@ export default {
     return {
       dark: true,
       sound: true,
+      colorModal: true,
       sound_black: require("../../../assets/ico/sound.png"),
       sound_white: require("../../../assets/ico/sound-white.png"),
       mute_black: require("../../../assets/ico/mute.png"),
       mute_white: require("../../../assets/ico/mute-white.png"),
+      userColor: {
+        white: 'white',
+        black: 'black',
+        red: 'red',
+        green: 'green',
+        blue: 'blue',
+        purple: 'purple',
+        pink: 'pink',
+        violet: 'violet'
+
+      }
     }
   }
 }
 </script>
 <template>
 <div class="flex justify-center p-4">
-    <!-- Sound Button -->
-    <button class="rounded-full h-8 w-8 m-2 flex justify-center items-center shadow-xl" 
-    @click="store.dispatch('switchSound')" 
+  <!-- Sound Button -->
+  <button class="rounded-full h-8 w-8 m-2 flex justify-center items-center shadow-xl" 
+  @click="store.dispatch('switchSound')" 
+  :class="store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-black/20 text-gray-600'">
+    <img v-if="store.state.sound" :src="store.state.dark ? sound_white : sound_black" class="h-4 w-4"/>
+    <img v-else :src="store.state.dark ? mute_white : mute_black" class="h-4 w-4"/>
+  </button>
+  <!-- Color Button -->
+  <button class="rounded-full h-8 w-8 m-2 flex justify-center items-center shadow-xl"
+    @click="colorModal=!colorModal"
     :class="store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-black/20 text-gray-600'">
-      <img v-if="store.state.sound" :src="store.state.dark ? sound_white : sound_black" class="h-4 w-4"/>
-      <img v-else :src="store.state.dark ? mute_white : mute_black" class="h-4 w-4"/>
-    </button>
+    <div class="h-4 w-4 bg-purple-500 rounded-full"></div>
+    <div v-if="colorModal"
+    class="z-50 absolute mt-60 flex flex-wrap justify-center w-36 p-2 rounded-xl shadow-xl"
+    :class="store.state.dark ? 'bg-gray-900 shadow-gray-700' : 'bg-white'">
+      <button class="rounded-full h-8 w-8 m-1 flex justify-center items-center shadow-xl" @click="colorModal=!colorModal"
+        :class="store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-black/20 text-gray-600'">
+        <div class="h-4 w-4 bg-purple-500 rounded-full"></div>
+      </button>
+      <button class="rounded-full h-8 w-8 m-1 flex justify-center items-center shadow-xl" @click="colorModal=!colorModal"
+        :class="store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-black/20 text-gray-600'">
+        <div class="h-4 w-4 bg-violet-500 rounded-full"></div>
+      </button>
+      <button class="rounded-full h-8 w-8 m-1 flex justify-center items-center shadow-xl" @click="colorModal=!colorModal"
+        :class="store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-black/20 text-gray-600'">
+        <div class="h-4 w-4 bg-white rounded-full"></div>
+      </button>
+      <button class="rounded-full h-8 w-8 m-1 flex justify-center items-center shadow-xl" @click="colorModal=!colorModal"
+        :class="store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-black/20 text-gray-600'">
+        <div class="h-4 w-4 bg-purple-500 rounded-full"></div>
+      </button>
+      <button class="rounded-full h-8 w-8 m-1 flex justify-center items-center shadow-xl" @click="colorModal=!colorModal"
+        :class="store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-black/20 text-gray-600'">
+        <div class="h-4 w-4 bg-violet-500 rounded-full"></div>
+      </button>
+      <button class="rounded-full h-8 w-8 m-1 flex justify-center items-center shadow-xl" @click="colorModal=!colorModal"
+        :class="store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-black/20 text-gray-600'">
+        <div class="h-4 w-4 bg-white rounded-full"></div>
+      </button>
+      <button class="rounded-full h-8 w-8 m-1 flex justify-center items-center shadow-xl" @click="colorModal=!colorModal"
+        :class="store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-black/20 text-gray-600'">
+        <div class="h-4 w-4 bg-purple-500 rounded-full"></div>
+      </button>
+      <button class="rounded-full h-8 w-8 m-1 flex justify-center items-center shadow-xl" @click="colorModal=!colorModal"
+        :class="store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-black/20 text-gray-600'">
+        <div class="h-4 w-4 bg-violet-500 rounded-full"></div>
+      </button>
+      <button class="rounded-full h-8 w-8 m-1 flex justify-center items-center shadow-xl" @click="colorModal=!colorModal"
+        :class="store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-black/20 text-gray-600'">
+        <div class="h-4 w-4 bg-white rounded-full"></div>
+      </button>
+      <button class="rounded-full h-8 w-8 m-1 flex justify-center items-center shadow-xl" @click="colorModal=!colorModal"
+        :class="store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-black/20 text-gray-600'">
+        <div class="h-4 w-4 bg-purple-500 rounded-full"></div>
+      </button>
+      <button class="rounded-full h-8 w-8 m-1 flex justify-center items-center shadow-xl" @click="colorModal=!colorModal"
+        :class="store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-black/20 text-gray-600'">
+        <div class="h-4 w-4 bg-violet-500 rounded-full"></div>
+      </button>
+      <button class="rounded-full h-8 w-8 m-1 flex justify-center items-center shadow-xl" @click="colorModal=!colorModal"
+        :class="store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-black/20 text-gray-600'">
+        <div class="h-4 w-4 bg-white rounded-full"></div>
+      </button>
+    </div>
+  </button>
   <!-- Dark Button -->
   <button class="rounded-full h-8 w-8 m-2 flex justify-center items-center shadow-xl" 
   @click="store.dispatch('switchDark')" 

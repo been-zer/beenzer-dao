@@ -45,7 +45,7 @@ export default {
 
 <template>
 <div class="flex justify-center align-middle">
-  <div class="z-50 lg:absolute right-5 flex flex-wrap sm:block justify-center items-center rounded-xl" 
+  <div class="z-10 lg:absolute right-5 flex flex-wrap sm:block justify-center items-center rounded-xl" 
    :class="store.state.dark ? 'bg-white/5 shadow-gray-800 text-gray-200' : 'bg-white shadow-gray-200 text-gray-600'" >
     <!-- Twitter Button -->
     <a :href="twitter_url" target="_blank">
