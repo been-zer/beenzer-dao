@@ -43,6 +43,7 @@ export default {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
+  font-size: large;
 }
 </style>
 

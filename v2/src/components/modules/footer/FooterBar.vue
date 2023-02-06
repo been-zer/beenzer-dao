@@ -48,14 +48,14 @@ export default {
         🏴‍☠️
       </div>
     </div>
-    <div class="mt-8">
-      Made with 💚 by Beenzer Team <br/>2022 © All rights reserved.
-    </div>
     <div class="mt-8 text-center text-md tracking-widest font-semibold justify-center text-gray-400">
       <span class="text-[11px] mr-2">
         USERS CONNECTED:
       </span>
       {{ store.state.users }}
+    </div>
+    <div class="mt-8">
+      Made with 💚 by Beenzer Team <br/>2022 © All rights reserved.
     </div>
   </div>
 </template>
