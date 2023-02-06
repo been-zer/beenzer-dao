@@ -1,7 +1,6 @@
 <script lang='ts'>
 import WalletMultiButton from '../wallets/WalletMultiButton.vue';
 import LocationSwitcher from '../switchers/LocationSwitcher.vue';
-import SettingsButtons from '../navbar/SettingsButtons.vue';
 import FooterBar from '../footer/FooterBar.vue';
 import { useStore } from '../../../services/store';
 
@@ -9,7 +8,6 @@ export default {
   components: {
     WalletMultiButton,
     LocationSwitcher,
-    SettingsButtons,
     FooterBar
   },
   data() {
@@ -55,33 +53,32 @@ export default {
           <div class="mt-6 flex align-center justify-center">
             <wallet-multi-button :dark="store.state.dark" :login="true" />
           </div>
-          <div class="mt-2">
-            <SettingsButtons/>
+          <div class="mt-6">
+            <p class="text-sm tracking-widest font-semibold">
+              FROM HERE YOU CAN:
+            </p>
+            <p class="mt-6 text-2xl tracking-wides font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+              1️. MINT $BEEN ⛏️
+            </p>
+            <p class="mt-6 text-2xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-yellow-400">
+              2️. BURN $BEEN 🔥
+            </p>
+            <p class="mt-6 text-2xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400">
+              3️. STAKE $BEEN 🚀
+            </p>
+            <p class="mt-6 text-2xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400">
+              4. EARN $BEENZ 💸
+            </p>
+            <p class="mt-6 text-2xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-yellow-400">
+              5. GOVERNANCE ⚖️
+            </p>
+            <p class="mt-6 text-2xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-yellow-400">
+              6. ECOSYSTEM STATS 🌱
+            </p>
+            <p class="mt-6 text-2xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-yellow-400">
+              7. BUSINESS ANALYTICS 🔎 
+            </p>
           </div>
-          <p class="mt-2 text-sm tracking-widest font-semibold">
-            FROM HERE YOU CAN:
-          </p>
-          <p class="mt-6 text-2xl tracking-wides font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
-            1️. MINT $BEEN ⛏️
-          </p>
-          <p class="mt-6 text-2xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-yellow-400">
-            2️. BURN $BEEN 🔥
-          </p>
-          <p class="mt-6 text-2xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400">
-            3️. STAKE $BEEN 🚀
-          </p>
-          <p class="mt-6 text-2xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400">
-            4. EARN $BEENZ 💸
-          </p>
-          <p class="mt-6 text-2xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-yellow-400">
-            5. GOVERNANCE ⚖️
-          </p>
-          <p class="mt-6 text-2xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-yellow-400">
-            6. ECOSYSTEM STATS 🌱
-          </p>
-          <p class="mt-6 text-2xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-yellow-400">
-            7. BUSINESS ANALYTICS 🔎 
-          </p>
           <div class="uppercase font-semibold text-yellow-500 mt-12 text-md text-semibold tracking-widest">
             ⚠️ We keep track of your location ⚠️
             <p class="mt-2 text-sm tracking-widest">

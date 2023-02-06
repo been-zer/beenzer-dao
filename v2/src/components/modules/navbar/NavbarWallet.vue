@@ -28,7 +28,7 @@
 <header class="px-4 py-4 lg:flex justify-between" >
   <div class="flex">
     <!-- Logo Area -->
-    <div class="flex flex-wrap justify-start">
+    <div class="flex flex-wrap justify-between">
     <div class="p-0 sm:w-24 w-12">
       <a href="index.html" class="flex justify-center align-middle">
         <img :src="logo" alt="beenzer-logo" class="rounded-full w-12 h-12" />
@@ -52,8 +52,8 @@
     </div>
     </div>
   </div>
-  <nav :class="isOpen ? 'block' : 'hidden'" class="flex flex-wrap justify-end">
-    <nav-menu class="m-4 mt-8 sm:m-0" />
+  <nav :class="isOpen ? 'block' : 'hidden'" class="flex flex-wrap justify-center">
+    <nav-menu class="m-4 mt-8 lg:m-0" />
   </nav> 
   <!-- Toogle nav -->
   <div class="lg:hidden absolute right-4 top-6" >

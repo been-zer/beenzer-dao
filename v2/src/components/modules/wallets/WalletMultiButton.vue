@@ -139,6 +139,11 @@ export default defineComponent({
       ...scope,
     };
   },
+  data () {
+    return {
+      daoLogo: require("../../../assets/img/logo.png"),
+    }
+  }
 });
 </script>
 
@@ -156,7 +161,7 @@ export default defineComponent({
           class="swv-button swv-button-trigger min-w-[140px]"
           @click="modalScope.openModal"
         >
-          Select Wallet
+          <img :src="daoLogo" class="h-8 w-8 -ml-2 mr-2 rounded-full"/> Select Wallet
         </button>
         <wallet-connect-button
           v-else-if="!publicKeyBase58"
