@@ -32,7 +32,7 @@ export default {
       <div class="z-22 flex items-center justify-center min-h-screen text-center" >
         <div class="z-90 min-h-[900px] m-2 xl:w-1/2 2xl:w-1/3 rounded-lg border border-white/20 text-center overflow-hidden p-8 flex flex-col justify-center shadow-xl shadow-yellow-800" 
         :class="store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'" >
-          <div class="uppercase text-lg tracking-widest text-gray-400 font-semibold mt-8">
+          <div class="uppercase text-lg tracking-widest text-gray-400 font-semibold mt-8 animate-pulse">
             WELCOME TO
           </div>
           <p class="uppercase px-4 sm:px-14 mx-4 text-4xl sm:text-6xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400">
