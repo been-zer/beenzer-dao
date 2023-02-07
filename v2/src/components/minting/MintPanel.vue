@@ -115,7 +115,7 @@ export default {
 }
 </script>
 <template>
-  <div class="m-auto w-full max-w-md p-2 mt-0">
+  <div class="m-auto w-[420px] p-2 mt-0">
     <div class="rounded-xl shadow-xl" 
     :class="checkbox ? 'shadow-green-600' : 'shadow-red-600'" >
       <div class="rounded-xl pt-2 pb-6 relative" 
