@@ -11,4 +11,9 @@ module.exports = defineConfig({
   chainWebpack: (config) => {
     config.plugins.delete("friendly-errors");
   },
+  build: {
+    babel: {
+      compact: true,
+    },
+  },
 });
