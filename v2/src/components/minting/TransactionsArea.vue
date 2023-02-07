@@ -132,7 +132,7 @@ export default {
       <div class="uppercase text-3xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
         TRANSACTIONS
       </div>
-      <div class="max-w-[330px] min-w-[280px] grid grid-cols-4 grid-flow-row gap-4 mt-4 align-center justify-center text-center">
+      <div class="max-w-[330px] min-w-[280px] grid grid-cols-4 grid-flow-row mt-4 align-center justify-center text-center">
         <div class="p-2 text-center -mr-4">
           <p class="uppercase text-[10px] tracking-widest text-gray-400 font-semibold">
             Total
