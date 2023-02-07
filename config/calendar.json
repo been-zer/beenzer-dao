@@ -1,0 +1,20 @@
+{
+  "today": {
+    "workingOn": "wathever",
+    "Excercise": false
+  },
+  "roadmap": [
+    {
+      "starts": "2023-02-01",
+      "ends": "2023-06-01",
+      "coders": 1,
+      "difficulty": 7
+    },
+    {
+      "starts": "2023-02-01",
+      "ends": "2023-06-01",
+      "coders": 1,
+      "difficulty": 7
+    }
+  ]
+}
