@@ -51,10 +51,10 @@ export default {
     :class="store.state.dark ? 'bg-gray-900 shadow-gray-700' : 'bg-white'">
       <!-- dark mode -->
       <button class="rounded-full h-8 w-8 m-1 flex justify-center items-center shadow-xl" 
-      @click="store.dispatch('dispatchUserColor', 'white')"
+      @click="store.dispatch('dispatchUserColor', 'white/90')"
       :class="store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-black/20 text-gray-600'"
       v-if="store.state.dark">
-        <div class="h-4 w-4 bg-white rounded-full"></div>
+        <div class="h-4 w-4 bg-white/90 rounded-full"></div>
       </button>
       <button class="rounded-full h-8 w-8 m-1 flex justify-center items-center shadow-xl" 
       @click="store.dispatch('dispatchUserColor', 'white/60')"
@@ -71,9 +71,9 @@ export default {
       <!-- light mode -->
       <div class="flex" v-if="!store.state.dark">
         <button class="rounded-full h-8 w-8 m-1 flex justify-center items-center shadow-xl" 
-        @click="store.dispatch('dispatchUserColor', 'black')"
+        @click="store.dispatch('dispatchUserColor', 'black/90')"
         :class="store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-black/20 text-gray-600'">
-          <div class="h-4 w-4 bg-black rounded-full"></div>
+          <div class="h-4 w-4 bg-black/90 rounded-full"></div>
         </button>
         <button class="rounded-full h-8 w-8 m-1 flex justify-center items-center shadow-xl" 
         @click="store.dispatch('dispatchUserColor', 'black/60')"
@@ -166,10 +166,10 @@ export default {
     </svg>
   </button>
 </div>
-<div class="bg-black shadow-black"></div>
+<div class="bg-black/90 shadow-black/90"></div>
 <div class="bg-black/60 shadow-black/60"></div>
 <div class="bg-black/20 shadow-black/20"></div>
-<div class="bg-white shadow-white"></div>
+<div class="bg-white/90 shadow-white/90"></div>
 <div class="bg-white/60 shadow-white/60"></div>
 <div class="bg-white/20 shadow-white/20"></div>
 <div class="bg-red-500 shadow-red-500"></div>
