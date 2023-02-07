@@ -80,10 +80,6 @@ export default {
           :class="store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-black/20 text-gray-600'">
           <div class="h-4 w-4 bg-black/30 rounded-full"></div>
         </button>
-        <button class="rounded-full h-8 w-8 m-1 flex justify-center items-center shadow-xl" @click="colorModal=!colorModal"
-          :class="store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-black/20 text-gray-600'">
-          <div class="h-4 w-4 bg-white/40 rounded-full"></div>
-        </button>
       </div>
       <!-- Red Colors -->
       <button class="rounded-full h-8 w-8 m-1 flex justify-center items-center shadow-xl" @click="colorModal=!colorModal"
