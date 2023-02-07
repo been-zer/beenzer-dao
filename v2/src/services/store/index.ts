@@ -12,7 +12,7 @@ export const store: Store<any> = createStore({
     welcome: true,
     pubkey: "",
     username: "",
-    userColor: "",
+    userColor: "white/60",
     ip: "",
     flag: "",
     country: "",
@@ -34,6 +34,9 @@ export const store: Store<any> = createStore({
     },
     dispatchUsername(store, username: string) {
       this.state.username = username;
+    },
+    dispatchUserColor(store, color: string) {
+      this.state.userColor = color;
     },
     setIp(store, ip: string) {
       this.state.ip = ip;

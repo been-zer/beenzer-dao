@@ -25,7 +25,7 @@
   }
 </script>
 <template>
-<header class="px-4 py-4 sm:py-6 xl:px-32 lg:flex justify-between" >
+<header class="px-4 py-4 sm:py-6 px-auto xl:px-12 2xl:px-24 lg:flex justify-between" >
   <div class="flex">
     <!-- Logo Area -->
     <div class="flex flex-wrap justify-between">
