@@ -166,5 +166,23 @@ export default {
     </svg>
   </button>
 </div>
+<div class="bg-black shadow-black"></div>
+<div class="bg-black/60 shadow-black/60"></div>
+<div class="bg-black/20 shadow-black/20"></div>
+<div class="bg-white shadow-white"></div>
+<div class="bg-white/60 shadow-white/60"></div>
+<div class="bg-white/20 shadow-white/20"></div>
+<div class="bg-red-500 shadow-red-500"></div>
+<div class="bg-orange-500 shadow-orange-500"></div>
+<div class="bg-yellow-500 shadow-yellow-500"></div>
+<div class="bg-green-500 shadow-green-500"></div>
+<div class="bg-emerald-500 shadow-emerald-500"></div>
+<div class="bg-lime-500 shadow-lime-500"></div>
+<div class="bg-blue-500 shadow-blue-500"></div>
+<div class="bg-sky-500 shadow-sky-500"></div>
+<div class="bg-cyan-500 shadow-cyan-500"></div>
+<div class="bg-purple-500 shadow-purple-500"></div>
+<div class="bg-fuchsia-500 shadow-fuchsia-500"></div>
+<div class="bg-pink-500 shadow-pink-500"></div>
 </div>
 </template>
