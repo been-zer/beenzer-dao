@@ -8,8 +8,8 @@ export default {
 }
 </script>
 <template>
-  <div id="menu" class="z-22 lg:flex uppercase justify-center align-center rounded-xl font-semibold px-4 py-3 mx-2 text-sm shadow-xl 2xl:mx-12" 
-  :class="store.state.dark ? 'bg-white/5 shadow-gray-800 text-gray-200' : 'bg-white shadow-gray-200 text-gray-600'">
+  <div id="menu" class="z-22 lg:flex uppercase justify-center align-center rounded-full font-semibold px-4 py-3 mx-2 text-sm shadow-sm 2xl:mx-12" 
+  :class="[store.state.dark ? 'bg-white/5 text-gray-200' : 'bg-white text-gray-600', `shadow-${store.state.userColor}`]">
     <div class="m-4 sm:m-0 hover:scale-110">
       <router-link class="px-4 hover:animate-bounce" to="/">
         MINTING
