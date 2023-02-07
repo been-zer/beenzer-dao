@@ -9,9 +9,6 @@ export default {
   data() {
     return {
       colorModal: false,
-      print: function print() {
-        console.log(this.colorModal)
-      },
       sound_black: require("../../../assets/ico/sound.png"),
       sound_white: require("../../../assets/ico/sound-white.png"),
       mute_black: require("../../../assets/ico/mute.png"),
@@ -32,6 +29,8 @@ export default {
 }
 </script>
 <template>
+<div>
+<div class="z-50 absolute top-0 -bottom-50 h-full left-0 right-0 w-full" @click="colorModal=false" v-if="colorModal"></div>
 <div class="flex justify-center p-4">
   <!-- Sound Button -->
   <button class="rounded-full h-8 w-8 m-2 flex justify-center items-center shadow-xl" 
@@ -45,9 +44,7 @@ export default {
     @click="colorModal=!colorModal"
     :class="store.state.dark ? 'bg-white/10 shadow-gray-700 border-white/20 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 border-black/20 text-gray-600'">
     <div class="h-4 w-4 bg-purple-500 rounded-full"></div>
-    <button class="z-10 absolute h-screen w-screen" 
-    @click="[colorModal=false, print()]" 
-    :class="colorModal ? 'block' : 'hidden'"></button>
+    
     <div v-if="colorModal"
     class="z-50 absolute mt-72 mb-4 pb-4 flex flex-wrap justify-center w-36 p-2 rounded-xl shadow-xl"
     :class="store.state.dark ? 'bg-gray-900 shadow-gray-700' : 'bg-white'">
@@ -153,5 +150,6 @@ export default {
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
     </svg>
   </button>
+</div>
 </div>
 </template>

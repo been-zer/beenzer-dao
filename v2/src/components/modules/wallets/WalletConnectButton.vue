@@ -15,7 +15,7 @@ export default defineComponent({
     const { wallet, connect, connecting, connected } = useWallet();
 
     const content = computed(() => {
-      if (connecting.value) return "Connecting ...";
+      if (connecting.value) return "Connecting...";
       if (connected.value) return "Connected";
       if (wallet.value) return "Connect";
       return "Connect Wallet";
