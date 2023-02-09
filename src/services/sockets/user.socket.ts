@@ -1,18 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { socket } from './';
-import { useStore } from '../store';
+import { socket } from "./";
+import { useStore } from "../store";
 import { useNotification } from "@kyvg/vue3-notification";
-import { 
-  User,
-  UsersFlags,
-} from '../../types';
+import { User, UsersFlags } from "../../types";
 
 const store = useStore();
-const { notify }  = useNotification();
+const { notify } = useNotification();
 
 // export const onServerConnection = () => {
-//   socket.on('serverConnection', (message: string) => { 
-//     console.log(message) 
+//   socket.on('serverConnection', (message: string) => {
+//     console.log(message)
 //   });
 // };
 
@@ -25,42 +22,42 @@ const { notify }  = useNotification();
 // };
 
 export const emitConnection = (pubkey: string) => {
-  socket.emit('newConnection', pubkey);
-  socket.off('newConnection');
+  socket.emit("newConnection", pubkey);
+  socket.off("newConnection");
   console.log(pubkey);
-  socket.off('newConnection');
+  socket.off("newConnection");
 };
 
 export const emitDisconnection = (pubkey: string) => {
-  socket.emit('newDisconnection', pubkey);
-  socket.off('newDisonnection');
+  socket.emit("newDisconnection", pubkey);
+  socket.off("newDisonnection");
 };
 
 export const searchUsersSocket = (username: string) => {
-  socket.emit('searchUsers', username);
-  socket.on('searchUsersRes', (res: Array<any>) => {
+  socket.emit("searchUsers", username);
+  socket.on("searchUsersRes", (res: Array<any>) => {
     if (res.length === 0) {
-      store.dispatch('switchUsernameAv', true);
+      store.dispatch("switchUsernameAv", true);
     } else {
-      store.dispatch('switchUsernameAv', false);
+      store.dispatch("switchUsernameAv", false);
     }
   });
 };
 
 export const createUser = (username: string) => {
-  if ( store.state.pubkey ) {
-    socket.emit('newUser', store.state.pubkey, username, false);
-    socket.on('newUserCreated', (created: boolean) => {
+  if (store.state.pubkey) {
+    socket.emit("newUser", store.state.pubkey, username, false);
+    socket.on("newUserCreated", (created: boolean) => {
       if (created) {
         notify({
           title: "Congrats! 🎉",
           text: "New user created!",
           type: "success",
         });
-        store.dispatch('switchSignup', false);
-        store.dispatch('switchUsernameAv', false);
+        store.dispatch("switchSignup", false);
+        store.dispatch("switchUsernameAv", false);
       } else {
-        console.log('ERROR: Could not create user. Please try again.');
+        console.log("ERROR: Could not create user. Please try again.");
         notify({
           title: "Error",
           text: "Your account creation failed. Please try again.",
@@ -69,23 +66,23 @@ export const createUser = (username: string) => {
       }
     });
   } else {
-    console.log('ERROR: Could not create user. Connect your wallet first!');
+    console.log("ERROR: Could not create user. Connect your wallet first!");
   }
 };
 
 export const userInfo = () => {
-  socket.on('userInfo', (userInfo: Array<User>) => {
-    console.log('userInfo', userInfo);
-    const username = userInfo[0]._username_;
-    store.dispatch('dispatchUsername', username);
-    socket.off('userInfo');
+  socket.on("userInfo", (userInfo: User) => {
+    console.log("userInfo", userInfo);
+    const username = userInfo._username_;
+    store.dispatch("dispatchUsername", username);
+    socket.off("userInfo");
   });
 };
 
 export const getUsersFlags = () => {
-  socket.on('getUsersFlagsRes', (usersFlags: Array<UsersFlags>) => {
-    console.log('usersFlags', usersFlags);
-    store.dispatch('setUsersFlags', usersFlags);
-    if (usersFlags.length > 0) socket.off('userInfo');
+  socket.on("getUsersFlagsRes", (usersFlags: Array<UsersFlags>) => {
+    console.log("usersFlags", usersFlags);
+    store.dispatch("setUsersFlags", usersFlags);
+    if (usersFlags.length > 0) socket.off("userInfo");
   });
 };
