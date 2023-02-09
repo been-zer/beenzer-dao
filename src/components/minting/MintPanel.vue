@@ -16,8 +16,8 @@ export default {
   },
   data() {
     return {
-      date: "2023/1/1",
-      date2: "2023/3/1",
+      date: "2023/5/1",
+      date2: "2023/6/1",
       commitHover: false,
       commiting: false,
     }
@@ -179,7 +179,7 @@ export default {
                   DISC. {{ DISCOUNT }}% 🎉 FINISHES
                 </p>
                 <p class="uppercase text-3xl tracking-widestfont-semibold">
-                  FEB  1  2023 
+                  MAY  1  2023 
                 </p>
                 <CountDown :target_date="date" class="text-2xl text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-400" />
               </div>    
@@ -276,7 +276,7 @@ export default {
                 BURN 🔥 STARTS
               </p>
               <p class="uppercase text-3xl tracking-widestfont-semibold">
-                APRIL  1  2023 
+                JUNE  1  2023 
               </p>
               <CountDown :target_date="date2" class="text-2xl text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400" />
             </div>    
