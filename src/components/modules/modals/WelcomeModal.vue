@@ -3,6 +3,7 @@ import WalletMultiButton from '../wallets/WalletMultiButton.vue';
 import LocationSwitcher from '../switchers/LocationSwitcher.vue';
 import FooterBar from '../footer/FooterBar.vue';
 import { useStore } from '../../../services/store';
+import { getUserInfo } from "../../../services/sockets/user.socket";
 
 export default {
   components: {
@@ -16,6 +17,7 @@ export default {
     }
   },
   setup(){
+    getUserInfo(); // Send socket to retreive user profile
     const store = useStore();
     return { 
       store,
