@@ -79,8 +79,8 @@ export const userInfo = () => {
   });
 };
 
-export const getUserInfo = () => {
-  socket.emit("getUser", store.state.pubkey);
+export const getUserInfo = (pubkey: string) => {
+  socket.emit("getUser", pubkey);
 };
 
 export const getUsersFlags = () => {

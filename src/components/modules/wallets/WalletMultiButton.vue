@@ -13,6 +13,7 @@ import {
   emitConnection, 
   emitDisconnection
 } from "../../../services/sockets/user.socket";
+import { getUserInfo } from "../../../services/sockets/user.socket";
 
 export default defineComponent({
   components: {
@@ -61,6 +62,8 @@ export default defineComponent({
           store.dispatch('switchWelcome', false);
           emitConnection(publicKeyBase58.value as string);
           store.dispatch('dispatchPubkey', publicKeyBase58.value);
+          getUserInfo(publicKeyBase58.value); // Send socket to retreive user profile
+
         }
       }
     };

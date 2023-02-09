@@ -17,6 +17,8 @@ export interface User {
   __pubkey__: string;
   _username_: string;
   _pfp: string;
+  _name: string;
+  _lastname: string;
   _description: string;
   _birthdate: string;
   _country: string;
@@ -34,8 +36,8 @@ export interface User {
   _magiceden: string;
   _opensea: string;
   _appuser: boolean;
-  _created_at: number,
-  _timestamp: number
+  _created_at: number;
+  _timestamp: number;
 }
 
 export interface UserState {

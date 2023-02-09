@@ -17,7 +17,6 @@ export default {
     }
   },
   setup(){
-    getUserInfo(); // Send socket to retreive user profile
     const store = useStore();
     return { 
       store,
