@@ -18,7 +18,6 @@ export function socketConnection(): Socket {
     store.dispatch("switchSignup", isNew);
   });
   socket.on("getUserRes", (userInfo: User) => {
-    console.log(userInfo);
     if (userInfo) {
       store.dispatch("dispatchUsername", userInfo._username_);
     } else {
