@@ -37,8 +37,10 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
-, "src/services/store/stor.ets", "src/services/store/stor.ets"  ],
+    "tests/**/*.tsx", 
+    "src/services/store/stor.ets", 
+    "src/services/store/stor.ets"  
+  ],
   "exclude": [
     "node_modules"
   ]

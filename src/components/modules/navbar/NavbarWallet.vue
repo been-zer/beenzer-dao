@@ -1,7 +1,7 @@
 <script lang="ts">
+  import { useStore } from '../../../services/store';
   import WalletMultiButton from '../wallets/WalletMultiButton.vue';
   import NavMenu from './NavMenu.vue';
-  import { useStore } from '../../../services/store';
 
   export default {
     setup() {
@@ -34,7 +34,7 @@
           <img :src="logo" alt="beenzer-logo" class="rounded-full w-12 h-12" />
           <div v-if="store.state.welcome"
           class="ml-6 mt-1 font-bold sm:text-4xl text-xl uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400">
-            Beenzer
+            Beenzer DAO
           </div>
         </a>
       </div>
