@@ -28,5 +28,4 @@ export default {
     <ChatsArea />
   </div>
 </div>
-
 </template>
