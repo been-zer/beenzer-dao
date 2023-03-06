@@ -1,7 +1,5 @@
 
 <script>
-import { ref } from 'vue';
-import click_sound from '../../assets/sounds/beep.mp3';
 import MessagesArea from './MessagesArea.vue';
 import ChatsArea from './ChatsArea.vue';
 import { useStore } from '../../services/store';

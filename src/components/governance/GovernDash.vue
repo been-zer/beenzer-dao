@@ -1,4 +1,3 @@
-
 <script lang="ts">
 import { ref } from 'vue';
 import VotingArea from './VotingArea.vue';

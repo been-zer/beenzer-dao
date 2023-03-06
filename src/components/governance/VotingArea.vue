@@ -1,7 +1,4 @@
-
 <script>
-// import { ref } from 'vue';
-// import click_sound from '../../assets/sounds/beep.mp3';
 import CountDown from '../modules/CountDown';
 import motions from '../../../config/motions.json';
 import { useStore } from '../../services/store';
