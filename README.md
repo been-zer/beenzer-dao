@@ -2,6 +2,8 @@
 
 Beenzer's Decentralized Autonomous Organization (DAO)
 
+https://dao.beenzer.app
+
 ## Project setup
 
 ```
