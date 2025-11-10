@@ -188,5 +188,9 @@ node_modules/
 # Yarn Integrity file
 .yarn-integrity
 
+# Bun lockfiles
+bun.lock
+bun.lockb
+
 
 

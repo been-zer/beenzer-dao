@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: beenzer-dao
+    env: static
+    buildCommand: yarn install && yarn build
+    staticPublishPath: ./dist
+    envVars:
+      - key: NODE_VERSION
+        value: 20.18.0
+      - key: NODE_OPTIONS
+        value: --max-old-space-size=4096
+      - key: VUE_APP_CLUSTER
+        value: mainnet-beta
+      - key: VUE_APP_SOLANA_RPC_URL
+        sync: false
+      - key: VUE_APP_SOCKET_ENDPOINT
+        sync: false
+      - key: VUE_APP_BEEN_TOKEN
+        sync: false

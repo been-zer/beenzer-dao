@@ -5,6 +5,50 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2025-11-10
+
+### 🐛 Fixed
+- TypeScript compile errors with vue-router types by pinning `vue-router@4.2.5`.
+- Removed unsupported wallet adapters from `@solana/wallet-adapter-wallets` imports.
+- Hardened `setLocation()` against missing fields to avoid runtime crashes.
+- Replaced deprecated `getConfirmedSignaturesForAddress2` with `getSignaturesForAddress` and added null-safety when parsing transactions.
+- Guarded Holders components against empty data to prevent `supply` access errors.
+- Minor lint fix for webpack config.
+
+### 🔧 Changed
+- Updated `vue.config.js` to improve dev experience (polyfills, friendlier stats, safer minimizer).
+
+## [1.0.1] - 2025-11-05
+
+### 🐛 Fixed
+
+#### 🚀 Render Deployment Issues
+- **Webpack build failures** - Resolved "Build failed with errors" during Vue CLI webpack compilation
+- **Memory allocation** - Added NODE_OPTIONS with 4GB heap size to prevent out-of-memory errors
+- **Build configuration** - Fixed render.yaml to use consistent Yarn workflow throughout build process
+
+#### 📦 Configuration Files Added
+- **`render.yaml`** - Infrastructure-as-code deployment configuration:
+  - Proper static site configuration with `./dist` publish path
+  - NODE_OPTIONS set to `--max-old-space-size=4096` for memory optimization
+  - Node.js version pinning (20.18.0)
+  - Environment variables for Solana RPC and socket endpoints
+- **`.yarnrc`** - Yarn configuration to suppress peer dependency warnings
+
+### 🔧 Technical Details
+
+#### Build Process Improvements
+- **Memory optimization**: Increased Node.js heap size from default (~1.5GB) to 4GB
+- **Consistent package manager**: Uses Yarn throughout (install + build) instead of mixing npm/yarn
+- **Vue CLI webpack**: Properly configured to handle large Solana dependencies
+- **Static site deployment**: Configured for Render's static site hosting
+
+#### Why This Fixes the Issue
+1. **Root cause**: Vue CLI webpack build running out of memory when processing large dependencies (Solana SDK, wallet adapters, ApexCharts)
+2. **Solution**: Increased Node.js memory limit via NODE_OPTIONS environment variable
+3. **Prevention**: Infrastructure-as-code (render.yaml) ensures consistent deployment configuration
+4. **Consistency**: Single package manager (Yarn) throughout the build pipeline
+
 ## [1.0.0] - 2025-10-21
 
 ### Added
