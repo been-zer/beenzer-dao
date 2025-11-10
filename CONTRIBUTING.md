@@ -1,3 +1,47 @@
+# Contributing
+
+Thank you for your interest in contributing!
+
+## Prerequisites
+- Node.js 18+ (recommended 20)
+- npm
+
+## Setup
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Create and fill your environment from `.env.sample`:
+   ```bash
+   cp .env.sample .env.local
+   # edit .env.local with your values
+   ```
+
+## Development
+- Start dev server:
+  ```bash
+  npm run serve
+  ```
+- Lint:
+  ```bash
+  npm run lint
+  ```
+
+## Commit style
+- Use concise, descriptive messages with an emoji prefix. Examples:
+  - 🐛 Fix: describe the bug fix
+  - ✨ Feat: describe the new feature
+  - ♻️ Refactor: describe the refactor
+  - 📝 Docs: describe docs changes
+  - 🧱 Build: tooling/config changes
+
+Group related changes into one commit (commit-by-feature).
+
+## Pull Requests
+- Ensure the dev server builds and runs without errors.
+- Update `CHANGELOG.md` for user-facing changes (patch/minor within current major).
+- Open PRs against `main`.
+
 # Contributing to Beenzer DAO
 
 Thank you for your interest in contributing to Beenzer DAO! We welcome contributions from the community and are excited to have you join us in building this decentralized autonomous organization on Solana.

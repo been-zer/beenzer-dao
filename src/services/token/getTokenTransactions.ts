@@ -20,49 +20,59 @@ export interface TokenTransaction {
   token: string;
 }
 
-export const getTokenTransactions = async ( _token: string = TOKEN, _symbol: string = SYMBOL, _txLimit: number = TX_LIMIT ): Promise<Array<TokenTransaction>> => {
-  const signatures = await SOLANA_CONNECTION.getConfirmedSignaturesForAddress2(
+export const getTokenTransactions = async (
+  _token: string = TOKEN,
+  _symbol: string = SYMBOL,
+  _txLimit: number = TX_LIMIT
+): Promise<Array<TokenTransaction>> => {
+  // Use stable RPC: getSignaturesForAddress (replaces deprecated getConfirmedSignaturesForAddress2)
+  const signatures = await SOLANA_CONNECTION.getSignaturesForAddress(
     new PublicKey(_token),
-    {limit: _txLimit}
+    { limit: _txLimit }
   );
-  console.log('trans', signatures);
-  const signatureList = signatures.map((transaction:any)=>transaction.signature);
-  const transactionDetails = await SOLANA_CONNECTION.getParsedTransactions(signatureList);
-  console.log('trans details', transactionDetails);
+  const signatureList = signatures.map((s) => s.signature);
+
+  // Some providers may return null entries; filter them out
+  const transactionDetails = await SOLANA_CONNECTION.getParsedTransactions(signatureList, {
+    maxSupportedTransactionVersion: 0,
+  });
+
   const transactions: Array<TokenTransaction> = [];
-  transactionDetails.forEach((transaction:any) => {
-    const date = new Date(transaction.blockTime * 1000);
+  for (const transaction of transactionDetails) {
+    if (!transaction || !transaction.meta || !transaction.transaction) continue;
+    const ts = (transaction.blockTime || 0) * 1000;
+    const date = new Date(ts || Date.now());
     const dateTimeStr = getDateTime(date);
     const dateTimeArr = dateTimeStr.split(' ');
-    const txLogs = transaction.meta.logMessages;
+    const txLogs: string[] = transaction.meta.logMessages || [];
     let txType = '⛏️ Mint';
-    // let sender = '';
-    // let receiver = '';
-    // let amount = 0;
-    txLogs.forEach((log:string) => {
-      if ( log == "Program log: Instruction: TransferChecked" ) {
-        txType = '💸 Transfer';
-      } else if ( log == "Program log: Instruction: Mint" ) {
-        txType = '⛏️ Mint';
-      } else if ( log == "Program log: Instruction: Burn" ) {
-        txType = '🔥 Burn';
-      }
-    });
+    for (const log of txLogs) {
+      if (log === 'Program log: Instruction: TransferChecked') txType = '💸 Transfer';
+      else if (log === 'Program log: Instruction: Mint') txType = '⛏️ Mint';
+      else if (log === 'Program log: Instruction: Burn') txType = '🔥 Burn';
+    }
+
+    const pre = transaction.meta.preTokenBalances || [];
+    const post = transaction.meta.postTokenBalances || [];
+    const sender = pre.length >= 1 ? (pre.length === 2 ? pre[1]?.owner : pre[0]?.owner) : '';
+    const receiver = post.length >= 1 ? (post.length === 2 ? post[0]?.owner : pre[0]?.owner) : '';
+    const amount = pre.length === 2 && post.length === 2
+      ? Math.abs((pre[1]?.uiTokenAmount?.uiAmount || 0) - (post[1]?.uiTokenAmount?.uiAmount || 0))
+      : (pre[0]?.uiTokenAmount?.uiAmount || 0);
+
+    const sig = transaction.transaction.signatures?.[0] || '';
     const tx: TokenTransaction = {
       date: dateTimeArr[0],
       time: dateTimeArr[1],
-      signature: transaction.transaction.signatures[0],
+      signature: sig,
       type: txType,
-      sender: transaction.meta.preTokenBalances.length === 2 ? transaction.meta.preTokenBalances[1].owner : transaction.meta.preTokenBalances[0].owner,
-      receiver: transaction.meta.postTokenBalances.length === 2 ? transaction.meta.postTokenBalances[0].owner : transaction.meta.preTokenBalances[0].owner,
-      amount: transaction.meta.preTokenBalances.length === 2 && transaction.meta.postTokenBalances.length === 2 ? 
-              Math.abs(transaction.meta.preTokenBalances[1].uiTokenAmount.uiAmount - transaction.meta.postTokenBalances[1].uiTokenAmount.uiAmount) : 
-              transaction.meta.preTokenBalances[0].uiTokenAmount.uiAmount,
+      sender: sender || '',
+      receiver: receiver || '',
+      amount: Math.floor(amount),
       symbol: _symbol,
-      token: _token
-    }
+      token: _token,
+    };
     transactions.push(tx);
-  });
-  console.log('out', transactions);
+  }
   return transactions;
 };

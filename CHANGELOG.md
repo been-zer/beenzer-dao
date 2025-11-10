@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2025-11-10
+
+### 🐛 Fixed
+- TypeScript compile errors with vue-router types by pinning `vue-router@4.2.5`.
+- Removed unsupported wallet adapters from `@solana/wallet-adapter-wallets` imports.
+- Hardened `setLocation()` against missing fields to avoid runtime crashes.
+- Replaced deprecated `getConfirmedSignaturesForAddress2` with `getSignaturesForAddress` and added null-safety when parsing transactions.
+- Guarded Holders components against empty data to prevent `supply` access errors.
+- Minor lint fix for webpack config.
+
+### 🔧 Changed
+- Updated `vue.config.js` to improve dev experience (polyfills, friendlier stats, safer minimizer).
+
 ## [1.0.1] - 2025-11-05
 
 ### 🐛 Fixed

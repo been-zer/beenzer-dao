@@ -3,21 +3,14 @@ import { useAnchorWallet } from "./useAnchorWallet";
 import { useWallet } from "./useWallet";
 import { Connection } from "@solana/web3.js";
 import {
-  BraveWalletAdapter,
   PhantomWalletAdapter,
   CoinbaseWalletAdapter,
-  SlopeWalletAdapter,
   TrustWalletAdapter,
   HyperPayWalletAdapter,
   SolflareWalletAdapter,
-  GlowWalletAdapter,
-  SolletExtensionWalletAdapter,
-  SolletWalletAdapter,
   TorusWalletAdapter,
-  ExodusWalletAdapter,
   Coin98WalletAdapter,
   SolongWalletAdapter,
-  StrikeWalletAdapter,
   MathWalletAdapter,
   LedgerWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
@@ -28,21 +21,14 @@ const store = useStore();
 
 const walletOptions = {
   wallets: [
-    new BraveWalletAdapter(),
     new PhantomWalletAdapter(),
     new CoinbaseWalletAdapter(),
     new SolflareWalletAdapter(),
-    new SlopeWalletAdapter(),
     new HyperPayWalletAdapter(),
     new TrustWalletAdapter(),
-    new GlowWalletAdapter(),
-    new SolletWalletAdapter(),
-    new SolletExtensionWalletAdapter(),
     new TorusWalletAdapter(),
-    new ExodusWalletAdapter(),
     new Coin98WalletAdapter(),
     new SolongWalletAdapter(),
-    new StrikeWalletAdapter(),
     new MathWalletAdapter(),
     new LedgerWalletAdapter(),
   ],
