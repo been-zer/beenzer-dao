@@ -10,13 +10,27 @@ module.exports = defineConfig({
     cache: false,
     performance: { hints: false },
   },
+  // Dev server proxy to avoid CORS/403 from browser to Solana RPC
+  devServer: {
+    proxy: {
+      "/solana": {
+        target: process.env.VUE_APP_SOLANA_PROXY_TARGET || "https://solana-api.projectserum.com",
+        changeOrigin: true,
+        secure: true,
+        ws: false,
+        pathRewrite: { "^/solana": "" },
+        headers: { origin: "https://solana-api.projectserum.com" },
+      },
+    },
+  },
   chainWebpack: (config) => {
     config.plugins.delete("friendly-errors");
 
     // Exclude apexcharts from babel-loader to avoid large file processing
     config.module
       .rule("js")
-      .exclude.add(/node_modules[\/]apexcharts/)
+      // eslint-disable-next-line no-useless-escape
+      .exclude.add(/node_modules[\\\/]apexcharts/)
       .end();
 
     // Ensure Terser runs without worker threads (fixes CI/container issues)
