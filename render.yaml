@@ -2,7 +2,7 @@ services:
   - type: web
     name: beenzer-dao
     env: static
-    buildCommand: yarn install && yarn build
+    buildCommand: npm install --no-package-lock && npm run build
     staticPublishPath: ./dist
     envVars:
       - key: NODE_VERSION
