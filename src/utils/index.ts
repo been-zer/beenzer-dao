@@ -32,16 +32,21 @@ export function sqlFilter (text: string): string {
 }
 
 export async function setLocation () {
-  fetch('https://api.ipregistry.co/?key=0nxj6f90k9nup0j3')
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (payload) {
-    store.dispatch('setIp', payload.ip);
-    store.dispatch('setFlag', payload.location.country.flag.emoji);
-    store.dispatch('setCountry',  payload.location.country.code);
-    store.dispatch('setCity', payload.location.city);
-  });
+  try {
+    const resp = await fetch('https://api.ipregistry.co/?key=0nxj6f90k9nup0j3');
+    if (!resp.ok) throw new Error(`ipregistry ${resp.status}`);
+    const payload = await resp.json();
+    const ip = payload?.ip || '';
+    const flag = payload?.location?.country?.flag?.emoji || '🏳️';
+    const country = payload?.location?.country?.code || '';
+    const city = payload?.location?.city || '';
+    if (ip) store.dispatch('setIp', ip);
+    store.dispatch('setFlag', flag);
+    if (country) store.dispatch('setCountry', country);
+    if (city) store.dispatch('setCity', city);
+  } catch (_e) {
+    // swallow network/shape errors in dev to avoid breaking UI
+  }
 }
 
 export function formatPercentage (num: number): string {
