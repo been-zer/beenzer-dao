@@ -17,9 +17,15 @@ export default {
     const avgHolded = ref(0);
     watchEffect(async () => {
       holders.value = await getTokenHolders();
-      supply.value = holders.value[0].supply;
-      nHolders.value = holders.value.length;
-      avgHolded.value = Math.floor((supply.value/nHolders.value));
+      if (holders.value && holders.value.length > 0) {
+        supply.value = holders.value[0].supply;
+        nHolders.value = holders.value.length;
+        avgHolded.value = nHolders.value > 0 ? Math.floor(supply.value / nHolders.value) : 0;
+      } else {
+        supply.value = 0;
+        nHolders.value = 0;
+        avgHolded.value = 0;
+      }
     });
     const cluster = process.env.VUE_APP_CLUSTER;
     const nf = Intl.NumberFormat();    
