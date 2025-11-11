@@ -2,13 +2,15 @@ services:
   - type: web
     name: beenzer-dao
     env: static
-    buildCommand: npm install --no-package-lock && npm run build
+    buildCommand: CI=1 npm install --no-package-lock && npm run build
     staticPublishPath: ./dist
     envVars:
       - key: NODE_VERSION
         value: 20.18.0
       - key: NODE_OPTIONS
         value: --max-old-space-size=4096
+      - key: CI
+        value: "1"
       - key: VUE_APP_CLUSTER
         value: mainnet-beta
       - key: VUE_APP_SOLANA_RPC_URL
